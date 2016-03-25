@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>榜单推荐|SQdish食器</title>
+    <link href="/templates/theme/css/style.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<?php include "inc/header.html"?>
+<div class="city1">
+    <div class="city wrap">
+        <span class="s1">当前位置：清迈  <a href="#">[ 点击切换 ]</a></span>
+        <span class="s2"><a href="#">登录</a><span>丨</span><a href="#">注册</a></span>
+        <div class="xlk2">
+            <a href="">中文</a>
+            <span class="arrow"></span>
+            <span class="yuyan">
+                <a href="#">English</a>
+            </span>
+        </div>
+        <div class="xlk1">
+            <a href="">清迈</a>
+            <span class="arrow"></span>
+            <span class="chengshi">
+                <a href="#">清迈</a>
+                <a href="#">清迈</a>
+                <a href="#">清迈</a>
+            </span>
+        </div>
+
+    </div>
+</div>
+<div class="banner5"></div>
+<div class="ctdp">
+    <div class="wrap clear">
+        <div class="top"><a class="a1" id="cat1" href="business_list.php">食器餐厅</a><a class="a2"  id="cat2" href="dish_list.php">食器菜品</a><a class="a2 hover"  id="cat3" href="article_list.php">文章</a><a class="a2" href="#1">附近的餐厅</a></div>
+
+        <div class="d3 d31">
+			<div class="sx">
+					<a class="a1 fl hover" href="#1">最新</a><span class="s1 fl">|</span>
+					<a class="a2 fl" href="#1">销量</a><span class="s1 fl">|</span>
+					<a class="a3 fl" href="#1">评价</a>
+                <div class="sxd fr">
+                    <a href="business_list.php?<?php echo !empty($rt_name)?'rt_name='.$rt_name:'';?>&act=is_rec">认证商户</a>
+                    <a href="business_list.php?<?php echo !empty($rt_name)?'rt_name='.$rt_name:'';?>&act=online_pay">在线支付</a>
+                </div>
+            </div>
+            <div class="lb">
+                <ul class="lifl clear">
+		<?php foreach($List as $v){?>			
+                    <li>
+                        <a href="article_detail.php?tid=<?php echo $v['id'];?>">
+                            <img class="img" src="<?php echo $v['articleThumb'] ?>" alt=""/>
+                            <span class="s1"><?php echo $v['articleTitle'] ?></span>
+                            <span class="s2">
+                                <span class="s3">作者：<?php echo $v['articleAuthor'] ?>  <i>时间：<?php  echo date('Y-m-d H:i:s',$v['addtime']) ; ?></i></span>
+                            </span>
+                           <span class="s4"><?php echo $v['articleDes'] ?>...</span>
+                            <span class="s5">
+                    <!-- <span class="s51 fr">1236</span>-->
+                        <span class="s52 fr"><?php echo $v['articleClick'] ?></span>
+                    </span>
+                        </a>
+                    </li>
+		<?php }?>			
+
+					
+                </ul>
+                <div class="fy fy1">
+                    <!-- <a href="#1"><span class="s1"><img src="/templates/theme/bg/zuo.png" alt=""/></span></a> -->
+					<span class="s2">                
+							   <?php  echo $pages->display(); ?>
+					</span>
+                    <!-- <a href="#1"><span class="s3"><img src="/templates/theme/bg/you.png" alt=""/></span></a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php include "inc/footer.html"?>
+
+
+<script type="text/javascript" src="/templates/theme/common/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/templates/theme/common/jquery.tools.min.js"></script>
+<script type="text/javascript" src="/templates/theme/common/ciads.js"></script>
+</body>
+</html>
+<!--搜索后栏目链接重定向-->
+<script type="text/javascript">
+
+window.onload=function(){
+            var keys = $("#keys").val();
+            if (keys!="输入关键字进行查找") {
+                    $("#cat1").attr("href","search.php?act=1&key="+keys);
+                    $("#cat2").attr("href","search.php?act=2&key="+keys);
+                    $("#cat3").attr("href","search.php?act=3&key="+keys);
+            }
+}
+
+
+
+
+
+</script>

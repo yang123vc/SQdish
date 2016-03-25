@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><?php if($cr) {echo $cr['categoryNameZ'];} else {echo "印记" ;}?>-SQdish食器-让您的旅途不在将就</title>
+	<meta name="keywords" content="<?php echo $cr['categorykeyword'];?>">
+		<meta name="description" content="<?php echo $cr['categorydes'];?>">
+    <link href="/templates/theme/css/style.css" type="text/css" rel="stylesheet" />
+    <link href="/templates/theme/css/sqStyle.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/templates/theme/common/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/templates/theme/common/jquery.tools.min.js"></script>
+    <script type="text/javascript" src="/templates/theme/common/ciads.js"></script>
+</head>
+<body>
+<?php include "inc/header.html"?>
+<div class="city1">
+    <div class="city wrap">
+        <span class="s1">当前位置：清迈 <a href="#">[ 点击切换 ]</a></span>
+        <span class="s2"><a href="#">登录</a><span>丨</span><a href="#">注册</a></span>
+        <div class="xlk2">
+            <a href="">中文</a>
+            <span class="arrow"></span>
+            <span class="yuyan">
+                <a href="#">English</a>
+            </span>
+        </div>
+        <div class="xlk1">
+            <a href="">清迈</a>
+            <span class="arrow"></span>
+            <span class="chengshi">
+                <a href="#">清迈</a>
+                <a href="#">清迈</a>
+                <a href="#">清迈</a>
+            </span>
+        </div>
+
+    </div>
+</div>
+<div class="banner3"></div>
+
+
+
+
+
+<div class="yj clear">
+    <div class="yj1 wrap">
+        <div class="yji">
+            <span class="ss"></span>
+            <span class="s1">我们将为您变得更好<br>留下您的经历,aqdish帮您记录在时光中让大家看见您</span>
+        </div>
+        <div class="nnav">
+            <div class="line"></div>
+            <div class="ttc">
+                <a class="prev iconfont a1"><span></span></a>
+                <a class="next iconfont a2"><span></span></a>
+                <div class="scroll"><!--class=""-->
+                    <ul class="clear lifl">
+										<?php if($CList){
+										foreach($CList as $k=>$v){
+										if($v['id']==$_GET['tid']){$class='hover';}else{$class='';}
+										 echo "<li ><a class='$class' href=\"".getcategoryurl($v)."\"><span>{$v['categoryNameZ']}</span></a></li>";
+										}										
+										} ?>  
+                        
+                       
+                       
+                     </ul>
+                </div>
+            </div>
+						
+						
+            <div class="nd hover">
+                <ul class="lifl clear ul ul2">
+				<?php if(is_array($List)){
+							foreach($List as $k=>$v){
+							if($k%3==2){$class='li3';}else{$class='';}
+				?>
+                    <li class="<?php echo $class; ?>">
+                        <a href="<?php echo getarticleurl($v); ?>">
+                            <span class="s1"><img src="<?php echo $v['articleThumb'] ?>" alt=""/></span>
+                            <span class="s2"><?php echo $v['articleTitle'] ?></span>
+                            <span class="s3">作者：<?php echo $v['articleAuthor'] ?>  <i>时间：<?php  echo date('Y-m-d H:i:s',$v['addtime']) ; ?></i> </span>
+                    <span class="s4"><?php echo $v['articleDes'] ?>...</span>
+                    <span class="s5">
+                    <!-- <span class="s51 fr">1236</span>-->
+                        <span class="s52 fr"><?php echo $v['articleClick'] ?></span>
+                    </span>
+                        </a>
+                    </li>
+					<?php
+						}				
+						} 
+					?>
+                    
+										
+								
+								</ul>
+                <div class="fy">
+          <!---<a href="#1"><span class="s1"><img src="/templates/theme/bg/zuo.png" alt=""/></span></a>-->
+            <span class="s2">
+						
+						<?php  echo $pages->display(); ?>
+ 
+            </span>
+                   <!--- <a href="#1"><span class="s3"><img src="/templates/theme/bg/you.png" alt=""/></span></a>-->
+                </div>
+            </div>
+            
+				
+				</div>
+    </div>
+</div>
+
+
+<div class="rmtj">
+    <div class="wrap">
+        <span class="s1 fl"></span>
+        <a href="#1"><span class="s2 fl"> view more love show</span></a>
+    </div>
+</div>
+<div class="rmtj2">
+    <div class="wrap">
+        <div class="ttc">
+            <a class="prev iconfont a1"><span></span></a>
+            <a class="next iconfont a2"><span></span></a>
+            <div class="scroll">
+                <ul class="clear lifl">
+								
+								<?php if($talists){
+									foreach($talists as $k=>$v){
+								//	echo count($talist);
+								 ?>
+                    <li>
+                        <a href="<?php echo getarticleurl($v); ?>"><img src="<?php echo $v['articlePic'] ?>" alt=""/>
+                            <span class="s1">
+                                <span class="s11sq"><?php echo $v['articleTitle']; ?></span>
+                                <span class="s12sq"><?php echo $CList[$v['articleCategory']]['categoryNameZ'];?></span>
+                                <span class="s13">作者：<?php echo $v['articleAuthor'];?><br>更新时间: <?php echo date("Y-m-d",$v['addtime']) ?></span>
+                                <span class="s14"><img src="/templates/theme/bg/37.png" alt=""/></span>
+                            </span>
+                        </a>
+                    </li>
+										
+								<?php 	}
+								} ?>
+            
+								</ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php include "inc/footer.html"?>
+
+
+</body>
+</html>

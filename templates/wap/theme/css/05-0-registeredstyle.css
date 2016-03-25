@@ -1,0 +1,18 @@
+
+.sqBgColor {
+	background:#eda128;
+}
+.loginfrom {
+	padding:5% 2%;
+}
+.loginfrom input, .am-form input[type=text], .am-form input[type=password] {
+	padding:3%;
+	font-size:2rem;
+}
+.loginfrom p {
+	text-align:right
+}
+.loginfrom p a, .threeLogin ul li a {
+	color:#333;
+	font-size:2rem;
+}

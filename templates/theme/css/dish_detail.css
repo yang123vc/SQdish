@@ -1,0 +1,160 @@
+@charset "utf-8";
+.dishTitle,.dishBox,.dishPrice,.dishSell,.dishtype,.dishNum,.dishButton,.dishIntro,.dishMore,.dishHistory {
+	width:100%;
+	margin:5px 0;
+	float:left;
+}
+.dishBoxLeft {
+	width:400px;
+}
+.dishPic img {
+	width:100%;
+}
+.dishTitle h1 {
+    font-size: 28px;
+    color: #333;
+	border-bottom:1px solid #eee;
+	padding:15px 0;
+}
+.dishBoxRight {
+	width:420px;
+}
+.dishBoxRightText {
+	width:60px;
+	float:left;
+	text-align:center;
+	line-height:42px;
+    height: 42px;
+    overflow: hidden;
+	color:#666;
+	font-size:12px;
+}
+.dishBoxRightContent {
+	width:350px;
+	float:right;
+	line-height:42px;
+	vertical-align:top;
+}
+.dishBoxRightContent span {
+	font-size: 18px;
+	color: #f76120;
+}
+.dishBoxRightContent strong {
+	font-size:32px;
+	font-weight:bold;
+	color: #f76120;
+	vertical-align:center:
+}
+.dishBoxRightContent a {
+    line-height: 27px;
+    margin: 0 5px 5px 0;
+    padding:8px;
+    color: #666;
+    border: 1px solid #ddd;
+}
+.dishBoxRightContent a.hover {
+    border: 2px solid #eda128;
+}
+.shxq .msfl .left ul li {
+	margin:0;
+}
+.dishSell ul li,.dishSell ul li.rightLine {
+	display:inline;
+	width:32%;
+	float:left;
+	border-bottom:1px solid #eee;
+	border-top:1px solid #eee;
+	padding:15px 0 ;
+	text-align:center;
+	list-style:none;
+}
+.dishSell ul li.rightLine {
+	border-right:1px solid #eee;
+}
+.dishSell b {
+	font-weight:normal;
+	color:#eda128;
+}
+.dishNumButton {
+	width:30px;
+	height:30px;
+	line-height:30px;
+	font-size:18px;
+	font-weight:bold;
+	text-align:center;
+}
+.dishBoxRightContent form {
+    width: 160px;
+    float: left;
+}
+.dishNumInput {
+	width:50px;
+	height:28px;
+	line-height:30px;
+	text-align:center;
+	vertical-align:super;
+	border:1px solid #ccc;
+}
+.dishBuyInput {
+	width:160px;
+	height:42px;
+	line-height:42px;
+	background:#eda129;
+	border-radius:5px;
+	border:none;
+	border-bottom:2px solid #c66c11;
+	font-size:18px;
+	color:#fff;
+	cursor:pointer;
+}
+.dishAddCart,.dishAddFavButton,.dishAddFavButtonHover {
+	width:42px;
+	line-height:42px;
+	height:42px;
+	background:url(/templates/images/cartBg.png) #f8f8f8 no-repeat center;
+	border:none;
+	border-radius:5px;
+	border: 1px solid #ececec;
+	cursor:pointer;
+	vertical-align:inherit;
+	margin-left:10px;
+}
+.dishAddFavButton {
+	background:url(/templates/images/dishFav.png) #f8f8f8 no-repeat center;
+}
+.dishAddFavButtonHover,.dishAddFavButton:hover {
+	background:url(/templates/images/dishFavFull.png) #f8f8f8 no-repeat center;
+}
+.dishIntro {
+	font-size:14px;
+	line-height:25px;
+}
+.dishIntro table {
+	width:840px;
+	overflow:hidden;
+	float:;left;
+}
+.dishMore ul li,.dishHistory ul li {
+	display:inline;
+	width:23%;
+	padding:1%;
+	line-height:25px;
+	text-align:center;
+	float:left;
+}
+.dishMore ul li a,.dishHistory ul li a {
+	color:#eda129;
+	font-size:14px;
+}
+.dishMore ul li a img,.dishHistory ul li a  img {
+	width:100%;
+	min-height:140px;
+	height:140px;
+	overflow:hidden;
+}
+	
+	
+	
+	
+	
+	

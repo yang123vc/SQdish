@@ -1,0 +1,23 @@
+<div class="city1">
+    <div class="city wrap">
+        <ol class="am-breadcrumb am-breadcrumb-slash Breadcrumb">
+         <span><i class="am-icon-map-marker am-icon-sm"></i> </span>
+  		 <li><a href="/">首页</a></li>
+         <!-- <li><a href="#">分类</a></li>-->
+  		 <li class="color">个人中心</li>
+         <?php if(!empty($user_info)) {?>
+         <div class="name">
+          <li class="am-dropdown" data-am-dropdown>
+		        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;" style="color:#eda129;">
+		         <?php echo $user_info['nickname'] ? $user_info['nickname'] : $user_info['username'];?>  <span class="am-icon-caret-down"></span>
+		        </a>
+		        <ul class="am-dropdown-content down">
+		          <li><a href="/shopcart.php"><span class="am-icon-shopping-cart am-margin-left-md"></span> 购物车</a></li> 
+		          <li><a href="/logOut.php"><span class="am-icon-sign-out am-margin-left-md"></span> 注销</a></li> 
+		        </ul>
+      	  </li>
+         </div>
+         <?php }?>
+         </ol>
+    </div>
+</div>

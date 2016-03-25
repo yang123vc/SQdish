@@ -1,0 +1,23 @@
+.content{max-width:1200px; margin-bottom:90px;font-family:Microsoft YaHei,LiHei Pro; display:block; overflow:hidden; margin-top:30px; padding:0 0;}
+.dh{overflow:hidden;float:left;}
+.name{  float:right;}
+.name .color{ color:#eda129;}
+.dh ul li a{ font-size:14px;color:#000;height:48px; line-height:24px; padding-left:20px;}
+.dh ul li{ margin-bottom:18px}
+.dh ul li:hover{ background:#eda129; border-radius:5px;}
+.nav1{ padding-left:20px;}
+.dh ul li a:hover{ color:#fff;}
+.dh ul .nav1:hover{background:#FFF;}
+.dh ul .nav1 a:hover{color:#eda129;}
+.Breadcrumb a{ color:#000;}
+.color{ color:#eda129;}
+
+.Message{ border:0px solid; margin-left:54px;}
+.osysmsglog{ background: url(../bg/yj.png) no-repeat; width:22px; height:12px; float:left; margin:5px 0 0 0;}
+.rule{ border-bottom:#CCC 1px dashed; margin-bottom:20px;}
+.rule h2{ margin-bottom:10px;}
+.title{ font-size:14px; font-weight:bold;font-family:Microsoft YaHei,LiHei Pro; color:#eda129;}
+.time{font-size:12px;font-family:Microsoft YaHei,LiHei Pro; color:#eda129; margin-left:40px;}
+.news{ overflow:hidden; padding:0; margin-bottom:20px; line-height:20px;}
+.news a{ float:left;}
+.city .am-icon-map-marker{ color:#eda129;}

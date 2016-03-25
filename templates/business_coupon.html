@@ -1,0 +1,298 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><?php echo $detail['sellerName'];?>|SQdish食器</title>
+    <link href="templates/theme/css/style.css" type="text/css" rel="stylesheet" />
+    
+</head>
+<body>
+<?php include "inc/header.html";?>
+<?php include "inc/header_info.html"?>
+<div class="shxq">
+    <div class="d1">
+        <div class="wrap">
+            <img class="img fl" src="<?php echo $detail['pic'];?>" alt=""/>
+            <div class="d2 fl">
+                <span class="s1"><?php echo $detail['sellerName'];?></span>
+                <span class="s2">
+                    <span class="s21 fl"><img src="templates/theme/bg/13.png" alt=""/></span>
+                      <span class="s22 fl">月售<?php echo $detail['count'];?>份</span>
+                    <span class="s23 fl"><?php echo $detail['BH'];?></span>
+                </span>
+                <span class="s5">
+                                <?php foreach($ser_icon as $k){?>
+                                <span class="s52" ><img style= "width:auto; height:auto; max-width:100%;max-height:100%;"src="<?=$k?>" /></span>
+                                <?php }?>
+                </span>
+            </div>
+            <div class="d3 fl">
+                <a href="/business_detail.php?sid=<?=$sid?>">菜 单</a>
+				<a class="hover" href="/business_coupon.php?sid=<?=$sid?>">优惠券</a><!--此按钮需要判断商户是否有优惠券-->
+				<a href="/business_comment.php?sid=<?=$sid?>">评 价</a>
+				<a href="#1" class="sh">商户名片<div class="wx"><img src="<?php echo $detail['QRCode'];?>"></div></a>
+            </div>
+            <ul class="d4 fr lifl">
+                <li><span class="s1"><?php echo $detail['click'];?>次</span><span class="s2">浏览量</span></li>
+                <li><span class="s1">￥100</span><span class="s2">人均消费</span></li>
+                <li><span class="s1">78条</span><span class="s2">评价数</span></li>
+                <li>
+                <?php if($fav_flag_shop==0) { ?>
+                    <a href="#1" id="addFav" class="addFav" onclick="addShopFav(<?php echo $detail['id'];?>,1);"><span class="s1 s11"></span><span class="s2 s21">收藏商户</span></a>
+                    <a  id="delFav" style="display:none" class="hover delFav" href="#1" onclick="cancelShopFav(<?php echo $detail['id'];?>,1);"><span class="s1 s11"></span><span class="s2 s21">收藏商户</span></a>
+                    <? } else { ?>
+
+                    <a  id="delFav" class="hover delFav" href="#1" onclick="cancelShopFav(<?php echo $detail['id'];?>,1);"><span class="s1 s11"></span><span class="s2 s21">收藏商户</span></a>
+                    <a  id="addFav" href="#1" class="addFav" style="display:none"onclick="addShopFav(<?php echo $detail['id'];?>,1);"><span class="s1 s11"></span><span class="s2 s21">收藏商户</span></a>
+                    <? } ?>
+                </li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="msfl">
+        <div class="wrap clear">
+            <div class="left fl">
+                <div class="t1"><span>优惠券</span></div>
+					<ul class="clear lifl">
+                        <?php if($couponList):?>
+                        <?php foreach ($couponList as $key => $value):?>
+                            <li>                            
+                                <a href="coupon_detail.php?cid=<?php echo $value['id'];?>"  ><img class="img fl" src="<?=$value['pic']?>" alt=""></a>
+                                <div class="ld fl">
+                                    <a href="coupon_detail.php?cid=<?php echo $value['id'];?>"><span class="s1"><?=$value['couponNameCN']?></span></a>
+                                    <p class="s2">
+                                        <span class="s21"><?=$value['couponIntroCN']?></span>
+                                    </p>
+                                    <span class="s3">￥<?=$value['price']?></span>
+                                </div>
+                                <a href="#cartButton" class="cartButton" value="<?=$value['id']?>" ></a>                        
+                            </li>
+                        <?php endforeach;?>
+                        <?php else:?><li><p>该商家暂无优惠券</p></li>
+                        <?php endif;?>
+                    </ul>
+            </div>
+            <div class="right fr">
+				<div class="ciads_scroll">
+					<div class="r1">
+						<span class="s1 fl"> 优惠券</span>
+                        <a href="#1">
+                            <div id="couponnum" style="width:24px;height:24px;float:left;margin-top:10px;margin-left:-25px;color:#ffffff;text-align:center;background-image: url(/templates/images/couponnum.png);<?php if($couponCount['num'] == 0){echo 'display:none;';}?>">
+                                <div id="couponcount" style="margin-top:-13px;"><?=$couponCount['num']?></div>
+                            </div>
+                        </a>
+						<a href="#" id="all_clear"><span class="s2 fr">清空</span></a>
+					</div>
+				            <ul id="coupon_list" >
+						<li >
+							<div class="l1 fl">名称</div>
+							<div class="l2 fl">份数</div>
+							<div class="l3 fl">单价</div>
+						</li>
+                                                                <?php if(!empty($coupon_list)){foreach($coupon_list as $v){if($v){?>
+                                                                <li>
+                                                                    <div class='l1 fl'><?php echo $v['couponNameCN'];?></div>
+                                                                    <div class='l2 fl'>
+                                                                        <a class='a1' href='#1' onclick= "reduce(<?php echo $v['id'];?>);"></a>
+                                                                        <span><?php echo $v['num'];?></span>
+                                                                        <a class='a2' href='#1' onclick= "add(<?php echo $v['id'];?>);"></a>
+                                                                    </div>
+                                                                    <div class='l3 fl'>￥<?php echo $v['price'];?></div>
+                                                                </li>
+  
+                                                                <?php }}}?>
+						
+					</ul>
+
+					<div class="r3">可使用支付宝、微信、手机QQ进行在线支付</div>
+					<div class="r4">
+						<span class="s1 fl" id="Cart">共计￥<?php echo $total;?>元</span>
+						<a href="user_coupon_order.php?sid=<?php echo $sid;?>"><input type="submit" class="fr tj" value="提交订单"/></a>
+					</div>
+					<div class="r5 clear">
+						<span class="s1">商家信息</span>
+						<span class="s2"><?php echo $detail['intro'];?></span>
+						<img src="templates/images/24.jpg">
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+<input id="url" type="hidden" value="<?php echo $url;?>"/>
+<input id="mid" type="hidden" value="<?php echo $mid;?>"/>
+<input id="sid" type="hidden" value="<?php echo $sid;?>"/>
+<?php include "inc/footer.html"?>
+
+<script type="text/javascript" src="templates/theme/common/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="templates/theme/common/jquery.tools.min.js"></script>
+<script type="text/javascript" src="templates/theme/common/ciads.js"></script>
+<script type="text/javascript" src="templates/theme/common/jquery.fly.min.js"></script> 
+<script type="text/javascript" src="templates/theme/js/favourite.js"></script>
+<script type="text/javascript">
+$(function(){
+    $('.cartButton').on('click', addCart);
+    $(window).scroll(function(){
+        wTop=parseInt($(document).scrollTop());
+        if(wTop>parseInt($(".right").offset().top))
+        {
+            $(".ciads_scroll").addClass("ciads_scroll2").width($(".right").width()).css("right",($(window).width()-1200)/2);
+        }
+        else
+        {
+            $(".ciads_scroll").removeClass("ciads_scroll2");
+        }
+    });
+});
+function addCart(event) {
+
+var shop_goods = this.id.split("_");
+var goods_id = shop_goods[0];
+var shop_id =  shop_goods[1];
+var product_price = shop_goods[2];
+var num = 1;
+    var goods_attr_name = $('#goods_attr_name_'+goods_id).val();
+    addToCart(goods_id,shop_id,num,goods_attr_name,product_price);
+
+var offset = $('#Cart').offset(), flyer = $('<img class="u-flyer" src="templates/images/3333.png"/>');
+flyer.fly({
+    start: {
+        left: event.pageX,
+        top: event.pageY
+    },
+    end: {
+        left: offset.left+20,
+        top: offset.top,
+        width: 20,
+        height: 20
+    },
+    onEnd:function(){
+        flyer.remove();
+    }
+});
+}
+</script>
+<script type="text/javascript">
+
+
+
+$(".cartButton").click(function(){
+    var coupon = $(this).attr("value");
+    var member = <?php echo $mid;?>;
+      var total = 0;
+    if (member==1) {
+        location.href = "login.php";
+        exit;
+    }
+    $.ajax( {  
+        url:'/ajax_coupon_count.php',// 跳转到 action
+        data:{  
+              act : 'add',
+              mid : member,  //会员id为登陆后session中的会员id
+              cid : coupon
+        },  
+        type:'post',
+        dataType:'json',
+        success:function(data) {
+             $("#coupon_list").html("<li > <div class='l1 fl'>名称</div><div class='l2 fl'>份数</div><div class='l3 fl'>单价</div></li>");
+            for(var i=0;i<data.length;i++){
+      $("#coupon_list").append("<li><div class='l1 fl'>"+data[i].couponNameCN+"</div><div class='l2 fl'><a class='a1' href='#1' onclick='reduce("+data[i].id+");'></a><span>"+data[i].num+"</span><a class='a2' href='#1' onclick='add("+data[i].id+");'></a></div><div class='l3 fl'>￥"+data[i].price+"</div></li>");
+              $("#couponnum").show();
+               total +=data[i].count;
+             }
+               $("#Cart").html("共计￥"+total+"元");
+        },
+        error : function() {
+            // view("异常！");
+            alert("异常！");
+        }  
+    });
+});
+//减少
+
+function  reduce(id){
+        var member = <?php echo $mid;?>;
+        var coupon = id;
+          var total = 0;
+        $.ajax( {  
+        url:'/ajax_coupon_count.php',// 跳转到 action
+        data:{  
+              act : 'reduce',
+              mid : member,  //会员id为登陆后session中的会员id
+              cid : coupon
+        },  
+        type:'post',
+        dataType:'json',
+        success:function(data) {
+             $("#coupon_list").html("<li > <div class='l1 fl'>名称</div><div class='l2 fl'>份数</div><div class='l3 fl'>单价</div></li>");
+            for(var i=0;i<data.length;i++){
+             $("#coupon_list").append("<li><div class='l1 fl'>"+data[i].couponNameCN+"</div><div class='l2 fl'><a class='a1' href='#1' onclick='reduce("+data[i].id+");'></a><span>"+data[i].num+"</span><a class='a2' href='#1' onclick='add("+data[i].id+");'></a></div><div class='l3 fl'>￥"+data[i].price+"</div></li>");
+              $("#couponnum").show();
+               total +=data[i].count;
+             }
+               $("#Cart").html("共计￥"+total+"元");
+        },
+        error : function() {
+            // view("异常！");
+            alert("异常！");
+        }  
+    });
+
+};
+function add(id){
+        var member = <?php echo $mid;?>;
+         var coupon = id;
+         var total = 0;
+        $.ajax( {  
+        url:'/ajax_coupon_count.php',// 跳转到 action
+        data:{  
+              act : 'add',
+              mid : member,  //会员id为登陆后session中的会员id
+              cid : coupon
+        },  
+        type:'post',
+        dataType:'json',
+        success:function(data) {
+             $("#coupon_list").html("<li > <div class='l1 fl'>名称</div><div class='l2 fl'>份数</div><div class='l3 fl'>单价</div></li>");
+            for(var i=0;i<data.length;i++){
+              $("#coupon_list").append("<li><div class='l1 fl'>"+data[i].couponNameCN+"</div><div class='l2 fl'><a class='a1' href='#1' onclick='reduce("+data[i].id+");'></a><span>"+data[i].num+"</span><a class='a2' href='#1' onclick='add("+data[i].id+");'></a></div><div class='l3 fl'>￥"+data[i].price+"</div></li>");
+              $("#couponnum").show();
+              total +=data[i].count;
+             }
+           $("#Cart").html("共计￥"+total+"元");
+        },
+        error : function() {
+            // view("异常！");
+            alert("异常！");
+        }  
+    });
+
+};
+$("#all_clear").click(function(){
+   var member = <?php echo $mid;?>; 
+         if(confirm('确认清空？')){
+            $.ajax({
+                url:'ajax_coupon_all_clear.php',
+                data:{
+                    mid:member
+                },
+                type:'post',
+                dataType:'text',
+                 success:function(data) {
+                    if (data=='success') {
+                        $("#coupon_list").html("<li > <div class='l1 fl'>名称</div><div class='l2 fl'>份数</div><div class='l3 fl'>单价</div></li>");
+                          $("#Cart").html("共计￥0元");
+                    }else{
+                        alert('清空失败');
+                    }
+                 },
+                     error : function() {
+                         alert('异常！');
+                     }
+            });
+         }
+    });
+</script>
+</body>
+</html>

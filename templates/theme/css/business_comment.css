@@ -1,0 +1,144 @@
+@charset "utf-8";
+.conmment_content,.comment_box,.conmment_header,.sendCommentBox,.sendCommentInfo {
+	width:100%;
+}
+.conmment_header {
+	height:40px;
+	line-height:40px;
+	background:#f9f9f9;
+}
+.conmment_header ul li, .comment_pic ul li,sendCommentBox ul li {
+	display:inline;
+	text-align:center;
+	float:left;
+}
+.shxq .msfl .left ul li {
+	margin:0;
+}
+.conmment_header ul li a {
+	font-size:14px;
+	color:#666;
+	height:40px;
+	padding:0 15px;
+	line-height:40px;
+	float:left;
+	margin:0;
+}
+.shxq .msfl .left ul li a:hover, .shxq .msfl .left ul li a.hover,.conmment_header ul li a.hover,.sendCommentBox table tr td ul li a:hover {
+	background:#e6e6e6;
+}
+.conmment_content {
+	padding:20px 0;
+	border-bottom:1px solid #eee;
+}
+.comment_logo {
+	width:85px;
+	line-height:25px;
+	text-align:center;
+}
+.commentR {
+	width:750px;
+	font-size:14px;
+	line-height:25px;
+}
+.comment_pic ul li  {
+	padding:5px;
+}
+.comment_pic ul li  img {
+	width:85px;
+	height:85px;
+}
+.sendCommentInfo {
+	padding:50px 0;
+	line-height:25px;
+	text-align:center;
+	background:#eee;
+}
+.sendCommentInfo a {
+	color:#eda128;
+}
+.sendCommentBox {
+	font-size:14px;
+}
+.endCommentTextarea {
+	border:1px solid #eee;
+}
+a.starChoce {
+	width:16px;
+	height:16px;
+	background:url(/templates/theme/bg/stargray.jpg) no-repeat;
+	margin:0 2px;
+	float:left;
+}
+
+a.starCover {
+	width:16px;
+	height:16px;
+	background:url(/templates/theme/bg/starhover.jpg) no-repeat;
+	margin:0 2px;
+	float:left;
+}
+a.starChoce:hover {
+	background:url(/templates/theme/bg/starhover.jpg) no-repeat;
+}
+.sendCommentBox table tr td{
+	padding:15px 0;
+}
+.sendCommentBox table tr td.titleName {
+	width:100px;
+	text-align:right;
+	vertical-align:top;
+}
+.sendCommentBox table tr td span {
+	padding:5px 10px;
+	background:#f0f5fc;
+	color:#666;
+	font-size:12px;
+	line-height:25px;
+}
+.sendCommentBox table tr td p {
+	width:100%;
+	font-size:12px;
+	line-height:25px;
+}
+.sendCommentUpload {
+	width:82px;
+	height:82px;
+	background:url(/templates/images/uploadButtonBg.jpg) no-repeat;
+}
+.commentSendButton {
+	border: none;
+    background: #eda128;
+    width: 110px;
+    height: 39px;
+    line-height: 39px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+	cursor:pointer;
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

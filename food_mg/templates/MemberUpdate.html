@@ -1,0 +1,370 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><?=$new_businesses_text?> - <?=$website_name?> <?=$admin_center?></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="templates/assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="templates/assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="templates/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="templates/assets/css/admin.css">
+  <link href="/js/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+<?php
+	// header
+	include 'templates/header.htm';
+?>
+
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php
+	// 左边栏
+	include 'templates/sidebar.htm';
+  ?>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">会员编辑</strong></div>
+    </div>
+
+    <hr/>
+
+    <div class="am-g">
+
+      <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
+        <div class="am-panel am-panel-default">
+          <div class="am-panel-bd">
+            <div class="am-g">
+              <div class="am-u-md-12">
+                <img id="showimg" class="am-img-circle am-img-thumbnail" src="<?php if(isset($pic))echo $pic;?>" alt=""/>
+              </div>
+              <div class="am-u-md-12">
+                <p><?=$upload_avatar?></p>
+                <form class="am-form">
+                  <div class="am-form-group">
+						<div class="btn">
+							<span><?=$upload_pic_text?></span>
+							<input id="fileupload" type="file" name="mypic">
+						</div>
+						<div class="progress">
+							<span class="bar"></span><span class="percent">0%</span >
+						</div>
+						<div class="files"></div>
+                    <p class="am-form-help"><?=$choose_file_text?>...</p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4"><!--onsubmit="return uptext();"-->
+        <form action="DoMember.php"  id="form" method="post" class="am-form am-form-horizontal">
+			<input type="hidden" name="action" value="update" />
+			<input type="hidden" name="id" value=" <?php echo $m['id'];?>" />
+                <input type="hidden" id="_pic" name="thumbail" value=" <?php echo $m['thumbail'];?>" />
+			
+			
+			<div class="am-form-group ">
+				<label for="user-name" class="am-u-sm-3 am-form-label"><?=$username_text?></label>
+				<div class="am-u-sm-9 ">
+				  <input type="text" name="username" value=" <?php echo $m['username'];?>" id="user-name" placeholder="<?=$merchant_name_text?>">  
+				</div>
+			</div>
+
+            <div class="am-form-group ">
+              <label for="user-name" class="am-u-sm-3 am-form-label"><?=$psw_text?></label>
+              <div class="am-u-sm-9 ">
+                <input type="password" name="password" value="" id="user-name" placeholder="<?=$psw_text?>">  
+              </div>
+            </div>
+
+          <div class="am-form-group"  id="six">
+            <label for="user-phone" class="am-u-sm-3 am-form-label"><?=$nickname_text?></label>
+            <div class="am-u-sm-9">
+              <input type="text" name="nickname" value="<?php echo $m['nickname'];?>" id="share" placeholder="<?=$share_information_text?>"><span id="sixth"class="" style="display:none"></span>
+            </div>
+          </div>
+
+          <div class="am-form-group" id="two">
+            <label for="user-phone" class="am-u-sm-3 am-form-label"><?=$phone_text?></label>
+            <div class="am-u-sm-9">
+              <input type="text" name="phone" value="<?php echo $m['phone'];?>" id="user-phone" placeholder="<?=$phone_text?>">
+            </div>
+          </div>
+            <div class="am-form-group" id="two">
+            <label for="user-phone" class="am-u-sm-3 am-form-label"><?=$email_text?></label>
+            <div class="am-u-sm-9">
+              <input type="text" name="email" value="<?php echo $m['email'];?>"  placeholder="<?=$email_text?>">
+            </div>
+          </div>
+
+          
+          <!--<div class="am-form-group">
+            <label for="user-phone" class="am-u-sm-3 am-form-label"><?=$country_text?></label>
+            <div class="am-u-sm-9">
+			  <input name="country" class="am-u-sm-3" id="countryValue" value="<?=$country?>" placeholder="<?=$country_text?>"/>
+			  <input name="state" class="am-u-sm-3" id="stateValue" value="<?=$state?>" placeholder="<?=$state_text?>"/>
+			  <input name="city" class="am-u-sm-3" id="cityValue" value="<?=$city?>" placeholder="<?=$city_text?>"/>
+			  <input name="region" class="am-u-sm-3" id="regionValue" value="<?=$region?>" placeholder="<?=$region_text?>"/>
+			
+			  <hr/>
+			
+			  <div class="selectCountry" data-index="0" id="country" value="<?=$country?>"></div>
+			  <div class="selectCountry" data-index="1" id="state" value="<?=$state?>"></div>
+			  <div class="selectCountry" data-index="2" id="city" value="<?=$city?>"></div>
+			  <div class="selectCountry" data-index="3" id="region" value="<?=$region?>"></div>-->
+              <!--<input type="text" name="country" value="<?php if(isset($country))echo $country;?>"  id="user-phone" placeholder="<?=$country_text?>">-->
+            <!--</div>
+          </div>-->
+
+          <div class="am-form-group">
+            <label for="user-phone" class="am-u-sm-3 am-form-label"><?=$reg_way_text?></label>
+
+            <div class="am-u-sm-9">
+				<select name="opt" >
+					<option value="0" ><?=$reg_way_text?></option>
+                             <option value="1" <?php  if($m['opt'] ==1 ){echo 'selected = "selected"'; }?>><?=$email_text?></option>
+                              <option value="2" <?php  if($m['opt'] ==2 ){echo 'selected = "selected"'; }?>><?=$phone_text?></option>
+                              <option value="3" <?php  if($m['opt'] ==3 ){echo 'selected = "selected"'; }?>><?=$wechat_text?></option>
+					<option value="4" <?php  if($m['opt'] ==4 ){echo 'selected = "selected"'; }?>>QQ</option>
+				</select>
+            </div>
+          </div>
+
+
+          <div class="am-form-group">
+            <div class="am-u-sm-9 am-u-sm-push-3">
+              <button type="submit" class="am-btn am-btn-primary"><?=$save_text?></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- content end -->
+
+</div>
+
+<a class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+
+<?php
+	// footer
+	include 'templates/footer.htm';
+?>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/polyfill/rem.min.js"></script>
+<script src="assets/js/polyfill/respond.min.js"></script>
+<script src="assets/js/amazeui.legacy.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="templates/assets/js/jquery.min.js"></script>
+<script src="templates/assets/js/jquery.form.js"></script>
+<script src="templates/assets/js/jquery.Jcrop.js"></script>
+<script src="templates/assets/js/amazeui.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/umeditor/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/umeditor/umeditor.min.js"></script>
+<script type="text/javascript" src="/js/umeditor/lang/zh-cn/zh-cn.js"></script>
+<!--<![endif]-->
+<script>
+	(function($) {
+	  'use strict';
+
+	  $(function() {
+		var $fullText = $('.admin-fullText');
+		$('#admin-fullscreen').on('click', function() {
+		  $.AMUI.fullscreen.toggle();
+		});
+
+		$(document).on($.AMUI.fullscreen.raw.fullscreenchange, function() {
+		  $.AMUI.fullscreen.isFullscreen ? $fullText.text('<?=$close_full_text?>') : $fullText.text('<?=$open_full_text?>');
+		});
+	  });
+	})(jQuery);
+</script>
+<script>
+	(function($){
+		$.fn.extend({
+			GlobalGeography:function(){
+				 
+				/* ._GlobalGeography_ { width:282px; height:30px !important; position:relative; left:-282px; top:2px; } */
+				 
+				var relatedObj = ['div[id="country"]','div[id="state"]','div[id="city"]','div[id="region"]'];
+				var excludeObj = ['div[id="region"]'];   
+				var selectmenu = ['country','state','city','region'];
+				var selector   = this.selector;
+				 
+				/*输出下拉列表*/
+				function _traversal(source,type,text){
+					//console.log(source);
+				
+					if(typeof(source)!='undefined'){
+						var _select_  = '<select class="_GlobalGeography_">';
+							_select_ += '<option value=""></option>';
+						$.each(source,function(i,v){
+							//console.log(v.Name+":"+v.Code);
+							if(typeof(text)!='undefined' && text == v.Name)
+								_select_ += '<option selected value="'+v.Code+'">'+v.Name+'</option>';
+							else 
+								_select_ += '<option value="'+v.Code+'">'+v.Name+'</option>';
+						});
+						_select_ += '</select>';
+						return _select_;
+					}
+					return false;
+				};
+				 
+				/*清除/还原下级关联下拉菜单*/
+				function cleanNextMenu(index){
+					for(var i=index;i<relatedObj.length;i++){
+						if(typeof(relatedObj[(i+1)])!='undefined'){
+							$(relatedObj[(i+1)]).find('._GlobalGeography_').remove();
+							$(relatedObj[(i+1)]).find('input').val('');
+						}
+					}
+				}
+				
+				/* 初始化 */
+				function initValue(i){
+					i++;
+				
+					for(i;i<selectmenu.length;i++){
+						//console.log("index:"+i);
+						$("#"+selectmenu[i]+"Value").val("");
+					}
+				}
+				 
+				/*遍历获取下拉菜单内容*/
+				function checkMenu(json){				
+					/*遍历赋值所有类型*/
+					$.each(relatedObj,function(i,v){
+						if($.inArray(v,excludeObj)==-1){
+							$(v).find('select').bind('change',function(){
+								var _code_ = $(this).val(); cleanNextMenu(i);
+								if(typeof(json[selectmenu[(i+1)]][_code_])!='undefined'){
+									//console.log("i+1:"+selectmenu[(i+1)]+":"+_code_);
+								
+									$(relatedObj[(i+1)]).append(_traversal(json[selectmenu[(i+1)]][_code_],selectmenu[(i+1)]));
+									/*绑定方法*/
+									$(relatedObj[(i+1)]).find('._GlobalGeography_').bind('change',function(){
+										$(relatedObj[(i+1)]).find('input').val($(this).find('option:selected').text());
+									});
+									checkMenu(json);
+								} else {
+									if(typeof(selectmenu[(i+2)]) != 'undefined' && typeof(json[selectmenu[(i+2)]][_code_]) != 'undefined'){										
+										$(relatedObj[(i+2)]).append(_traversal(json[selectmenu[(i+2)]][_code_]));
+										/*绑定方法*/
+										$(relatedObj[(i+2)]).find('._GlobalGeography_').bind('change',function(){
+											$(relatedObj[(i+2)]).find('input').val($(this).find('option:selected').text());
+										});
+										checkMenu(json);
+									}
+								}
+							});
+						}
+					});
+					
+					/* 为生成的新元素添加事件 */
+					$(".selectCountry select").on('change',function(){
+						var text = $(this).find("option:selected").text();
+						var id = $(this).parent(".selectCountry").attr("id");
+						var i = $(this).parent(".selectCountry").data("index");
+						
+						initValue(i);
+						$("#"+id+"Value").val(text);
+					});
+				}
+				 
+				/*加载世界国家城市数据*/
+				$.getJSON("getCountry.php",function(json){
+					/*输出国家列表*/
+					$(selector).append(_traversal(json.country,'country'));
+					$(selector).find('._GlobalGeography_').bind('change',function(){
+						$(selector).find('input').val($(this).find('option:selected').text());
+					});
+					checkMenu(json);
+				});
+			}
+		})
+	})(jQuery);
+	
+	$(document).ready(function(){
+		$('#country').GlobalGeography();
+	});
+
+	var um = UM.getEditor('myEditor');
+	var flag = 1;
+
+	$(function(){
+		var bar = $('.bar');
+		var percent = $('.percent');
+		var showimg = $('#showimg');
+		var progress = $(".progress");
+		var files = $(".files");
+		var btn = $(".btn span");
+		var pic = $("#_pic");
+		
+		$("#fileupload").wrap("<form id='myupload' action='uploadAction.php' method='post' enctype='multipart/form-data'></form>");
+		$("#fileupload").change(function(){
+				$("#myupload").ajaxSubmit({
+					dataType:  'json',
+					beforeSend: function() {
+						showimg.attr('src','');
+						progress.show();
+						var percentVal = '0%';
+						bar.width(percentVal);
+						percent.html(percentVal);
+						btn.html("上传中...");
+						flag = -1;
+					},
+					uploadProgress: function(event, position, total, percentComplete) {
+						var percentVal = percentComplete + '%';
+						bar.width(percentVal);
+						percent.html(percentVal);
+					},
+					success: function(data) {
+						//files.html("<b>"+data.name+"("+data.size+"k)</b> <span class='delimg' rel='"+data.pic+"'><?=$delete_text?></span>");
+						files.hide();
+						var img = data.pic;
+						showimg.attr('src', img);
+						pic.val(img);
+						btn.html("<?=$upload_success_text?>！");
+						flag = 1;
+						//btn.html("<a rel='"+data.pic+"' href='javascript:;' class='c_button'><img src='/member/resources/img/crop_button.png'></a>");
+						//btn.show();
+					},
+					error:function(xhr){
+						files.show();
+						alert("<?=$upload_pic_error?>");
+						btn.html("<?=$upload_pic_error?>");
+						bar.width('0')
+						files.html(xhr.responseText);
+						flag = 1;
+					}
+				});
+			});
+	});
+	
+	
+</script>
+
+</body>
+</html>

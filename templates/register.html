@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>印记-SQdish食器-让您的旅途不在将就</title>
+        <style>
+            .box{
+                width:300px;
+                margin: 10px 90px; 
+            }
+        </style>
+        <link  href="css/login--css-1225-e.css" type="text/css" rel="stylesheet" />
+        <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="js/jquery.tools.min.js"></script>
+        <script type="text/javascript" src="js/ciads.js"></script>
+    </head>
+
+    <body >
+        <?php include "inc/header.html"?>
+        <div class="wrapper">
+            <div class="container">
+                <a href="#" title="返回首页" class="logo"></a>
+                <div class="signup-forms">
+                    <div class="signup-box" id="_j_signup_box">
+                        <div class="add-info">
+                            <div class="hd">邮箱注册</div>
+                            <form action="" method="post" id="_j_signup_form">
+                                <input type="hidden" name="token" value="4357d304a03df3f3688b47428c4adcc3" />
+                                <div class="form-field">
+                                    <label for="user-phone" class="phone">您的邮箱:</label>
+                                    <input name="passport" type="text" autocomplete="off" data-type="mobile"
+                                           data-verification-name="手机号码" id="username" class="verification[required,maxSize[50],custom[mobile],funcCall[checkPassport]]" value="" />
+                                    <div id="error_message" class="err-tip"></div>
+                                </div>
+                                <div class="form-link">
+                                    <a href="#">使用手机注册</a>
+                                </div>
+                                <div class="form-field">
+                                    <label for="user-yanzheng" class="yanzheng">滑动验证:</label>
+
+                                    <div class="box" id="div_id_embed"></div>
+
+                                </div>
+                                <div class="submit-btn">
+                                    <button type="button" id="register">立即注册</button>
+                                </div>
+                            </form>
+                            <div class="agreement">
+                                注册视为同意<a target="_blank" href="http://www.mafengwo.cn/s/agreement.html">《食器用户使用协议》</a>
+                            </div>
+                            <div class="connect">
+                                <p class="hd1">用合作网站账户直接登录</p>
+                                <div class="bd">
+                                    <a href="/wechat" class="weixin"><i></i>微信</a>
+                                    <a href="/qq" class="qq"><i></i>QQ</a>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>                    
+                        </div>
+                        <div class="bottom-link">
+                            已经注册?<a href="#">马上登录</a>
+                        </div>
+                    </div>
+                    <div class="connect">
+                        <p class="hd">用合作网站账户直接登录</p>
+                        <div class="bd">
+                            <a href="/wechat" class="weixin"><i></i>微信</a>
+                            <a href="/qq" class="qq"><i></i>QQ</a>
+                            <div class="clear"></div>
+                        </div>
+                    </div>                    </div>
+                <div class="bottom-link">
+                    还没有帐号?<a href="#">马上注册</a>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+        <!--<div class="fullscreen-bg" style="background-image:url(imgs/sq-login-email1.png);">
+         <img src="imgs/sq-login-email1.png" style="widht:auto;height:1280px">
+        </div>-->
+<script language="javascript" src="js/login--js1-1225.js" type="text/javascript"></script>
+
+<script language="javascript" src="js/login--js2-1225.js" type="text/javascript"></script>
+
+<script language="javascript" src="js/login--js3-1225.js"  type="text/javascript"></script>
+
+        <script type="text/javascript">
+            //注册提交代码
+            $("#register").click(function () {
+                value = gt_captcha_obj.getValidate();
+                if ($("#error_message").html() != '')
+                {
+                    return;
+                }
+                if (!value)
+                {
+//                    $("#error_message").val('滑块验证未通过');
+//                    $("#error_message").show();
+//                    $("#username").attr('data-verification-result','failed');
+                    alert('滑块验证未通过');
+                    return;
+                }
+                var url = '/register.php?action=';
+                if ($("#username").attr('data-type') === 'email') {
+                    url = url + 'email';
+                } else if ($("#username").attr('data-type') === 'mobile') {
+                    url = url + 'mobile';
+                }
+                ;
+                 document.getElementById('_j_signup_form').action=url;
+                 document.getElementById("_j_signup_form").submit();  
+            });
+            //极验证 代码
+            var gtFailbackFrontInitial = function (result) {
+                var s = document.createElement('script');
+                s.id = 'gt_lib';
+                s.src = 'http://static.geetest.com/static/js/geetest.0.0.0.js';
+                s.charset = 'UTF-8';
+                s.type = 'text/javascript';
+                document.getElementsByTagName('head')[0].appendChild(s);
+                var loaded = false;
+                s.onload = s.onreadystatechange = function () {
+                    if (!loaded && (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete')) {
+                        loadGeetest(result);
+                        loaded = true;
+                    }
+                };
+            }
+            //get  geetest server status, use the failback solution
+
+
+            var loadGeetest = function (config) {
+
+                //1. use geetest capthca
+                window.gt_captcha_obj = new window.Geetest({
+                    gt: config.gt,
+                    challenge: config.challenge,
+                    product: 'embed',
+                    offline: !config.success
+                });
+
+                gt_captcha_obj.appendTo("#div_id_embed");
+            }
+
+            s = document.createElement('script');
+            s.src = 'http://api.geetest.com/get.php?callback=gtcallback';
+            $("#div_geetest_lib").append(s);
+
+            var gtcallback = (function () {
+                var status = 0, result, apiFail;
+                return function (r) {
+                    status += 1;
+                    if (r) {
+                        result = r;
+                        setTimeout(function () {
+                            if (!window.Geetest) {
+                                apiFail = true;
+                                gtFailbackFrontInitial(result)
+                            }
+                        }, 1000)
+                    }
+                    else if (apiFail) {
+                        return
+                    }
+                    if (status == 2) {
+                        loadGeetest(result);
+                    }
+                }
+            })()
+
+            $.ajax({
+                url: "/StartCaptchaServlet.php?rand=" + Math.round(Math.random() * 100),
+                type: "get",
+                dataType: 'JSON',
+                success: function (result) {
+                    //console.log(result);
+                    gtcallback(result);
+                }
+            })
+            //极验证 代码 结束
+        </script>
+    </body>
+</html>
+

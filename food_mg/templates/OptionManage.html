@@ -1,0 +1,563 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><?=$Option_Manage_text?>-
+  <?=$admin_center?></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="templates/assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="templates/assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="templates/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="templates/assets/css/admin.css">
+  <link rel="stylesheet" href="/html/assets/css/sq_mg.css"/>
+  <style>
+	.fieldset_right a{
+		padding: 4px;
+	}
+	
+	.fieldset_right{
+		margin-top: 10px;
+	}
+  </style>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+<?php
+	// header
+	include 'templates/header.htm';
+?>
+
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php
+	// 左边栏
+	include 'templates/sidebar.htm';
+  ?>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg"><?=$Option_Manage_text?></strong></div>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12 am-u-md-6">
+        <hr/>
+      </div>
+    </div>
+	
+
+    <div class="am-g">
+      <div class="am-u-sm-6">	  
+		<div class="am-panel am-panel-default">
+		  <div class="am-panel-hd"><a href="javascript:;" onclick="selectItem({})" ><span class="am-icon-plus"></span> <span class="am-text-primary"><?=$add_text?></span></a> <?=$text_or?> <?=$Option_Manage_text?></div>
+		  <div class="am-panel-bd">
+			<form action="doOption.php" method="post" class="am-form am-form-horizontal">
+			  <input type="hidden" id="oid" name="oid" value="0" />
+			   <input type="hidden" name="action" value="add" />
+			  <!--<div class="am-form-group">
+				<label for="user-phone" class="am-u-sm-3 am-form-label"><?=$attribute_control_text?></label>
+				<div class="am-u-sm-9">
+				  <button onclick="addItem()" type="button" class="am-btn am-btn-success"><?=$increase_attribute_text?></button>
+				</div>
+			  </div>-->
+
+			  <div class="am-form-group item-div">
+				
+				<div class="am-u-sm-12 fieldset_right pItem">
+					<fieldset>
+						<legend><input type="text" name="option[optionName]" id="optionName" value="" /></legend>
+							<ul class="am-avg-sm-3 pItem">
+				
+							<?php
+								$itemIndex = 1;
+								$parentItemNum = 1;
+								
+								$v = null;
+								
+								$optionCN = $v['optionCN'];
+								$optionTHAI = $v['optionTHAI'];
+								$optionPrice = $v['optionPrice'];
+
+								if($optionCN != "")
+									$oCNs = explode(",",$optionCN);
+								else 
+									$oCNs = "";
+								
+								if($optionTHAI != "")
+									$oTHAIs = explode(",",$optionTHAI);
+								else
+									$oTHAIs = "";
+									
+								if($optionPrice != "")
+									$oPrices = explode(",",$optionPrice);
+								else
+									$oPrices = "";
+
+								$input = "";
+									
+								if($oCNs != "")
+									for($i=0;$i<count($oCNs);$i++){
+										$_suffix = $v['id'].'-'.$parentItemNum;
+									
+										if($_SESSION['language'] == "thai"){
+											//onkeyup="openFlag($(this),1,\'id-cn-'.$_suffix.',id-thai-'.$_suffix.'\')" onkeydown="closeFlag()"
+											//onkeyup="openFlag($(this),2,\'id-cn-'.$_suffix.',id-thai-'.$_suffix.'\')" onkeydown="closeFlag()" 
+											$input = '<li><input value="'.$oTHAIs[$i].'" name="option['.$v['id'].'][optionTHAI][]" id="id-cn-'.$_suffix.'" class="item-'.$_suffix.'" type="text" placeholder="'.$option_thai_text.'"></li>'.
+												'<li><input value="'.$oCNs[$i].'" name="option['.$v['id'].'][optionCN][]" id="id-thai-'.$_suffix.'" class="item-'.$_suffix.'" type="text" placeholder="'.$option_ch_text.'"></li>'.
+												'<li><button onclick="delItem(\'item-'.$_suffix.'\')" type="button" class="am-btn am-btn-danger item-'.$v['id'].'-'.$parentItemNum.'">'.$delete_option_text.'</button></li>';
+										}else{
+											$input = '<li><input value="'.$oCNs[$i].'" name="option['.$v['id'].'][optionCN][]" id="id-cn-'.$_suffix.'" class="item-'.$_suffix.'" type="text" placeholder="'.$option_ch_text.'"></li>'.
+												'<li><input value="'.$oTHAIs[$i].'" name="option['.$v['id'].'][optionTHAI][]" id="id-thai-'.$_suffix.'" class="item-'.$_suffix.'" type="text" placeholder="'.$option_thai_text.'"></li>'.
+												'<li><button onclick="delItem(\'item-'.$_suffix.'\')" type="button" class="am-btn am-btn-danger item-'.$v['id'].'-'.$parentItemNum.'">'.$delete_option_text.'</button></li>';
+										}
+									
+										echo $input;
+									
+										$parentItemNum++;
+									}
+									
+								$itemIndex = $v['id']+1;
+							?>
+				
+							</ul>
+						<button onclick="addSonItem('','');" type="button" class="am-btn am-btn-success"><?=$add_option_text?></button>
+					</fieldset>
+				</div>
+			  </div>
+
+			  <div class="am-form-group">
+				<div class="am-u-sm-9 ">
+				  <button type="submit" class="am-btn am-btn-primary"><?=$save_text?></button>
+				</div>
+			  </div>
+			</form>
+		  </div>
+		</div>
+		
+      </div>
+	  
+      <div class="am-u-sm-6">
+			<div class="am-panel am-panel-default">
+			  <div class="am-panel-hd"><?=$Option_Manage_list?></div>
+			  <div class="am-panel-bd">				
+				<table class="am-table am-table-striped am-table-hover table-main">
+					<thead>
+					  <tr>
+						<th class="table-title"><?=$name_text?></th><th class="table-set"><?=$operation_text?></th>
+					  </tr>
+					</thead>
+					<tbody>
+						<?php
+							foreach($options as $k => $v){
+								$op = '';
+								$opCn = explode(",",$v['optionCN']);
+								$opThai = explode(",",$v['optionTHAI']);
+							
+								if(is_array($opCn) && is_array($opThai))
+									foreach($opCn as $key => $value){
+										$op .= '{optionCN:\''.$opCn[$key].'\',optionTHAI:\''.$opThai[$key].'\'},';
+									}
+								
+								$op = substr($op,0,strlen($op)-1); 
+							
+								echo '<tr><td><a  href="javascript:;" onclick="selectItem({optionName:\''.$v['optionName'].'\',id:'.$v['id'].',ops:['.$op.']})">'.$v['optionName'].'</a></td>'.
+								'<td><div class="am-btn-toolbar"><div class="am-btn-group am-btn-group-xs"><a class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" href="javascript: delOption('.$v['id'].');"><span class="am-icon-trash-o"></span> '.$delete_text.'</a></div></div></td></tr>';
+							}
+						?>
+					</tbody>
+				</table>
+			  </div>
+			</div>
+		</div>
+	</div>
+	
+	
+  </div>
+  <!-- content end -->
+
+</div>
+
+<a class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+
+<?php
+	// footer
+	include 'templates/footer.htm';
+?>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/polyfill/rem.min.js"></script>
+<script src="assets/js/polyfill/respond.min.js"></script>
+<script src="assets/js/amazeui.legacy.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="templates/assets/js/jquery.min.js"></script>
+<script src="templates/assets/js/amazeui.min.js"></script>
+<script src="templates/assets/js/jquery.form.js"></script>
+<script src="templates/assets/js/jquery.Jcrop.js"></script>
+<!--<![endif]-->
+<script>
+	  $(function() {
+		var $fullText = $('.admin-fullText');
+		$('#admin-fullscreen').on('click', function() {
+		  $.AMUI.fullscreen.toggle();
+		});
+
+		$(document).on($.AMUI.fullscreen.raw.fullscreenchange, function() {
+		  $.AMUI.fullscreen.isFullscreen ? $fullText.text('<?=$close_full_text?>') : $fullText.text('<?=$open_full_text?>');
+		});
+		
+		//删除图片
+		$("#delPic").click(function(){
+			var id = $(this).data("id");
+			
+			$.post("delPic.php",{id:id},function(data){
+				if(data == 1){
+					$("#showimg").attr("src","");
+				}
+			});
+		});
+	  });
+</script>
+<script>
+	var flag = 1;
+	
+	//trim注册
+	String.prototype.trim=function(){
+　　   return this.replace(/(^\s*)|(\s*$)/g, "");
+　　}
+　　String.prototype.ltrim=function(){
+　　   return this.replace(/(^\s*)/g,"");
+　　}
+　　String.prototype.rtrim=function(){
+　　   return this.replace(/(\s*$)/g,"");
+　　}
+	
+	var parentItemNum = <?=$parentItemNum?>;
+	var itemIndex = <?=$itemIndex?>;
+	
+	function addSonItem(optionCN,optionTHAI){
+		<?php
+			$inputJS = "";
+		
+			if($_SESSION['language'] == "thai"){
+				//onkeyup=openFlag($(this),1,"id-cn-\'+parentItemNum+\',id-thai-\'+parentItemNum+\'") onkeydown="closeFlag()"
+				//onkeyup=openFlag($(this),2,"id-cn-\'+parentItemNum+\',id-thai-\'+parentItemNum+\'") onkeydown="closeFlag()"
+				$inputJS = '\'<li><input name="option[optionTHAI][]" value="\'+optionTHAI+\'" id="id-cn-\'+parentItemNum+\'" class="item-\'+parentItemNum+\'" type="text" placeholder="'.$option_thai_text.'"></li>'.
+					'<li><input name="option[optionCN][]" value="\'+optionCN+\'" id="id-thai-\'+parentItemNum+\'" class="item-\'+parentItemNum+\'" type="text" placeholder="'.$option_ch_text.'"></li>'.
+					'<li><button onclick="delItem(\\\'item-\'+parentItemNum+\'\\\')" type="button" class="am-btn am-btn-danger item-\'+parentItemNum+\'">'.$delete_option_text.'</button></li>\'';
+			}else{
+				$inputJS = '\'<li><input name="option[optionCN][]" value="\'+optionCN+\'" id="id-cn-\'+parentItemNum+\'" class="item-\'+parentItemNum+\'" type="text" placeholder="'.$option_ch_text.'"></li>'.
+					'<li><input name="option[optionTHAI][]" value="\'+optionTHAI+\'" id="id-thai-\'+parentItemNum+\'" class="item-\'+parentItemNum+\'" type="text" placeholder="'.$option_thai_text.'"></li>'.
+					'<li><button onclick="delItem(\\\'item-\'+parentItemNum+\'\\\')" type="button" class="am-btn am-btn-danger item-\'+parentItemNum+\'">'.$delete_option_text.'</button></li>\'';
+			}
+		?>
+	
+		var html = <?=$inputJS?>;
+					//'<li><input name="option[optionCN][]" class="item-'+parentItemNum+'" type="text" placeholder="<?=$option_ch_text?>"></li>'+
+					//'<li><input name="option[optionTHAI][]" class="item-'+parentItemNum+'" type="text" placeholder="<?=$option_thai_text?>"></li>'+
+					//'<li><input name="option[optionPrice][]" class="item-'+parentItemNum+'" type="text" placeholder="<?=$option_price_text?>"></li>'+
+					//'<li><button onclick="delItem(\'item-'+parentItemNum+'\')" type="button" class="am-btn am-btn-danger item-'+parentItemNum+'"><?=$delete_option_text?></button></li>';
+		
+		//console.log(optionCN);
+		//console.log(optionTHAI);
+		
+		$("ul.pItem").append(html);
+		parentItemNum++;
+	}
+	
+	function delItem(item,id){
+		if(confirm("<?=$confirm_del_text?>")){
+			$("."+item).remove();
+			
+			if(id)
+				$.post("delDishOp.php",{"id":id},function(data){
+				
+				});
+		}
+	}
+	
+	function addItem(){
+		var html = '<div class="am-u-sm-9 fieldset_right pItem-'+itemIndex+'">'+
+				   '<fieldset>'+
+					'<legend><input type="text" name="option[add_'+itemIndex+'][optionName]" value="<?=$attribute_text?>'+itemIndex+'" /><button type="button" onclick="delItem(\'pItem-'+itemIndex+'\')" class="am-btn am-btn-danger am-btn-xs"><?=$delete_attribute_text?></button></legend>'+
+					'<ul class="am-avg-sm-4 pItem-'+itemIndex+'">'+
+					'</ul>'+
+					'<button onclick="addSonItem(\'add_'+itemIndex+'\','+itemIndex+');" type="button" class="am-btn am-btn-success"><?=$add_option_text?></button>'+
+				  '</fieldset>'+
+				'</div>';
+		
+		$(".item-div").append(html);
+		itemIndex++;
+	}
+	
+	//选择一个选项
+	function selectItem(data){
+		//data:json  {optionName:'',id:0,ops:[{optionCN:'',optionTHAI:''}]}
+		
+		var id = "";
+		if(typeof(data.id) != "undefined")
+			id= data.id;
+			
+		var optionName = "";
+		if(typeof(data.optionName) != "undefined")
+			optionName = data.optionName;
+			
+		var ops = "";
+		if(typeof(data.ops) != "undefined");
+			ops = data.ops;
+		
+		$("#optionName").val(optionName);
+		$("#oid").val(id);
+		
+		$("ul.pItem li").each(function(){
+			$(this).remove();
+		}); 
+		
+		for(var i in ops){
+			var op = ops[i];
+		
+			var optionCN = op.optionCN;
+			var optionTHAI = op.optionTHAI;
+		
+			addSonItem(optionCN,optionTHAI);
+		}
+	}
+	
+	//遍历对象
+	function allPrpos( obj ) { 
+	  // 用来保存所有的属性名称和值 
+	  var props = "" ; 
+	  // 开始遍历 
+	  for ( var p in obj ){ // 方法 
+	  if ( typeof ( obj [ p ]) == " function " ){ obj [ p ]() ; 
+	  } else { // p 为属性名称，obj[p]为对应属性的值 
+	  props = p + " = " + obj [ p ]; 
+	  console.log( props ) ;
+	  } } // 最后显示所有的属性 
+	  
+	}
+	
+	function doSubmit(){
+		if(flag == 1)
+			return true;
+		else if(flag == -1){
+			alert("is verifying the picture, please wait a moment!");
+			return false;
+		}
+	}
+	
+	//上锁
+	var flagT = 0;
+	var t;
+	function openFlag(elem,type,option,pic) {
+		t = setTimeout(function(){
+			flagT = 1; 
+			toTranslate(elem,type,option,pic);
+		}, 1000);
+	}
+	
+	function closeFlag() {
+		if(t)
+			clearTimeout(t);
+		flagT = 0;
+	}
+	
+	function delOption(id){
+		if(confirm("<?=$confirm_del_text?>"))
+			location.href='doOption.php?oid='+id+'&action=del';
+	}
+	
+	/*
+	*	字符串转义
+	*/
+	function strReplace(str){
+		//str = str.replace(/\s?\/\s?/g,"/");  
+		str = str.replace(/'/g,"\'");   		
+	
+		return str;
+	}
+	
+	/*  翻译公共方法 
+	*	content 输入内容
+	*	type: 1、输入中文 2、输入泰文 3、输入英文
+	*	option:
+	*	cnId 
+	*	thaiId
+	*	enId
+	*/
+	function toTranslate(elem,type,option,pic){
+		if(flagT == 1){
+			var content = elem.val();
+			console.info(content);
+		
+			//根据输入内容搜索翻译列表
+			
+			getDictionaries(content,type,option,elem,pic);
+			
+			if(pic == 1){
+				console.info("pic");
+			}
+		}
+	}
+	
+	/*  获得字典列表
+	*	content 输入内容
+	*	type: 1、输入中文 2、输入泰文 3、输入英文
+	*	option:
+	*	cnId
+	*	thaiId
+	*	enId
+	*/
+	function getDictionaries(content,type,option,elem,pic){
+		if(!arguments[4]) pic = -1;
+	
+		//后台处理
+		$.ajax({
+            url:"toTranslate.php",
+            async:false,
+            type:"post",
+            dataType:"json",
+            data:"content="+content+"&type="+type+"&option="+option+"&pic="+pic,
+            complete:function(XMLHttpRequest, textStatus) {
+				//console.info("ajax:"+XMLHttpRequest.responseText);
+				var str = XMLHttpRequest.responseText;
+				if(str){
+					var obj=eval('('+str+')');
+					
+					//弹出下拉选择框
+					createDictionaries(elem,obj);
+				}else{
+					createDictionaries(elem,"");
+				}
+			}
+		});
+		
+		/*var strs = new Array(); //定义一数组 
+		strs = option.split(",");
+	
+		var cnId = strs[0];
+		var thaiId = strs[1];
+		var enId = strs[2];
+		var result = "[";
+		
+		console.info("content : "+content+", type : "+type+", cnId : "+cnId+", thaiId : "+thaiId+", enId : "+enId);
+		
+		if(cnId != -1){
+			result += "{value:'"+content+"',id:"+cnId+"}";
+		}
+		
+		if(thaiId != -1){
+			result += "{value:'"+content+"',id:"+thaiId+"}";
+		}
+		
+		if(enId != -1){
+			result += "{value:'"+content+"',id:"+enId+"}";
+		}
+		
+		result += "]";
+		return result;*/
+	}
+	
+	/*  弹出下拉选框
+	*	elem dom元素，确定下拉框位置
+	*	list 下拉框内容
+	*/
+	function createDictionaries(elem,list){
+		//console.info("list:"+list);
+	
+		$(".dictionaries").remove();
+	
+		if(list){
+			var html = "<ul class='dictionaries'>";
+			
+			for(var o in list){
+				//json转字符串
+				var show = list[o]['show'];
+				var data = "[";
+				for(var s in show){
+					var value = show[s]['value'].trim();
+					value = strReplace(value);
+					
+					var id = show[s]['id'].trim();
+					id = strReplace(id);
+					
+					//console.info("pic:"+list[o]['pic']);
+					var pic = "";
+					if(list[o]['pic']){
+						pic = list[o]['pic'].trim();
+						pic = strReplace(pic);
+					}
+				
+					var temp = "{value:\'"+value+"\',id:\'"+id+"\',pic:\'"+pic+"\'},";
+					data += temp;
+					//console.info("data:"+s+"   "+show[s]['value'].trim()+"----"+temp);
+				}
+				//去除末尾,
+				data = data.substring(0,data.length-1);
+				if(data)
+					data += "]";
+				
+				//console.info("data: "+data);
+				
+				//console.info("show:"+data);
+				html += "<li><a data-value=\""+data+"\" href='javascript:;' onclick=selectDictItem($(this))>"+list[o]['item']+"</a></li>";
+			}
+			
+			html += "</ul>";
+			
+			elem.after(html);
+			
+			//绑定事件
+			$(document).on('click',function() { 
+				$(".dictionaries").css("display","none"); 
+			}); 
+		
+			$(document).on('click','.dictionaries li a',function() { 
+				$(".dictionaries").hide(); 
+			}); 
+			
+			$(document).on('click','.dictionaries',function(e) { 
+				e.stopPropagation(); 
+			}); 
+			//绑定事件
+		}
+	}
+	
+	/*  选择下拉选框
+	*	data: json格式内容，给input赋值
+	*/
+	function selectDictItem(elem){
+		//console.info("data : "+data);
+		var data = elem.data("value");
+		
+		if(data){
+			var obj=eval('('+data+')');
+			
+			for(var o in obj){		
+				var id = obj[o]['id'];
+				var value = obj[o]['value'];
+				var pic = obj[o]['pic'];
+				
+				$("#"+id).val(value);
+				$("#showimg").attr("src",pic);
+				$("#_pic").val(pic);
+
+			}
+		}
+	}
+</script>
+</body>
+</html>

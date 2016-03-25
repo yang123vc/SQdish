@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>文章详细</title>
+<link href="templates/wap/css/wenzhangxiangxi.css" rel="stylesheet" type="text/css" />
+<script src="templates/wap/js/jq.js" type="text/javascript"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<body>
+	<div class="header">
+    	<a href="article_list.php"><div class="return"></div></a>
+        <a href="#"><div class="lookup"></div></a>
+        <div class="logo"></div>     
+    </div>
+    <div class="topnav">
+        <ul class="nav">
+            <li class="frist"><a href="index.php"><p>首页</p></a></li>
+            <li><a href="business_list.php"><p>榜单</p></a></li>
+            <li><a href="article_list.php"><p>印记</p></a></li>
+            <li><a href="user_index.php"><p>我的</p></a></li>
+        </ul>
+    </div>
+    <div class="banner"><img src="templates/wap/images/banner4.jpg" width="100%" /></div>
+    <div class="main">
+    	<div class="mainnav">
+        	<ul class="nav">
+            <?php foreach($CList as $v){ ?>
+                <li class="frist"><a href="article_list.php?tid=<?php echo $v['id'];?>" ><?php echo $v['categoryNameZ'];?></a></li>
+            <?php }?>
+            </ul>
+        </div>
+
+        <div class="title"><?php echo $r['articleTitle'];?></div>
+        <div class="authorbg">
+        	<div class="position">
+            	<div class="author">BY&nbsp;<span><?php echo $r['articleAuthor'];?></span></div>
+            	<div class="num">已有<span><?php echo $r['articleClick'];?></span>人阅读</div>
+            </div>
+        </div>
+        <div class="content">
+        	<div class="article" >
+			<table>
+				<tr><td><?php echo $r['articleBody'];?></td></tr>
+			</table>
+			</div>
+		</div>
+ 	</div>
+ 	</div>
+        <div class="next">
+        	下一篇：<?php echo getnext($r); ?>
+        	<div class="left"><img src="/templates/wap/images/zuo1.png"  width="28"/></div>
+            <div class="right"><img src="/templates/wap/images/you1.png" width="28" /></div>
+        </div>
+    </div>
+    <div class="bottom1">
+    	<div class="recommend">
+        	<div class="books"><img src="/templates/wap/images/books.jpg" width="13" /></div>
+            <div class="hot">当季热门文章</div>
+            <div class="tips">榜单数据均为“sqdish”点餐厅菜单服务项目真实点餐而来<br />我们的泰国小伙儿正在为您努力！</div>
+            <div class="show">
+            	<div class="top">
+                	<div class="left">清迈之旅</div>
+                    <div class="right">背包客精选</div>
+                </div>
+                <div class="bot">
+                	<div class="left">泰国小清新</div>
+                    <div class="right">首次去台湾</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">
+    	<div class="border">
+        	<ul class="menu">
+            	<li class="frist"><a href="#"><img src="/templates/wap/images/bnav1.jpg" width="78" /><a></li>
+                <li><a href="#"><img src="/templates/wap/images/bnav2.jpg" width="80" /><a></li>
+                <li><a href="#"><img src="/templates/wap/images/bnav3.jpg" width="80" /><a></li>
+                <li><a href="#"><img src="/templates/wap/images/bnav4.jpg" width="79" /><a></li>
+            </ul>
+        </div>
+        <ul class="bottom">
+        	<a href="#"><li>隐私政策</li></a>
+            <a href="#"><li>我的帐户</li></a>
+            <a href="#"><li>常见问题</li></a>
+        </ul>
+        <div class="copyright">版权所有@2012-2015&nbsp;SQDISH&nbsp;RIPPLE&nbsp;CO</div>
+    </div>
+</body>
+</html>

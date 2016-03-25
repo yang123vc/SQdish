@@ -1,0 +1,35 @@
+<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101285136" data-redirecturi="http://www.sqdish.com/quickLogin.php" charset="utf-8"></script>
+<div class="city1">
+    <div class="city wrap">
+        <span class="s1">当前位置：清迈 <a href="#">[ 点击切换 ]</a></span>
+        <?php if(!isset($_SESSION['user_info'])){?>
+        <span class="s2"><a href="/login.php">登录</a><span>丨</span><a href="/register.php">注册</a></span>
+        <?php } else {?>
+		<div class="xlk2">
+			<a href=""><?php echo $_SESSION['user_info']['nickname']; ?></a>
+			<span class="arrow"></span>
+			<span class="yuyan"> 
+			<a href="/user_index.php">会员中心</a>
+			<a onclick='qqlogout()' href="/logOut.php">注销</a>
+			</span>
+		</div>
+        <?php }?>
+       
+        <div class="xlk1">
+            <a href="">中文</a>
+            <span class="arrow"></span>
+            <span class="chengshi">
+                <a href="#">English</a>
+            </span>
+        </div>
+    </div>
+    <script>
+	    function qqlogout(){
+		     if (QC.Login.check())
+            {
+               QC.Login.signOut();
+
+            }
+	    }
+    </script>
+</div>

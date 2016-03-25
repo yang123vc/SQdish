@@ -1,0 +1,417 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>SQdish食器-让您的旅途不在将就</title>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link href="/templates/theme/css/style.css" type="text/css" rel="stylesheet" />
+    <link href="/templates/theme/css/sqStyle.css" type="text/css" rel="stylesheet" />
+    <meta property="qc:admins" content="412677077763141306375" />
+</head>
+<body>
+<?php include "inc/header.html"?>
+<?php include "inc/header_info.html"?>
+<div class="banner">
+    <a href="#1" class="prev png"></a>
+    <a href="#1" class="next png"></a>
+    <div class="scroll">
+        <ul>
+            <li style="background:url(/templates/images/banner2.jpg) no-repeat center top"></li>
+            <li style="background:url(/templates/images/banner1.jpg) no-repeat center top"></li>
+            <!-- <li style="background:url(/templates/images/banner1.jpg) no-repeat center top"><span></span></li> -->
+        </ul>
+    </div>
+    <ul class="num">
+        <li class="hover"><a href="#1" class="png"></a></li>
+        <li><a href="#1" class="png"></a></li>
+    </ul>
+</div>
+<div class="cpdp">
+    <div class="d1"></div>
+    <h2>最受中国游客欢迎的榜单</h2>
+    <h6>餐厅、菜品榜单数据均为"SQdish"中文菜单服务项目真实点餐而来<br>
+        我们的泰国小伙儿正在努力，只为您能享受更多的跨界中文服务！</h6>
+    <ul class="cpdp_u1">
+        <li class="li1 hover"><a href="#1">菜品<span class="as1"><img src="/templates/theme/bg/22.png" alt=""/></span></a></li>
+        <li class="li2"><a href="#1">店铺<span class="as1"><img src="/templates/theme/bg/22.png" alt=""/></span></a></li>
+    </ul>
+    <div class="wrap cp cp1">
+        <div class="cpline"></div>
+        <a href="#1" class="prev iconfont"><img src="/templates/theme/bg/10.png" alt=""/></a>
+        <a href="#1" class="next iconfont"><img src="/templates/theme/bg/11.png" alt=""/></a>
+        <div class="scroll">
+            <ul class="lifl clear cpu">
+                <li>
+                    <ul class="lifl clear">
+                    <?php foreach($dishList_one as $v){?>
+                        <li>
+                            <a href="dish_detail.php?id=<?php echo $v['id'];?>&sid=<?php echo $v['sid']?>">
+                                <span class="s1 fl"><img src="<?php echo $v['pic'];?>" alt=""/></span>
+                        <span class="s2 fl">
+                            <span class="s21"><?php echo $v['dishNameCN'];?>&nbsp;<?php echo $v['dishNameTHAI'];?> </span>
+                            <span class="s22"><img src="/templates/theme/bg/13.png" alt=""/>4.5分</span>
+                            <span class="s23" title="<?php echo $v['dishIntroCN'];?>"><?php echo $v['dishIntroCN'];?></span>
+                        </span>
+                            </a>
+                        </li>
+                        <?php }?>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="lifl clear">
+                     <?php foreach($dishList_two as $v){?>
+                        <li>
+                            <a href="dish_detail.php?id=<?php echo $v['id']?>&sid=<?php echo $v['sid']?>;?>">
+                                <span class="s1 fl"><img src="<?php echo $v['pic'];?>" alt=""/></span>
+                        <span class="s2 fl">
+                            <span class="s21"><?php echo $v['dishNameCN'];?>&nbsp;<?php echo $v['dishNameTHAI'];?></span>
+                            <span class="s22"><img src="/templates/theme/bg/13.png" alt=""/>4.5分</span>
+                            <span class="s23" title="<?php echo $v['dishIntroCN'];?>"><?php echo $v['dishIntroCN'];?></span>
+                        </span>
+                            </a>
+                        </li>
+                 <?php }?>      
+        </ul>
+        </div>
+    </div>
+	
+    <div class="wrap cp cp2">
+        <div class="cpline"></div>
+        <a href="#1" class="prev iconfont"><img src="/templates/theme/bg/10.png" alt=""/></a>
+        <a href="#1" class="next iconfont"><img src="/templates/theme/bg/11.png" alt=""/></a>
+        <div class="scroll">
+            <ul class="lifl clear cpu">
+                <li>
+                    <ul class="lifl clear">
+                        <?php foreach($sellerList_one as $v){?>
+                        <li>
+                            <a href="business_detail.php?sid=<?php echo $v['id'];?>" title="">
+                                <span class="s1 fl"><img src="<?php echo $v['pic'];?>" alt=""/></span>
+                        <span class="s2 fl">
+                            <span class="s21" title="<?php echo $v['sellerName'];?>"><?php echo $v['sellerName'];?></span>
+                            <span class="s22"><img src="/templates/theme/bg/13.png" alt=""/>4.5分</span>
+                            <span class="s23" title="<?php echo $v['intro'];?>"><?php echo $v['intro'];?></span>
+                        </span>
+                            </a>
+                        </li>
+                        <?php }?>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="lifl clear">
+             <?php foreach($sellerList_two as $v){?>
+                        <li>
+                            <a href="business_detail.php?sid=<?php echo $v['id'];?>" title="">
+                                <span class="s1 fl"><img src="<?php echo $v['pic'];?>" alt=""/></span>
+                        <span class="s2 fl">
+                            <span class="s21" title="<?php echo $v['sellerName'];?>"><?php echo $v['sellerName'];?></span>
+                            <span class="s22"><img src="/templates/theme/bg/13.png" alt=""/>4.5分</span>
+                            <span class="s23" title="<?php echo $v['intro'];?>"><?php echo $v['intro'];?></span>
+                        </span>
+                            </a>
+                        </li>
+             <?php }?>       
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+	
+    <div class="more">
+        <a href="#1"><span class="s1">readmore/<span>Recommended lis</span></span></a>
+    </div>
+</div>
+
+<div class="ymap clear">
+    <div class="wrap dt">
+        <span class="dts1">地图定位服务系统</span>
+        <span class="dts2">一键发送位置,语言管家服务即刻展现<br>出行,食器随心！</span>
+    </div>
+    <div class="wrap map">
+        <div class="ml1"></div>
+        <div class="ml2"></div>
+        <div class="ml">
+            <ul>
+            <li class="l1"><a href="#1" class='hover' onclick= "changeType('hot');"><span class="s1"></span><span class="s2">热门</span></a></li>
+            <?php foreach($rt_name as $v) {?>
+                <li class="l1"><a href="#1" onclick= "changeType('<?php echo $v['rt_name'];?>');"><span class="s1"></span><span class="s2"><?php echo $v['rt_name'];?></span></a></li>
+            <?php }?>
+				<li class="l1"><a href="#1" onclick="changeType('');"><span class="s1"></span><span class="s2">占位</span></a></li>
+            </ul>
+        </div>
+        <div class="md2 md21">
+            <a class="shlb stop"></a>
+            <div class="md mdd1">
+                <a class="prev" href="#1"></a>
+                <a class="next" href="#1"></a>
+                <div class="md1 scroll2">
+                    <ul class="clear mdul u1">
+                            <?php foreach($hotList as $v){ ?>
+                        <li><a href="#1"><span class="s1"></span><span class="s2"><?php echo $v['sellerName'];?></span><span class="s3"></span></a></li>
+                            <?php }?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <?php foreach($sellerList as $k=>$v) {?>
+        <div class="md2 md2<?php echo $k+2;?>">
+            <a class="shlb stop"></a>
+            <div class="md mdd1">
+                <a class="prev" href="#1"></a>
+                <a class="next" href="#1"></a>
+                <div class="md1 scroll2">
+                    <ul class="clear mdul u1">
+                        <?php foreach($v as $value){?>
+                        <li><a href="#1"><span class="s1"></span><span class="s2"><?php echo $value['seller']['sellerName'];?></span><span class="s3"></span></a></li>
+                        <?php }?> 
+                    </ul>
+                </div>
+            </div>
+        </div>
+		<?php }?> 
+       
+
+        <div class="gdmap">
+            <div id="mapContainer" style="height:625px;"></div>
+        </div>
+    </div>
+</div>
+
+<div class="ybg3 clear">
+    <div class="xfzf wrap">
+        <div class="yhj fl">
+            <div class="top">
+                <span class="ts1">超值优惠券任您领取!</span>
+                <span class="ts2">消费前先领卷 ,随领随用 ,出行折扣妥妥滴...</span>
+            </div>
+            <span class="ts3">SQdish优惠券遍布千余家餐厅，总有您意想不到的美味，通过SQdish找到他们别忘了在去的路上购买一张优惠券，享受优惠折扣...</span>
+            <a href="#1"><span class="ts4"><img src="/templates/theme/bg/26.png" alt=""/></span></a>
+        </div>
+        <div class="zfb fl">
+            <div class="top">
+                <span class="ts1">支付,安全跨越障碍!!</span>
+                <span class="ts2">把背后的复杂事儿留给我们...<a href="#" class="a1"><img src="/templates/theme/bg/wx.png" alt=""/></a><a href="#" class="a2"><img src="/templates/theme/bg/zfb.png" alt=""/></a></span>
+            </div>
+            <span class="ts3">SQdish支持“支付宝”“微信”等主流付款方式，您可在购买优惠券时随心使用。结账时候别忘了向我们的合作伙伴展示我们的人民币付款功能...</span>
+            <a href="#1"><span class="ts4"><img src="/templates/theme/bg/27.png" alt=""/></span></a>
+        </div>
+
+    </div>
+    <div class="yhpr">
+        <div class=" wrap">
+            <span class="ss"></span>
+            <span class="s1">别等了<br>把我们装进您的口袋，伴您随心出行</span>
+            <span class="s2"></span>
+            <div class="yh wrap clear">
+                <ul class="lifl ul1 fl">
+                    <li class="li1"><img src="/templates/theme/bg/yh1.png"></li>
+                    <li class="li2"><img src="/templates/theme/bg/yh2.png"></li>
+                    <li class="li3"><img src="/templates/theme/bg/yh3.png"></li>
+                    <li class="li4"><img src="/templates/theme/bg/yh4.png"></li>
+                </ul>
+                <ul class="ul2 fl">
+                    <li class="li1"><span class="ls1"><img src="/templates/theme/bg/yh6.png" alt=""/><i class="ls2">扫一扫 关注我们 把食器装进口袋</i></span></li>
+                    <li class="li2"><span><img src="/templates/theme/bg/yh7.png" alt=""/><i class="ls2">选择你钟意的餐厅以及菜品 我们支持很多服务—导航 /优惠券/人民币支付,中文点餐服务...</i></span></li>
+                    <li class="li3"><span><img src="/templates/theme/bg/yh8.png" alt=""/><i class="ls2">使用导航去到餐厅,享受服务</i></span></li>
+                    <li class="li4"><span><img src="/templates/theme/bg/yh9.png" alt=""/><i class="ls2">记得向服务员展SQdish</i></span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="yj clear">
+    <div class="yj1 wrap">
+        <div class="yji">
+            <span class="ss"></span>
+            <span class="s1">我们将为您变得更好<br>留下您的经历SQdish帮您记录在时光中让大家看见您</span>
+            <span class="s2"></span>
+        </div>
+        <ul class="lifl clear ul">
+				
+				<?php if(is_array($Tarticlelist)){
+							foreach($Tarticlelist as $k=>$v){
+							if($k%3==2){$class='li3';}else{$class='';}
+				?>           
+				<li class='<?php echo $class; ?>'>
+                <a href="<?php echo getarticleurl($v); ?>">
+                    <span class="s1"><img src="<?php echo $v['articleThumb'] ?>" alt=""/></span>
+                    <span class="s2"><?php echo $v['articleTitle'] ?></span>
+                    <span class="s3">作者：<?php echo $v['articleAuthor'] ?>  <i>时间：
+										<?php  echo date('Y-m-d H:i:s',$v['addtime']) ; ?></i> </span>
+                    <span class="s4"><?php echo $v['articleDes'] ?>...</span>
+                    <span class="s5">
+                       <!-- <span class="s51 fr">1236</span>-->
+                        <span class="s52 fr"><?php echo $v['articleClick'] ?></span>
+                    </span>
+                </a>
+            </li>
+           <?php 
+					}
+					} 
+					?>
+					
+				</ul>
+    </div>
+</div>
+
+<div class="banner2"></div>
+<div class="ybg2">
+    <div class="wrap">
+        <div class="xya">
+            <span class="s1">留给已知的亲友一份未知的惊喜 埋份心愿,把最好的留给值得的人   </span>
+        </div>
+        <span class="s2"></span>
+        <span class="s3">SQdish即将推出的心愿单服务可将你钟意的餐厅/ 食物/ 地点/ 美景/ 时刻<br>
+            化作一份美好的心愿封存在自定义范围内,当心愿接收人到达时会主动告诉<br>
+            他给他你曾近在这里为他留下了一份美好的心愿。</span>
+        <span class="s4">遍布世界各个角落,心愿单可以是什么？</span>
+        <span class="s5">是家餐厅已买好的单？是张留下美好记忆的照片？<br>
+是份独特的礼物？是路上的印记时光？是你在此地曾经走访过的足迹？</span>
+        <span class="s6">他有无限可能 / 无限想象<br>
+她能在时光中记忆里为你见证一份份美好的心愿</span>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="wrap">
+        <span class="s1">
+            <a class="a1" href="#">品牌酒店 </a>
+            <a href="#">清迈艾美酒店</a>
+            <a href="#">清迈香格里拉酒店</a>
+            <a href="#">清迈美居酒店</a>
+            <a href="#">清迈智选假日酒店 </a>
+            <a href="#">清迈宜必思酒店</a>
+              <br>
+            <a class="a1" href="#">热门城市</a>
+            <a href="#">东京</a>
+            <a href="#">曼谷</a>
+            <a href="#">首尔</a>
+            <a href="#">新加坡</a>
+            <a href="#">普吉岛</a>
+            <a href="#">大阪</a>
+            <a href="#">清迈</a>
+            <a href="#">拉斯维加斯</a>
+            <a href="#">巴黎</a>
+            <a href="#">苏梅岛</a>
+            <a href="#">纽约</a>
+            <a href="#">长滩岛</a>
+            <a href="#">吉隆坡</a>
+            <a href="#">伦敦</a>
+            <a href="#">墨尔本</a>
+            <a href="#">济州岛</a>
+            <a href="#">洛杉矶</a>
+            <a href="#">塞班岛</a>
+            <br>
+            <a class="a1" href="#">友情链接 </a>
+            <!-- <a href="http://www.baidu.com/" target="_blank">百度</a> -->
+			<a href="http://www.kmzggl.cn/" target="_blank">昆明国际旅行社</a>
+        </span>
+    </div>
+</div>
+<?php include "inc/footer.html"?>
+
+
+<script type="text/javascript" src="/templates/theme/common/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/templates/theme/common/jquery.tools.min.js"></script>
+<script type="text/javascript" src="/templates/theme/common/ciads.js"></script>
+<style type="text/css">
+.markerContentStyle{ position:relative;}
+.markerContentStyle2{ background:url(/templates/theme/bg/1113.png) no-repeat; width:340px; height:177px; position:absolute; top:-180px; left:-168px; display:none;}
+.markerContentStyle2 .close{ position:absolute; top:18px; right:18px; width:17px; height:17px; background:url(/templates/theme/bg/1114.png) no-repeat;}
+.markerContentStyle2 .tx{ margin:64px 20px 0 0 ;display: block;width: 74px;height: 74px;border-radius: 5px;-moz-border-radius:5px; -webkit-border-radius:5px;float: right}
+.markerContentStyle2 .pj{width: 66px;height: 13px;display: block;position: relative;top: 17px;left: 0px }
+.markerContentStyle2 .dd{width: 250px;height: 48px;position: absolute;top: 0;left: 20px;line-height: 48px;font-size: 16px;color: #333333;}
+.markerContentStyle2 .dd a{font-size: 12px;color: #449eb5;margin-left: 8px;}
+.markerContentStyle2 .d1{font-size:12px;width: 240px;height: 100px;position: absolute;top:50px;left: 20px;}
+.markerContentStyle2 .d1 h2{ font-size:12px; color:#777777; line-height:23px; padding-top:10px; padding-bottom:1px;display: inline;margin-left: 80px;}
+.markerContentStyle2 .d1 h2 span{color: #e09028;}
+.markerContentStyle2 .d1 .p1,.markerContentStyle2 .d1 .p2{ color:#666666; line-height:16px;margin-top: 5px;}
+.markerContentStyle3{ z-index:999;}
+</style>
+
+<script type="text/javascript">
+var data = new Array();
+
+
+
+
+//根据不同商家类型获取商家详细信息
+
+function changeType(typeName){
+
+var Marker=new Array();
+           $.ajax({
+              type: "post",
+              url: "ajax_sellerList.php",
+              data:{"typeName": typeName},
+              async:false,
+              success: function(rs){  
+                    var seller=eval(rs);
+                    for(var i in seller){
+                       data[i]=new Array(parseFloat(seller[i].coordinates.split(',')[1]),parseFloat(seller[i].coordinates.split(',')[0]),seller[i].pic,"/templates/theme/bg/pj1.png",seller[i].sellerName,"http://www.sqdish.com/business_detail.php?sid="+seller[i].id,"起价：","￥280","五星级",seller[i].address,seller[i].tel);
+                    }
+
+
+ var astorPlace = {lat:16.90923, lng: 101.197428};
+
+  // Set up the map
+             var map = new google.maps.Map(document.getElementById('mapContainer'), {
+    center: astorPlace,
+    zoom: 6,
+    streetViewControl: false
+  });
+
+         for(var j=0;j<data.length;j++)
+  {
+     eval("var Marker"+j+" = new google.maps.Marker({ position: {lat:"+data[j][1]+", lng:"+data[j][0]+"},         map:map,        icon: '/templates/images/marker_spritez.png',       title: ''   });");
+     eval("var infowindow"+j+" = new google.maps.InfoWindow({content : '<div style=\" width:310px; height:150px; position:relative; \"><div style=\"width:250px;height: 48px;position: absolute;top: 0;left: 20px;line-height: 28px;font-size: 16px;color: #333333;\" class=dd>"+data[j][4]+"<a style=\"font-size: 12px;color: #449eb5;margin-left: 8px;\" href="+data[j][5]+" target=_blank>详细</a></div><img style=\"margin:64px 0 0 0 ;display: block;width: 74px;height: 74px;border-radius: 5px;-moz-border-radius:5px; -webkit-border-radius:5px;float: right\" class=tx src="+data[j][2]+" class=fr /><div style=\"font-size:12px;width: 240px;height: 100px;position: absolute;top:50px;left: 20px;\" class=d1><img style=\"width: 66px;height: 13px;display: block;position: relative;top: 17px;left: 0px \" class=pj src="+data[j][3]+" class=fl /><h2 style=\" font-size:12px; color:#777777; line-height:23px; padding-top:10px; padding-bottom:1px;display: inline;margin-left: 80px;\">"+data[j][6]+"<span style=\"color: #e09028;\">"+data[j][7]+"</span>"+data[j][8]+"</h2><p class=p1 style=\" color:#666666; line-height:16px;margin-top: 5px;\">"+data[j][9]+"</p><p class=p2 style=\" color:#666666; line-height:16px;margin-top: 5px;\">"+data[j][10]+"</p></div></div>'});");
+     eval("Marker"+j+".addListener('click', function(){ zkla(); map.setCenter(Marker"+j+".getPosition()); infowindow"+j+".open(map,Marker"+j+");});");
+  }
+
+  $(".md1 a").click(function(){  
+    console.log(data);
+    for(var k=0;k<data.length;k++)
+      {
+        eval("infowindow"+k+".close();");
+      }
+      eval("infowindow"+$(this).parent("li").prevAll().length+".open(map,Marker"+$(this).parent("li").prevAll().length+"); map.setCenter(Marker"+$(this).parent("li").prevAll().length+".getPosition());");
+       
+     return false;
+
+    });
+    
+    function zkla()
+    {
+     for( var s=0;s<data.length;s++)
+      {
+        eval("infowindow"+s+".close();");
+      }
+
+    } 
+
+              }
+          });
+ 
+}
+
+
+ 
+
+
+function initMap() {
+  //var astorPlace = {lat:39.90923, lng: 116.197428};
+  var astorPlace = {lat:16.90923, lng: 101.197428};
+
+  // Set up the map
+             var map = new google.maps.Map(document.getElementById('mapContainer'), {
+    center: astorPlace,
+    zoom: 7,
+    streetViewControl: false
+  });
+changeType('hot');
+}
+</script>
+<script src="http://ditu.google.cn/maps/api/js?key=AIzaSyCKF7cDuYawaLgh8tO2jY9-vusUuANh9NY&signed&callback=initMap"></script>
+</body>
+</html>

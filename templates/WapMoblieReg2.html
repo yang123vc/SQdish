@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>帐号注册-SQdish食器</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="alternate icon" type="image/png" href="/templates/images/favicon.png">
+  <link rel="stylesheet" href="/templates/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/templates/theme/css/sqWapStyle.css"/>
+  <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101285136" data-redirecturi="http://www.sqdish.com/quickLogin.php" charset="utf-8"></script>
+</head>
+<body>
+<header data-am-widget="header" class="am-header am-header-default sqBgColor">
+    <div class="am-header-left am-header-nav">
+        <a href="#left-link" class="">
+            <i class="am-header-icon am-icon-chevron-left"></i>
+		</a>
+      </div>
+    <h1 class="am-header-title">
+        帐号注册
+    </h1>
+	<div class="am-header-right am-header-nav">
+          <a href="#right-link" class="">
+              <span class="am-header-nav-title">
+                首页
+              </span> 
+                <i class="am-header-icon am-icon-home"></i>
+          </a>
+      </div>
+</header>
+
+<div class="loginfrom am-g">
+	<form class="am-form">
+		<div class="am-form-group">
+			<input type="text" id="user-name" class="am-form-field am-radius" placeholder="您的昵称" />
+			<input type="hidden" id="opt"  value="2" />
+            <input type="hidden" id="username" value="<?php echo $mobile;?>" />
+            <input type="hidden" id="phone" value="<?php echo $mobile;?>" />
+		</div>
+		<div class="am-form-group">
+			<input type="text" id="user-password" class="am-form-field am-radius" placeholder="您的密码" />
+		</div>
+		<div class="am-form-group">
+			<input type="text"  id="affirm-password" class="am-form-field am-radius" placeholder="确认密码" />
+		</div>
+			<button type="button" class="am-btn am-btn-warning sqBgColor am-btn-block" onclick="submituserInfo()">完成注册</button>
+	</form>
+</div>
+
+
+<div class="threeLogin">
+	<img src="/templates/images/cutLine.jpg" width="100%" alt=""/>
+	<ul>
+		<li><a href="/login.php?action=weixinLogin" class="loginPic"><img src="/templates/images/weixinImg.jpg" /><br />微信登录</a></li>
+		<li><a href="#" id="qqLoginBtn" onclick="qqLogin(); return false;" class="loginPic"><img src="/templates/images/qqImg.jpg" /><br />QQ登陆</a></li>
+	</ul>
+</div>
+
+<footer class="am-g am-footer am-footer-default" style="float:left;margin:20px 0;">
+    <div class="am-footer-switch">
+    <span class="am-footer-ysp">
+			手机版
+    </span>
+      <span class="am-footer-divider"> | </span>
+      <a id="godesktop" class="am-footer-desktop" href="javascript:">
+          电脑版
+      </a>
+    </div>
+    <div class="am-footer-miscs ">	
+            SQdish提供技术支持</p>
+        <p>CopyRight©2016  Sanho Tec Inc.</p>
+        <p>滇ICP备13033158</p>
+    </div>
+</footer>
+
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="/templates/assets/js/polyfill/rem.min.js"></script>
+<script src="/templates/assets/js/polyfill/respond.min.js"></script>
+<script src="/templates/assets/js/amazeui.legacy.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="/templates/assets/js/jquery.min.js"></script>
+<script src="/templates/assets/js/amazeui.min.js"></script>
+<!--<![endif]-->
+<script>
+	       // QC.Login.signOut();
+        var user_info = {};
+        function qqLogin() {
+            var oOpts = {
+                appId: "101285136",
+                redirectURI: "http://www.sqdish.com/quickLogin.php"
+            }
+            QC.Login.showPopup(oOpts);
+        }
+        window.onload = function () {
+            if (QC.Login.check())
+            {
+                QC.api("get_user_info", user_info)
+                        .success(function (s) {//成功回调  
+                        })
+                        .error(function (f) {//失败回调  
+                        })
+                        .complete(function (c) {
+                            user_info.nickname = c.data.nickname;
+                            user_info.figureurl = c.data.figureurl;
+                            postUserInfo(user_info);
+                        });
+            }
+        }
+        
+        function postUserInfo(user_info) {
+            $.ajax({
+                type: "POST",
+                async: true,
+                url: "/register.php?action=qqLogin",
+                contentType: "application/json", //必须有
+                data: JSON.stringify(user_info), //相当于 //data: "{'str1':'foovalue', 'str2':'barvalue'}",
+                success: function (jsonResult) {
+                    var result = eval("(" + jsonResult + ")");
+                    if (result['flag'] === 1) {
+                        window.top.location = "/index.php";
+                    } else {
+                        alert(result['msg']);
+                    }
+                }
+            });
+        }
+        //QQ登录结束
+                function submituserInfo() {
+                    if (validate()) {
+                        var post_data = {username:$("#username").val(),password:$("#user-password").val(),phone:$("#phone").val(),nickname:$("#user-name").val(),opt:$("#opt").val()};
+                        $.ajax({
+                            type: "post",
+                            url: "/register.php?action=wapregister",
+                            data: post_data,
+                            success: function (data) {
+                                var result = eval("(" + data + ")");
+                                if (result['flag'] === 1)
+                                {
+                                    alert(result['msgbox']);
+                                    window.top.location = '/index.php';
+                                } else {
+                                    alert(result['msgbox']);
+                                }
+                            },
+                            error: function () {
+                                //请求出错处理
+                            }
+                        });
+
+                    }
+                }
+
+
+                function validate() {
+                    if ($("#user-password").val() == $("#affirm-password").val())
+                    {
+                        return true;
+                    } else {
+                        alert('两次输入的密码不一致');
+                        return false;
+                    }
+                }
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<div class="header">
+    <div class="wrap clear">
+        <h1 class="logo fl"><a href="#"></a>
+        </h1>
+        <div class="nav fl">
+            <ul class="lifl clear">
+                <li class="li1"><a href="/"><span class="s1">首页</span><span class="s2">home</span><span class="s4"></span></a></li>
+                <li class="li2"><a href="/business_list.php"><span class="s1">榜单推荐</span><span class="s2">Recommend</span><span class="s4"></span></a></li>
+                <li class="li3"><a href="#"><span class="s3"></span><span class="s4"></span></a></li>
+                <li class="li4"><a href="/coupon_list.php"><span class="s1">优惠劵</span><span class="s2">coupon</span><span class="s4"></span></a></li>
+                <li class="li5"><a href="#"><span class="s1">心愿单</span><span class="s2">wish list</span><span class="s4"></span></a></li>
+                <li class="li6"><a href="/article_list.php"><span class="s1">印记</span><span class="s2">marking</span><span class="s4"></span></a></li>
+                <li class="li7">
+                    <form action='search.php' method="post"  />    
+                    <input  id="keys" class="ssk" type="text" name="key" value="<?php echo isset($key)?$key:'输入关键字进行查找'; ?>"  />
+                    <input class="btn" type="submit" value="" />
+                    </form>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>

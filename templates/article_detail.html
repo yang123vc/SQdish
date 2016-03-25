@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><?php echo $r['articleTitle'];?>-SQdish食器-让您的旅途不在将就</title>
+		<meta name="keywords" content="<?php echo $r['articleKeyword'];?>">
+		<meta name="description" content="<?php echo $r['articleDes'];?>">
+    <link href="/templates/theme/css/style.css" type="text/css" rel="stylesheet" />
+    <link href="/templates/theme/css/sqStyle.css" type="text/css" rel="stylesheet" />
+
+</head>
+<body>
+<?php include "inc/header.html"?>
+<div class="city1">
+    <div class="city wrap">
+        <span class="s1">当前位置：清迈 <a href="#">[ 点击切换 ]</a></span>
+        <span class="s2"><a href="#">登录</a><span>丨</span><a href="#">注册</a></span>
+        <div class="xlk2">
+            <a href="">中文</a>
+            <span class="arrow"></span>
+            <span class="yuyan">
+                <a href="#">English</a>
+            </span>
+        </div>
+        <div class="xlk1">
+            <a href="">清迈</a>
+            <span class="arrow"></span>
+            <span class="chengshi">
+                <a href="#">清迈</a>
+                <a href="#">清迈</a>
+                <a href="#">清迈</a>
+            </span>
+        </div>
+
+    </div>
+</div>
+<div class="banner3"></div>
+
+<div class="ynd">
+    <div class="wrap clear">
+        <div class="ynd1 fl">
+            <div class="xbt">
+              <a href="/">首页</a><i>></i>  <a href="<?if($isw){echo "a/index.html";}else{echo "article_list.php";}?>">印记</a><i>></i><a href="<?php echo getcategoryurl($cr); ?>"><?php echo $cr['categoryNameZ'] ?></a><i>></i><a href="#1" class="hover"><?php echo $r['articleTitle'] ?></a>
+            </div>
+						<?php if(is_array($Tlist) && $Tlist ){ ?>
+            <div class="bjtj">
+                <div class="bjl fl"></div>
+                <div class="bjr fr">
+                    <div class="ttc">
+                            <a class="prev iconfont a1"><span></span></a>
+                            <a class="next iconfont a2"><span></span></a>
+                            <div class="scroll">
+                                <ul class="clear lifl">
+							<?php 
+								foreach($Tlist as $k=>$v){
+							?>
+							
+									<li>
+											<a target="blank" href="<?php echo $v['articleUrl']; ?>">
+													<span class="si"><img src="<?php echo $v['picturePath']; ?>" alt=""/></span>
+													<span class="s1">
+															<span class="s11">【编辑推荐】<?php echo $v['title']; ?></span>
+															<span class="s12 fl">more</span>
+															<!-- <span class="s13 fr">4647人阅读</span>-->
+													</span>
+											</a>
+									</li>
+								<?php 
+								}
+							
+							?>
+                                  
+
+															
+                                </ul>
+                            </div>
+                        </div>
+                </div>
+            </div>
+						<?php 	}  ?>
+            <div class="title">
+                <h2><?php echo $r['articleTitle'];?></h2>
+                <span class="ts1">
+                    <span class="ts11 fl">by <a href="#"><?php echo $r['articleAuthor'];?></a></span>
+                    <span class="ts12 fl"><?php echo date("Y-m-d H:i:s",$r['addtime']) ;?></span>
+                      <?php if( $fav_flag == 0 ) { ?>
+                    <?php if($mid!=0) { ?>
+                    <a href="#1" data-am-modal="{target: '#my-alert'}" id="addArticle" onclick="addArticleFav(<?php echo $tid;?>,3);" ><span class="ts13 fl">收藏此文</span></a>
+                    <?php } else { ?>
+                    <a href="#1"  id="addArticle" onclick="addArticleFav(<?php echo $tid;?>,3);" ><span class="ts13 fl">收藏此文</span></a>
+                    <?php } ?>
+
+                    <a  id="delArticle" style="display:none" href="#1" onclick="cancelArticleFav(<?php echo $tid;?>,3);" ><span class="ts15 fl">收藏此文</span></a>
+                    <?php } else { ?>
+
+                    <a href="#1" id="delArticle" onclick="cancelArticleFav(<?php echo $tid;?>,3);" ><span class="ts15 fl">收藏此文</span></a>
+                    <?php if($mid!=0) { ?>
+                    <a  id="addArticle" data-am-modal="{target: '#my-alert'}" style="display:none" href="#1" onclick="addArticleFav(<?php echo $tid;?>,3);" ><span class="ts13 fl">收藏此文</span></a>
+                    <?php } else { ?>
+                     <a  id="addArticle"  style="display:none" href="#1" onclick="addArticleFav(<?php echo $tid;?>,3);" ><span class="ts13 fl">收藏此文</span></a>
+                    <?php } ?>
+
+                    <?php } ?>
+                    <span class="ts14 fr"><a href="<?php echo getcategoryurl($cr); ?>"><?php echo $cr['categoryNameZ'] ?></a>出品    <span class="ts141">|</span>    已有<i><?php echo $r['articleClick'];?></i>人阅读</span>
+                </span>
+            </div>
+            <div class="art">
+               <?php echo $r['articleBody'];?>
+                <span class="fgx">==================================================================================================</span>
+                <span class="s1">微信公众账号：“食器”，每天为你精选一篇有见地的独家专栏文章，欢迎关注，互动有奖^_^</span>
+                <span class="s2"><img src="/templates/images/11.jpg" alt=""/></span>
+                <span class="s3">本文系“食器”独家稿件，未经授权，不得转载。</span>
+                <span class="s4">
+                    <span class="s41 fl"><span class="fl">分享到：</span><a href="#1" class="a1"></a><a href="#1" class="a2"></a><a href="#1" class="a3"></a><a href="#1" class="a4"></a><a href="#1" class="a5"></a><a href="#1" class="a6"></a></span>
+                    <span class="s42 fr">上一篇：<?php echo getpre($r); ?></span>
+                    <span class="s42 fr">下一篇：<?php echo getnext($r); ?></span>
+                </span>
+            </div>
+        </div>
+        <div class="ynd2 fr">
+            <div class="xyd">
+                <a href="#1"><img src="templates/images/12.jpg" alt="心愿单"/></a>
+            </div>
+            <div class="zrbd">
+                <span class="st">最热榜单</span>
+                <ul class="clear">
+                    <li>
+                        <a href="#">
+                            <span class="s1 fl"><img src="templates/images/13.jpg" alt=""/></span>
+                            <span class="s2 fl">
+                                <span class="s21">千人火锅(Sukontha Buffet)</span>
+                                <span class="s22 fl"><img src="templates/images/14.jpg" class="fl"><span class="fl">4.5分</span></span>
+                            </span>
+                        </a>
+                        <span class="s3">1001</span>
+
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="s1 fl"><img src="templates/images/13.jpg" alt=""/></span>
+                            <span class="s2 fl">
+                                <span class="s21">千人火锅(Sukontha Buffet)</span>
+                                <span class="s22 fl"><img src="templates/images/14.jpg" class="fl"><span class="fl">4.5分</span></span>
+                            </span>
+                        </a>
+                        <span class="s3">1001</span>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="s1 fl"><img src="templates/images/13.jpg" alt=""/></span>
+                            <span class="s2 fl">
+                                <span class="s21">千人火锅(Sukontha Buffet)</span>
+                                <span class="s22 fl"><img src="templates/images/14.jpg" class="fl"><span class="fl">4.5分</span></span>
+                            </span>
+                        </a>
+                        <span class="s3">1001</span>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="s1 fl"><img src="templates/images/13.jpg" alt=""/></span>
+                            <span class="s2 fl">
+                                <span class="s21">千人火锅(Sukontha Buffet)</span>
+                                <span class="s22 fl"><img src="templates/images/14.jpg" class="fl"><span class="fl">4.5分</span></span>
+                            </span>
+                        </a>
+                        <span class="s3">1001</span>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="s1 fl"><img src="templates/images/13.jpg" alt=""/></span>
+                            <span class="s2 fl">
+                                <span class="s21">千人火锅(Sukontha Buffet)</span>
+                                <span class="s22 fl"><img src="templates/images/14.jpg" class="fl"><span class="fl">4.5分</span></span>
+                            </span>
+                        </a>
+                        <span class="s3">1001</span>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="s1 fl"><img src="templates/images/13.jpg" alt=""/></span>
+                            <span class="s2 fl">
+                                <span class="s21">千人火锅(Sukontha Buffet)</span>
+                                <span class="s22 fl"><img src="templates/images/14.jpg" class="fl"><span class="fl">4.5分</span></span>
+                            </span>
+                        </a>
+                        <span class="s3">1001</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="xgtj">
+                <span class="st">相关推荐</span>
+                <ul class="clear">
+                    <li>
+                        <a href="#1">
+                            <span class="fl s1"><i class="s11">【荐】</i>最脆弱的也是最坚韧的 </span>
+                            <span class="fr s2">12-01</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#1">
+                            <span class="fl s1"><i class="s11">【荐】</i>巴黎恐怖袭击第二天 </span>
+                            <span class="fr s2">12-01</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#1">
+                            <span class="fl s1"><i class="s11">【荐】</i>一秒钟的迟疑 </span>
+                            <span class="fr s2">12-01</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#1">
+                            <span class="fl s1"><i class="s11">【荐】</i>我的第一次邮轮之旅 </span>
+                            <span class="fr s2">12-01</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#1">
+                            <span class="fl s1"><i class="s11">【荐】</i>缅甸之路 </span>
+                            <span class="fr s2">12-01</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#1">
+                            <span class="fl s1"><i class="s11">【荐】</i>专栏其他作 </span>
+                            <span class="fr s2">12-01</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="rmtj">
+    <div class="wrap clear">
+        <span class="s1 fl"></span>
+        <a href="#1"><span class="s2 fl"> view more love show</span></a>
+    </div>
+</div>
+<div class="rmtj2">
+    <div class="wrap">
+        <div class="ttc">
+            <a class="prev iconfont a1"><span></span></a>
+            <a class="next iconfont a2"><span></span></a>
+            <div class="scroll">
+                <ul class="clear lifl">
+             		<?php if($talists){
+									foreach($talists as $k=>$v){
+								//	echo count($talist);
+								 ?>
+                    <li>
+                        <a href="<?php echo getarticleurl($v); ?>"><img src="<?php echo $v['articlePic'] ?>" alt=""/>
+                            <span class="s1">
+                                <span class="s11sq"><?php echo $v['articleTitle']; ?></span>
+                                <span class="s12sq"><?php echo $CList[$v['articleCategory']]['categoryNameZ'];?></span>
+                                <span class="s13">作者：<?php echo $v['articleAuthor'];?><br>更新时间: <?php echo date("Y-m-d",$v['addtime']) ?></span>
+                                <span class="s14"><img src="/templates/theme/bg/37.png" alt=""/></span>
+                            </span>
+                        </a>
+                    </li>
+										
+								<?php 	}
+								} ?>
+								
+								</ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+    <div class="am-modal-dialog">
+        <div class="am-modal-hd">收藏成功！</div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn">确定</span>
+        </div>
+    </div>
+</div>
+<input id="url" type="hidden" value="<?php echo $url;?>"/>
+<input id="mid" type="hidden" value="<?php echo $mid;?>"/>
+<?php include "inc/footer.html"?>
+
+<div class="ciads_fov2">
+</div>
+<div class="ciads_fov">
+<div class="d1"><span class="s1 fl">2秒后关闭</span><span class="s2 fr"></span></div>
+<div class="d2"><p class="p1">成功加入您的关注列表！</p></div>
+</div>
+  
+    <script type="text/javascript" src="/templates/theme/common/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/templates/theme/common/jquery.tools.min.js"></script>
+    <script type="text/javascript" src="/templates/theme/common/ciads.js"></script>
+    <script type="text/javascript" src="templates/theme/js/favourite.js"></script>
+	<script type="text/javascript" src="article_count.php?tid=<?php echo $tid; ?>"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+$carinfo = JSON::decode(str_replace(array('&','$'),array('"',','),ICookie::get('shoppingcart')));
+$Cart = new Cart();
+$carinfo = $Cart->getMyCart();
+$goods_list = array();
+foreach( $carinfo['list'] as $shop_key=>$shop)
+{
+	 foreach( $shop['data'] as $goods_id=>$goods)
+	 {
+		 $goods_list[$goods_id]['id'] = $goods['id'];
+		 $goods_list[$goods_id]['img'] = $goods['img'];
+		 $goods_list[$goods_id]['shop_id'] = $shop_key;
+	 }
+
+}
+
+
+
+$orderArray['mid'] = 1;
+$orderArray['status'] = 0;
+$orderArray['ordercode'] = time().rand(1000,9999);
+mysql_query('START TRANSACTION');
+$order_result = $db->insert('f_order',$orderArray);
+if(!$order_result)
+{
+	mysql_query('ROLLBACK');
+
+}
+
+$order_id = $db->insert_id();
+
+$order_detail_result = false;
+foreach($goods_list as $details)
+{
+	$orderDetailsArray['oid'] = $order_id;
+	$orderDetailsArray['did'] = $details['id'];
+	$order_detail_result = $db->insert('f_order_detail',$orderDetailsArray);
+
+}
+if($order_detail_result==false)
+{
+	mysql_query('ROLLBACK');
+}
+mysql_query('COMMIT');

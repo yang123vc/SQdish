@@ -1,0 +1,90 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>搜索结果</title>
+<link href="/templates/wap/css/index_new.css" rel="stylesheet" type="text/css" />
+<script src="/templates/wap/js//jq.js" type="text/javascript"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<body>
+<div id="caixils">
+        <div class="bg"></div>
+    </div>
+    <div id="znpxls">
+
+        <div class="bg"></div>
+    </div>
+	<div class="shjs">
+        <div class="header2">
+            <a href="/"><div class="return"></div></a>
+            <div class="title">搜索结果</div>
+            <a href="#"><div class="lookup"></div></a>
+        </div>
+        <div class="nav">
+        	<a href="search.php?act=1&key=<?php echo $key;?>"><div class="caixi" id="caixi">商家</div></a>
+            <a href="search.php?act=2&key=<?php echo $key;?>"><div class="district">菜品</div></a>
+            <a href="search.php?act=3&key=<?php echo $key;?>"><div class="sort" id="znpx">文章</div></a>
+        </div>
+        <div class="main">
+            <ul class="list">
+				<?php if(!empty($sellerList)){foreach($sellerList as $v){?>
+                 <a href="business_detail.php?sid=<?php echo $v['id'];?>">
+                    <li class="shanghu">
+                        <div class="show">
+                            <div class="pic"><img src="<?php echo $v['pic'];?>" width="70" height="70" /></div>
+                            <div class="right">
+                                <div class="title"><?=$v['sellerName']?></div>
+                                <div class="mid">
+                                    <ul class="star">
+                                        <li><img src="/templates/wap/images/huangxing.png" width="15" height="14" /></li>
+                                        <li><img src="/templates/wap/images/huangxing.png" width="15" height="14" /></li>
+                                        <li><img src="/templates/wap/images/huangxing.png" width="15" height="14" /></li>
+                                        <li><img src="/templates/wap/images/huixing.png" width="15" height="14" /></li>
+                                        <li><img src="/templates/wap/images/huixing.png" width="15" height="14" /></li>
+                                    </ul>
+                                    <div class="xiaoliang">热度<?php echo $v['count'];?></div>
+                                </div>
+                                <!--<div class="manjian">&nbsp;在线支付满<p>15减2，满40减10</p>！</div>-->
+                                <!--<div class="time">35分钟</div>-->
+                                <ul class="support">
+									<?php if(!empty($v['ser_icon'])){foreach($v['ser_icon'] as $k){?>
+									<li style="margin:5px 2px;"><img src="<?=$k?>" height="23" width="23"/></li>									
+									<?php }}?>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                </a>
+                <div class="border"></div>
+				<?php }?>
+            </ul>
+            <div class="clear"></div>
+            <div class="load">
+            	<div class="more"><img src="/templates/wap/images/load.png" width="11" /><p>加载更多</p></div>
+            </div>
+            <?php }else{?>
+                       </ul>
+           <div class="clear"></div>
+           <div class="load">
+                <div class="more"><p style="width:100%;text-align: center;">没有找到相应内容</p></div>
+           </div>
+            <?php }?>
+        </div>
+        <div class="footer">
+            <div class="site">请允许设备获取GPS权限</div>
+            <div class="reload"><img src="/templates/wap/images/reload.jpg" width="13" height="16" /></div>
+        </div>
+    </div>
+</body>
+<script>
+$("#caixi").click(function(){
+	$("#caixils").toggleClass("hidebgshow");
+	});
+$("#znpx").click(function(){
+	$("#znpxls").toggleClass("hidebgshow");
+	});
+</script>
+</html>

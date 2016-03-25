@@ -1,0 +1,255 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><?=$merchant_text?> - <?=$website_name?> <?=$admin_center?></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="templates/assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="templates/assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="templates/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="templates/assets/css/admin.css">
+
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+<?php
+	// header
+	include 'templates/header.htm';
+?>
+
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php
+	// 左边栏
+	include 'templates/sidebar.htm';
+  ?>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+  <div class="am-panel am-panel-default">
+  <div class="am-panel-hd">
+    <h3 class="am-panel-title"><?=$audit_status_text?></h3>
+  </div>
+  <div class="am-panel-bd">
+    <p><?=$warning_text?></p>
+  </div>
+	<table class="am-table">
+    <thead>
+        <tr class="am-primary">
+            <th><?=$merchant_information_text?></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><?=$merchant_name_text?></td>
+            <td><?php echo $sellerList['sellerName'];?></td>
+
+        </tr>
+        <tr>
+            <td><?=$map_coordinates_text?></td>
+
+            <td><?php echo $sellerList['coordinates'];?></td>
+        </tr>
+        <tr >
+            <td><?=$share_information_text?>)</td>
+
+            <td><?php echo $sellerList['coordinates'];?></td>
+        </tr>
+        <tr>
+            <td><?=$icon_text?></td>
+
+            <td> <?php foreach($extraList as $v){ ?>           
+			<!--<img src="<?php //echo $v['ser_icon'];?>" />-->
+			
+			<label class="am-checkbox-inline">
+             <input type="checkbox" name="<?php echo $v['ser_id'];?>" value="<?php echo $v['ser_name'];?>" <?php echo $v['status']?'checked':'';?> /> <?php echo $v['ser_name'];?>
+			 </label>
+			<?php }?></td>
+        </tr>
+               <tr>
+            <td><?=$restaurant_type_text?></td>
+
+            <td> <?php foreach($rtypeList as $v){ ?>           
+			<!--<img src="<?php //echo $v['ser_icon'];?>" />-->
+			
+			<label class="am-checkbox-inline">
+             <input type="checkbox" name="checkbox[]" value="<?php echo $v['rt_name'];?>" <?php echo $v['status']?'checked':'';?>/> <?php echo $v['rt_name'];?>
+			 </label>
+			<?php }?></td>
+        </tr>
+        <tr>
+            <td><?=$contact_person_text?></td>
+
+            <td><?php echo $sellerList['contacts'];?></td>
+        </tr>
+                <tr>
+            <td><?=$phone_text?></td>
+
+            <td><?php echo $sellerList['tel'];?></td>
+        </tr>
+                <tr>
+            <td><?=$business_hour_text?></td>
+
+            <td><?php echo $sellerList['BH'];?></td>
+        </tr>
+           <tr>
+            <td><?=$required_QRcode_number_text?></td>
+
+            <td><?php echo $sellerList['QRcode_sum'];?></td>
+        </tr> 
+                   <tr>
+            <td><?=$referee_text?></td>
+
+            <td><?php echo $referee;?></td>
+        </tr>       
+         <tr>
+            <td><?=$intro_text?></td>
+
+            <td><?php echo $sellerList['intro'];?></td>
+        </tr>    
+    </tbody>
+</table>
+  <hr data-am-widget="divider" style="" class="am-divider am-divider-default" />
+	<table class="am-table">
+    <thead>
+        <tr class="am-primary">
+            <th><?=$user_information_text?></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><?=$username_text?></td>
+            <td><?php echo $userList['username'];?></td>
+        </tr>
+            <tr>
+            <td><?=$psw_text?></td>
+            <td><?php echo $userList['password'];?></td>
+        </tr>
+        <tr>
+            <td><?=$useradd_FirstName?></td>
+
+            <td><?php echo $userList['firstName'];?></td>
+        </tr>
+            <tr>
+            <td><?=$useradd_Surname?></td>
+
+            <td><?php echo $userList['surname'];?></td>
+        </tr>
+        <tr >
+            <td><?=$useradd_Birthday?></td>
+
+            <td><?php echo $userList['birthday'];?></td>
+        </tr>
+        <tr>
+            <td><?=$email_text?></td>
+
+            <td><?php echo $userList['email'];?></td>
+        </tr>
+        <tr>
+            <td><?=$phone_text?></td>
+
+            <td><?php echo $userList['phone'];?></td>
+        </tr>
+    </tbody>
+</table>
+ <div class="am-panel-footer">
+ 	<a href="sellerCheck_ok.php?act=ok&id=<?php echo $sellerList['id'];?>&page=<?php echo $page;?>"><button type="button" class="am-btn am-btn-success "><?=$pass_audit_text?></button></a>
+ 	<button type="button" class="am-btn am-btn-warning" id="doc-prompt-toggle"><?=$no_audit_text?></button>
+ </div>
+</div>
+  <!-- content end -->
+  </div>
+  <div class="am-modal am-modal-prompt" tabindex="-1" id="my-prompt">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd"><?=$no_audit_reason_text?> </div>
+    <div class="am-modal-bd">
+	<?=$error_tip_text?>
+      <input type="text" class="am-modal-prompt-input">
+    </div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn" data-am-modal-cancel><?=$no_text?></span>
+      <span class="am-modal-btn" data-am-modal-confirm><?=$yes_text?></span>
+    </div>
+  </div>
+</div>
+
+<a class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+
+<?php
+	// footer
+	include 'templates/footer.htm';
+?>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/polyfill/rem.min.js"></script>
+<script src="assets/js/polyfill/respond.min.js"></script>
+<script src="assets/js/amazeui.legacy.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="templates/assets/js/jquery.min.js"></script>
+<script src="templates/assets/js/amazeui.min.js"></script>
+<!--<![endif]-->
+<script>
+$(function() {
+  $('#doc-prompt-toggle').on('click', function() {
+    $('#my-prompt').modal({
+      relatedTarget: this,
+      onConfirm: function(e) {
+        window.location.href="sellerCheck_ok.php?act=fail&id="+<?php echo $sellerList['id'];?>+"&error="+e.data;
+      },
+      onCancel: function(e) {
+      }
+    });
+  });
+});
+	(function($) {
+	  'use strict';
+
+	  $(function() {
+		var $fullText = $('.admin-fullText');
+		$('#admin-fullscreen').on('click', function() {
+		  $.AMUI.fullscreen.toggle();
+		});
+
+		$(document).on($.AMUI.fullscreen.raw.fullscreenchange, function() {
+		  $.AMUI.fullscreen.isFullscreen ? $fullText.text('<?=$close_full_text?>') : $fullText.text('<?=$open_full_text?>');
+		});
+	  });
+	})(jQuery);
+</script>
+<script>
+	$(function(){
+		$("#del-by-ids").click(function(){		
+			var ids = "";
+		
+			$(".select-id:checked").each(function(){
+				ids += $(this).data("id")+",";
+			});
+			
+			if(ids == ""){
+				alert("请选择商家");
+				return;
+			}else{
+				ids = ids.substring(0,ids.length-1);
+			}
+			
+			if(confirm("确认删除所选商家？")){
+				location.href="delSeller.php?ids="+ids;
+			}
+		});
+	});
+</script>
+</body>
+</html>

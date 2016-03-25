@@ -1,0 +1,3 @@
+User-agent: * 
+Disallow: /food_mg
+Allow: /

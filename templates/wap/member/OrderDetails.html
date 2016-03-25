@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>订单详情-SQdish食器</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
+  <link rel="stylesheet" href="/templates/wap/theme/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/templates/wap/theme/css/style.css">
+</head>
+<body>
+ <header data-am-widget="header" class="am-header am-header-default sqBgColor">
+      <div class="am-header-left am-header-nav">
+         <a href="user_orders.php" class="">
+             <i class="am-header-icon am-icon-chevron-left"></i>
+          </a>
+      </div>
+
+       <h1 class="am-header-title">订单详情</h1>
+  </header>
+  
+  <div class="am-g lan"></div>
+  
+ <div class="am-g" style="border-bottom:#CCC 1px solid;border-top:#CCC 1px solid;">
+    
+          <div data-am-widget="list_news" class="am-list-news am-list-news-default" >
+  <!--列表标题-->
+    <div class="am-list-news-hd am-cf">
+        
+          <h2>订单详情</h2>
+       
+          </div>
+ <div class="am-u-sm-12 am-u-sm-centered">
+  <div class="am-list-news-bd">
+  <ul class="am-list">
+
+      <li class="am-g am-list-item-dated">
+          <span class="am-list-item-hd ">订单编号：<?=$orders['ordercode']?></span>
+      </li>
+      <li class="am-g am-list-item-dated">
+          <span class="am-list-item-hd ">购买时间：<?php echo date('Y-m-d H:i:s',$orders['time']);?></span>
+      </li>
+       <li class="am-g am-list-item-dated">
+          <span class="am-list-item-hd ">数量：<?=$orders['count']?></span>
+      </li>
+       <li class="am-g am-list-item-dated">
+          <span class="am-list-item-hd ">总价：<?=$orders['all_cost']?>元</span>
+      </li>
+       <li class="am-g am-list-item-dated">
+          <span class="am-list-item-hd ">当前状态：<?php switch($orders['status']){
+         case 0:
+         echo "未支付";
+         break;
+         case 1:
+         echo "已支付，未评论";
+         break;
+         case 2:
+         echo "已支付，已评论";
+         break;
+         case 3:
+         echo "订单已取消";
+         break;
+         }?></span>
+      </li>
+      <li class="am-g am-list-item-dated">
+          <span class="am-list-item-hd ">支付方式：<?php switch($orders['pay_type']){
+         case 0:
+         echo "支付宝";
+         break;
+         case 1:
+         echo "微信";
+         break;
+         }?></span>
+      </li>
+  </ul>
+ </div>
+
+    </div>
+     </div>
+ </div>
+ 
+  <div class="am-g lan"></div>
+ 
+ <div class="am-g" style="border-bottom:#CCC 1px solid; margin-bottom:2rem">
+      <div class="am-u-sm-12">
+           <h2><a href="business_detail.php?sid=<?php echo $orders['sid'];?>"><?php echo $db->get_a("select sellerName from f_seller where id='$orders[sid]'");?></a><br></h2>
+      </div>
+ </div>
+ <?php if($detail){foreach($detail as $v){?>
+ <div class="am-g text">
+     <div class="am-u-sm-6"><?php echo $db->get_a("select dishNameCN from f_dish where id='$v[did]'");?></div>
+     <div class="am-u-sm-3">￥<?php echo $v['goods_price'];?></div>
+     <div class="am-u-sm-3"><?php echo $v['goods_count'];?>份</div></div>
+ </div>
+ <?php }}?>
+  <div class="am-g lan"></div>
+  
+<?php include "footer.html"?>
+ 
+<script src="/templates/wap/theme/assets/js/jquery.min.js"></script>
+<script src="/templates/wap/theme/assets/js/amazeui.min.js"></script>
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<?php
+    setcookie("recently",$id, time()+3600);
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><?php echo $detail['sellerName'];?>|SQdish食器</title>
+    <link href="templates/theme/css/style.css" type="text/css" rel="stylesheet" />
+    <link href="templates/theme/css/dish_detail.css" type="text/css" rel="stylesheet" />
+ 
+</head>
+<body>
+<?php include "inc/header.html"?>
+<?php include "inc/header_info.html"?>
+<div class="shxq">
+    <div class="d1">
+        <div class="wrap">
+             <a href="business_detail.php?sid=<?php echo $sid?>"><img class="img fl" src="<?php echo $detail['pic'];?>" alt=""/></a>
+            <div class="d2 fl">
+                <a href="business_detail.php?sid=<?php echo $sid?>"><span class="s1"><?php echo $detail['sellerName'];?></span></a>
+                <span class="s2">
+                    <span class="s21 fl"><img src="templates/theme/bg/13.png" alt=""/></span>
+                    <span class="s22 fl">月售<?php echo $detail['count'];?>份</span>
+                    <span class="s23 fl"><?php echo $detail['BH'];?></span>
+                </span>
+                                <span class="s5">
+                                <?php foreach($ser_icon as $k){?>
+                                <span class="s52" ><img style= "width:auto; height:auto; max-width:100%;max-height:100%;"src="<?=$k?>" /></span>
+                                <?php }?>
+                </span>
+            </div>
+            <div class="d3 fl">
+                <a class="hover" href="business_detail.php?sid=<?php echo $sid?>">菜 单</a>
+				<a href="/business_coupon.php?sid=<?php echo $sid?>">优惠券</a><!--此按钮需要判断商户是否有优惠券-->
+				<a  href="/business_comment.php?sid=<?php echo $sid?>">评 价</a>
+				<a href="#1" class="sh">商户名片<div class="wx"><img src="<?php echo $detail['QRCode'];?>"></div></a>
+            </div>
+            <ul class="d4 fr lifl">
+                <li><span class="s1"><?php echo $detail['click'];?>次</span><span class="s2">浏览量</span></li>
+                <li><span class="s1">￥100</span><span class="s2">人均消费</span></li>
+                <li><span class="s1">78条</span><span class="s2">评价数</span></li>
+                <li>
+
+					<?php if($fav_flag==0) { ?>
+					<a href="#1" class="addFav" onclick="addShopFav(<?php echo $sid;?>,1);"><span class="s1 s11"></span><span class="s2 s21">收藏商户</span></a>
+					<a  style="display:none" class="hover delFav" href="#1" onclick="cancelShopFav(<?php echo $sid;?>,1);"><span class="s1 s11"></span><span class="s2 s21">收藏商户</span></a>
+					<? } else { ?>
+
+					<a class="hover delFav" href="#1" onclick="cancelShopFav(<?php echo $sid;?>,1);"><span class="s1 s11"></span><span class="s2 s21">收藏商户</span></a>
+					<a href="#1" class="addFav" style="display:none"onclick="addShopFav(<?php echo $sid;?>,1);"><span class="s1 s11"></span><span class="s2 s21">收藏商户</span></a>
+					<? } ?>
+
+				</li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="msfl">
+        <div class="wrap clear">
+            <div class="left fl">
+				<div class="dishTitle">					
+					<h1><?php echo $dishDetail['dishNameCN'];?></h1>
+				</div>
+				<!--dishBox 开始-->
+
+
+				<div class="dishBox">
+					<div class="dishBoxLeft fl">
+						<div class="dishPic">
+							<img src="<?php echo empty($dishDetail['pic'])?'http://www.sqdish.com/templates/images/sellerdefault.jpg':$dishDetail['pic'];?>">
+						</div>
+						<div class="dishinfo">
+							<div class="bdsharebuttonbox">
+							<a href="#" class="bds_more" data-cmd="more"></a>
+							<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+							<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+							<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+							<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+							<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+							</div>
+							<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+						</div>
+					</div>					
+					<div class="dishBoxRight fr">
+						<div class="dishPrice">
+							<div class="dishBoxRightText">
+								<p>食器价</p>
+							</div>
+							<div class="dishBoxRightContent">
+								<span>฿</span>
+								<strong id="old_price"><?php echo $dishDetail['price'];?></strong>
+							</div>
+						</div>
+						<div class="dishSell">							
+							<ul>
+								<li class="rightLine">已售：<b><?php echo $dishDetail['used'];?></b></li>
+								<li class="rightLine"><b>5</b>星</li>
+								<li><b>3</b>人评价</li>
+							</ul>
+						</div>
+						
+						<?php foreach($dishOptions as $key=>$v){?>
+						<div class="dishtype">				
+							<div class="dishBoxRightText">
+								<p><?php echo $v['optionName'];?></p>
+							</div>
+							<div class="dishBoxRightContent"name='dishBoxRightContent'>
+								<?php foreach($v['detail'] as $k=>$val){?>
+								<a id="option_<?php echo $val;?>"name= "op"style= "" href="#" onclick= "option('<?php echo $val;?>');" value="<?php echo $val;?>"><?php echo $val;?></a>
+								<?php }?>
+							</div>
+						</div>
+						<?php foreach($v['price'] as $k=>$val){?>
+						<input type="hidden" id="<?php foreach($v['detail'] as $p=>$value){ if($k==$p){echo $value;}}?>" value="<?php echo empty($val)?0:$val;?>">
+						<?php }?>
+						<?php }?>
+						<div class="dishNum">
+							<div class="dishBoxRightText">
+								<p>数量</p>
+							</div>
+							<div class="dishBoxRightContent">
+								<button onclick="dishNumButtonMinus();" class="dishNumButton">-</button>
+
+								<input id="dishNumInput"  type="text" class="dishNumInput" value="1" />
+								<button  onclick="dishNumButtonPlus();" class="dishNumButton">+</button>
+							</div>
+						</div>
+						<div class="dishButton">
+
+							<div class="dishBoxRightText"></div>
+
+							<div class="dishBoxRightContent">
+								<form class="" action="<?php echo $url;?>/confirmorder.php" method="post" onsubmit="return checkDish();">
+								<input  name="goods_id" type="hidden"  value="<?php echo $id;?>" />
+								<input  name="goods_img" type="hidden"  value="<?php echo $dishDetail['pic'];?>" />
+								<input id="goods_name" name="goods_name" type="hidden"  value="<?php echo $dishDetail['dishNameCN'];?>" />
+								<input id="goods_price" name="goods_price" type="hidden"  value="<?php echo $dishDetail['price'];?>" />
+								<input  name="shop_id" type="hidden"  value="<?php echo $sid;?>" />
+								<input  name="shop_id" type="hidden"  value="<?php echo $sid;?>" />
+								<input name="imBuyNum" id="imBuyNum" type="hidden" value="1" />
+								<input  name="sourceFlag" type="hidden"  value="2" />
+								<input type="submit" class="dishBuyInput" />
+								</form>
+
+
+
+								<button  class="dishAddCart" onclick="addCart(<?php echo $id;?>,<?php echo $sid;?>,'<?php echo $dishDetail['dishNameCN'];?>');" ></button>
+									<input type="hidden" id="addCartButton" value="0"/>
+                                <?php if($fav_dish_flag==0) { ?>
+
+
+								<button  id="addFavDish" onclick="addDishDetailFav(<?php echo $id;?>,2);"  class="dishAddFavButton"></button>
+								<button id="delFavDish" style="display:none" onclick="cancelDishDetailFav(<?php echo $id;?>,2);" class="dishAddFavButtonHover"></button>
+								<?php }  else { ?>
+								<button id="delFavDish"  onclick="cancelDishDetailFav(<?php echo $id;?>,2);" class="dishAddFavButtonHover"></button>
+								<button  style="display:none" id="addFavDish" onclick="addDishDetailFav(<?php echo $id;?>,2);"  class="dishAddFavButton"></button>
+								<?php }  ?>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<!--dishBox 结束-->				
+                <div class="t1 fl" ><span class="fl">菜品介绍</span></div>
+				<div class="dishIntro">
+					<table>
+						<tr>
+							<td>
+								<?php echo $dishDetail['dishIntroCN'];?>
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+                <div class="t1 fl"><span class="fl">更多美食</span><b class="fr" onclick= "change();">换一组</b></div>
+				<div class="dishMore">
+					<ul>
+					<?php foreach($dishRand as $v){ ?>
+						<li><a href="dish_detail.php?id=<?php echo $v['id'];?>&sid=<?php echo $sid;?>&dtid<?php echo $dtid;?>"><img src="<?php echo empty($v['pic'])?'http://www.sqdish.com/templates/images/sellerdefault.jpg':$v['pic'];?>" alt="" /><br/><?php echo $v['dishNameCN'];?> </a></li>
+					<?php }?>
+					</ul>
+				</div>
+				
+                <div class="t1 fl"><span class="fl">最近浏览</span></div>
+				<div class="dishHistory">					
+					<ul>
+						<?php foreach($dishRecently as $v){
+							$s_id = $db->get_a("select sid from f_dish where id=' $v[id]'");
+						?>
+						<li><a href="dish_detail.php?id=<?php echo $v['id'];?>&sid=<?php echo $s_id;?>&dtid<?php echo $dtid;?>"><img src="<?php echo empty($v['pic'])?'http://www.sqdish.com/templates/images/sellerdefault.jpg':$v['pic'];?>" alt="" /><br/><?php echo $v['dishNameCN'];?> </a></li>
+						<?php }?>
+					</ul>
+				</div>
+			</div>
+			
+            <div class="right fr">
+				<?php include "inc/business_right.html"?>
+            </div>
+        </div>
+    </div>
+</div>
+<input id="url" type="hidden" value="<?php echo $url;?>"/>
+<input id="mid" type="hidden" value="<?php echo $mid;?>"/>
+<input id="sid" type="hidden" value="<?php echo $sid;?>"/>
+<input id="goods_attr_name" type="hidden" value="<?php echo $dishDetail['dishNameCN'];?>"/>
+
+<?php include "inc/footer.html"?>
+
+<div class="ciads_fov2">
+</div>
+<div class="ciads_fov">
+<div class="d1"><span class="s1 fl">2秒后关闭</span><span class="s2 fr"></span></div>
+<div class="d2"><p class="p1">成功加入您的关注列表！</p></div>
+</div>
+
+
+<script type="text/javascript" src="templates/theme/common/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="templates/theme/common/jquery.tools.min.js"></script>
+<script type="text/javascript" src="templates/theme/common/ciads.js"></script>
+<script type="text/javascript" src="templates/theme/common/jquery.fly.min.js"></script>
+<script type="text/javascript" src="templates/theme/js/cart.js"></script>
+<script type="text/javascript" src="templates/theme/js/favourite.js"></script>
+<script type="text/javascript">
+function addCart(goods_id,shop_id,goods_attr_name)
+{
+
+	var val  = parseInt($('#dishNumInput').val());
+	if (isNaN(val) || val <= 0) {
+		val = 1;
+	}
+	$('#imBuyNum').val(val);
+	
+    var product_price = $.trim($('#old_price').text());
+
+	$('#goods_price').val(product_price);
+	var goods_attr_name = $('#goods_attr_name').val();
+	addToCart(goods_id,shop_id,val,goods_attr_name,product_price);
+	return false;
+
+}
+
+function dishNumButtonPlus()
+{
+
+	var val  = parseInt($('#dishNumInput').val());
+	if (isNaN(val) || val <= 0) {
+		val = 1;
+	}
+	$('#dishNumInput').val(val+1);
+	$('#imBuyNum').val(val+1);
+
+}
+function dishNumButtonMinus()
+{
+	var val  = parseInt($('#dishNumInput').val());
+	if (isNaN(val) || val <= 0) {
+		val = 1;
+	}
+	if(val > 1){
+		$('#dishNumInput').val(val-1);
+		$('#imBuyNum').val(val-1);
+	}
+
+
+
+}
+/*function change(id,sid){
+          $.ajax({
+              type: "post",
+              url: "dish_detail.php",
+              data:{"id": id,"sid":sid},
+              async:false,
+              success: function(data){
+              	var arr = eval(data);
+              	var dish = new Array();
+              	for(var i in arr){
+              		dish[i]=Array(arr[i].id,arr[i].dishNameCN,arr[i].pic);
+              	}
+              }
+          });
+      }
+*/
+window.onload=function(){ 
+var arr;
+ //默认选中
+	var dish_name = $.trim('<?php echo $dishDetail['dishNameCN'];?>')+'(';
+	var attrs = '';
+
+var content = document.getElementsByName('dishBoxRightContent');
+ for(var i=0;i<content.length;i++){
+	    attrs += content[i].children[0].id.split('_')[1]+'/';
+		content[i].children[0].setAttribute('style','border:3px solid #eda128');
+ }
+	attrs = attrs.substring(0,attrs.length-1);
+	attrs = dish_name + attrs + ')';
+
+    if(content.length > 0)
+	{
+		$('#goods_attr_name').val(attrs);
+		$('#goods_name').val(attrs);
+	} else {
+
+		$('#goods_attr_name').val($.trim('<?php echo $dishDetail['dishNameCN'];?>'));
+		$('#goods__name').val($.trim('<?php echo $dishDetail['dishNameCN'];?>'));
+	}
+	var product_price = $.trim($('#old_price').text());
+	$('#goods_price').val(product_price);
+
+if(arr=document.cookie.match(/scrollTop=([^;]+)(;|$)/)) 
+document.documentElement.scrollTop=parseInt(arr[1]); 
+document.body.scrollTop=parseInt(arr[1]); 
+} 
+
+//页面刷新前保存滚动条位置信息到cookie 
+
+function change(){ 
+	var scrollPos; 
+	if (typeof window.pageYOffset != 'undefined') { 
+	   scrollPos = window.pageYOffset; 
+	} 
+	else if (typeof document.compatMode != 'undefined' && 
+	     document.compatMode != 'BackCompat') { 
+	   scrollPos = document.documentElement.scrollTop; 
+	} 
+	else if (typeof document.body != 'undefined') { 
+	   scrollPos = document.body.scrollTop; 
+	} 
+	document.cookie="scrollTop="+scrollPos; 
+	 window.location.reload();
+}
+
+function option(k){
+	var sum =0;
+	var or_price = <?php echo $dishDetail['price'];?>;
+	var old_price =document.getElementById('old_price');
+	var price = document.getElementById(k).value;
+	var op = document.getElementsByName('op');
+	var click = document.getElementById('option_'+k);
+	var content = click.parentNode;
+	for(var i=0;i<content.children.length;i++){
+		content.children[i].setAttribute('style','');
+	}
+	click.setAttribute('style','border:3px solid #eda128');
+
+	var goods_name = $.trim('<?php echo $dishDetail['dishNameCN'];?>')+'(';
+	var attr = '';
+	for(var j=0;j<op.length;j++){
+		if(op[j].style.border=='3px solid rgb(237, 161, 40)'){
+			attr += op[j].id.split('_')[1]+'/';
+			var tmp=document.getElementById(op[j].id.split('_')[1]).value;
+
+			sum += parseFloat(tmp); 
+		}
+
+	}
+	attr = attr.substring(0,attr.length-1);
+    attr = goods_name + attr + ')';
+	if(op.length>0)
+	{
+		$('#goods_attr_name').val(attr);
+		$('#goods__name').val(attr);
+	} else {
+		$('#goods_attr_name').val($.trim('<?php echo $dishDetail['dishNameCN'];?>'));
+		$('#goods_name').val($.trim('<?php echo $dishDetail['dishNameCN'];?>'));
+	}
+
+	old_price.innerHTML = or_price+sum;
+	var product_price = $.trim($('#old_price').text());
+	$('#goods_price').val(product_price);
+
+	
+	
+	
+
+}
+
+</script>
+
+</body>
+</html>

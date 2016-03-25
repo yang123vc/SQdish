@@ -1,0 +1,53 @@
+
+
+a{color:#000; }
+
+ul{ list-style:none; display:block; padding:0;}
+
+
+.sqBgColor {background:#eda128;}
+
+.sqBgColor a{ color:#FFF;}
+
+.shoppimg{ padding:2rem; font-size:2rem; font-weight:bold;}
+
+.shoppimg span{ width:40%; display:inline-block; margin-right:1rem;}
+
+.shoppimg span img{ width:100%;}
+
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+
+.clearfix{display:inline-table}
+
+*html .clearfix{height:1%}
+
+.clearfix{display:block}
+
+*+html .clearfix{min-height:1%}
+
+.fl{float:left;}
+
+
+.revtit{ font-size:2rem; line-height:4rem; font-weight:bold;}
+
+.rev_pro li{line-height:20px;height:20px;}
+
+.rev_pro li .revtit{text-align:center;display:block;float:left;width:12rem;}
+
+.revinp{float:left;display:inline; width:20rem;}
+
+.level .level_solid,.level .level_hollow{float:left;background-image:url("../bg/icon2.png");background-repeat:no-repeat;display:inline-block;width:20%;height:5rem;}
+
+.level .level_solid{background-position:0px 0px;}
+
+.level .level_hollow{background-position:100% 0;}
+
+.revgrade{margin-left:20px;}
+
+.text{ width:100%; font-size:2rem; margin:0 auto; border:#eda128 1px solid; border-radius:5px;height: 15rem;}
+
+.tilite{ font-size:2rem;}
+
+.am-btn{ background:#eda128; border:#eda128 1px solid; color:#FFF; font-size:2rem; border-radius:5px; margin:2rem .5rem; width:50%; float:left;}
+
+.am-checkbox{ margin-top:4rem; float:left;}

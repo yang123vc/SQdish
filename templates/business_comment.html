@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><?php echo $detail['sellerName'];?>|SQdish食器</title>
+    <link href="templates/theme/css/style.css" type="text/css" rel="stylesheet" />
+    <link href="templates/theme/css/business_comment.css" type="text/css" rel="stylesheet" />
+    
+</head>
+<body>
+<?php include "inc/header.html"?>
+<?php include "inc/header_info.html"?>
+<div class="shxq">
+    <div class="d1">
+        <div class="wrap">
+            <img class="img fl" src="<?php echo $detail['pic'];?>" alt=""/>
+            <div class="d2 fl">
+                <span class="s1"><?php echo $detail['sellerName'];?></span>
+                <span class="s2">
+                    <span class="s21 fl"><img src="templates/theme/bg/13.png" alt=""/></span>
+                      <span class="s22 fl">月售<?php echo $detail['count'];?>份</span>
+                    <span class="s23 fl"><?php echo $detail['BH'];?></span>
+                </span>
+                <span class="s5">
+                                <?php foreach($ser_icon as $k){?>
+                                <span class="s52" ><img style= "width:auto; height:auto; max-width:100%;max-height:100%;"src="<?=$k?>" /></span>
+                                <?php }?>
+                </span>
+            </div>
+            <div class="d3 fl">
+                <a href="/business_detail.php?sid=<?php echo $shop_id;?>">菜 单</a>
+				<a href="/business_coupon.php?sid=<?php echo $shop_id;?>">优惠券</a><!--此按钮需要判断商户是否有优惠券-->
+				<a class="hover"  href="/business_comment.php?sid=<?php echo $shop_id;?>">评 价</a>
+				<a href="#1" class="sh">商户名片<div class="wx"><img src="<?php echo $detail['QRCode'];?>"></div></a>
+            </div>
+            <ul class="d4 fr lifl">
+                <li><span class="s1"><?php echo $detail['click'];?>次</span><span class="s2">浏览量</span></li>
+                <li><span class="s1">￥100</span><span class="s2">人均消费</span></li>
+                <li><span class="s1"><?php echo $count;?>条</span><span class="s2">评价数</span></li>
+                <li>
+                <?php if($fav_flag_shop==0) { ?>
+                    <a href="#1" id="addFav" class="addFav" onclick="addShopFav(<?php echo $detail['id'];?>,1);"><span class="s1 s11"></span><span class="s2 s21">收藏商户</span></a>
+                    <a  id="delFav" style="display:none" class="hover delFav" href="#1" onclick="cancelShopFav(<?php echo $detail['id'];?>,1);"><span class="s1 s11"></span><span class="s2 s21">收藏商户</span></a>
+                    <? } else { ?>
+
+                    <a  id="delFav" class="hover delFav" href="#1" onclick="cancelShopFav(<?php echo $detail['id'];?>,1);"><span class="s1 s11"></span><span class="s2 s21">收藏商户</span></a>
+                    <a  id="addFav" href="#1" class="addFav" style="display:none"onclick="addShopFav(<?php echo $detail['id'];?>,1);"><span class="s1 s11"></span><span class="s2 s21">收藏商户</span></a>
+                    <? } ?>
+
+                </li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="msfl">
+
+
+
+        <div class="wrap clear">
+            <div class="left fl">
+                <div class="t1"><span class="fl">消费评价</span><b class="fr">共<?php echo $count;?>人评价</b></div>
+				<div class="comment_box fl">
+					<div class="conmment_header fl">
+						<ul>
+							<li><a href="business_comment.php?sid=<?php echo $shop_id;?>" class="hover">全部(<?php echo $count;?>)</a></li>
+							<li><a href="business_comment.php?sid=<?php echo $shop_id;?>&act=pic" >有图的评价(<?php echo $have_pic_count?>)</a></li>
+						</ul>
+					</div>
+					<!--评价循环开始-->
+					<?php foreach( $comments as $comment ){ ?>
+					<div class="conmment_content fl">
+						<div class="comment_logo fl">
+							<img style="width: 24px;height: 24px;" src="<?php echo empty($comment['thumbail'])?'
+							templates/theme/image/ures.jpg':$comment['thumbail'];?>"><br/><?php echo $comment['nickname'];?>
+						</div>
+						<div class="commentR fr">
+							<div class="comment_info">
+								<?php  echo date('Y-m-d', $comment['addtime']);?>
+								<img src="/templates/theme/bg/star<?php echo $comment['star'];?>.png">
+							</div>
+							<div class="comment_text"><?php echo $comment['content'];?>
+							</div>
+							<div class="comment_pic">
+								<ul>
+                                    <?php if($comment['img_count']!=0) { ?>
+
+									<?php for($i=0;$i<$comment['img_count'];$i++) { ?>
+									<li><img src="<?php echo $url.$comment['img'][$i];?>" alt="" /></li>
+									<?php } ?>
+
+									<?php } ?>
+
+								</ul>
+							</div>
+						</div>
+					</div>
+					<?php } ?>
+
+					<!--评价循环结束-->
+
+
+				</div>
+				<!--页码开始,请使用inc里的page.class.php-->
+					<div class="fy fy1 fl">
+					<!-- <a href="#1"><span class="s1"><img src="/templates/theme/bg/zuo.png" alt=""/></span></a> -->
+						<span class="s2">  
+					 <?php  echo $pages->display(); ?>
+						</span>
+					<!-- <a href="#1"><span class="s3"><img src="/templates/theme/bg/you.png" alt=""/></span></a> -->
+					</div>
+				<!--页码结束,请使用inc里的page.class.php-->
+				<div class="t1 fl"><span class="fl">发布评论</span></div>
+
+				<!--comment  start-->
+				<div class="sendCommentBox fl"  id="comment_form">
+
+					<div class="sendCommentInfo fl">
+						您还没有登录，不能发表评论<br />
+						请先<a id="login_a" >登录</a> 或 <a href="register.php">注册帐号</a>
+					</div>
+
+
+
+
+
+
+
+				</div>
+				<!--comment  end  -->
+
+
+
+            </div>
+
+
+
+            <div class="right fr">
+				<?php include "inc/business_right.html"?>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+<input type="hidden" id="url" value="<?php echo $url?>" />
+<?php include "inc/footer.html"?>
+
+<script type="text/javascript" src="templates/theme/common/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="templates/theme/common/jquery.tools.min.js"></script>
+<script type="text/javascript" src="templates/theme/common/ciads.js"></script>
+<script type="text/javascript" src="templates/theme/common/jquery.fly.min.js"></script> 
+<script type="text/javascript" src="templates/theme/js/favourite.js"></script>
+<script type="text/javascript">
+
+	var shop_id  = <?php echo $shop_id; ?>;
+    var url = $('#url').val();
+
+	$.ajax({
+		type :"GET",
+		url : url + "/ajaxGetComment.php?shop_id="+shop_id,
+		dataType : "json",
+		success : function(data)
+		{
+			//登陆且购买过商品
+			 if(data.login == 1)
+			 {
+				 $("#comment_form").html( '<form onsubmit="return check();" method="POST" enctype="multipart/form-data" action="<?php echo $url;?>/ajax_addComment.php" id="comment_real_form"><input type="hidden" id="star" name="star" value="3"/><input type="hidden" name="shop_id" value="<?php echo $shop_id; ?>" /><table border="0"><tr><td class="titleName">评星：</td><td><ul id="rank_pics"><a class="starChoce" id="first"></a><a class="starChoce"></a><a  class="starChoce"></a><a  class="starChoce"></a><a  class="starChoce"></a> 点击星星为商户打分</ul></td></tr><tr><td class="titleName">评价：</td><td> <textarea name="content" id="content" cols="100" rows="10" class="endCommentTextarea"></textarea><br /><span>输入5~500个字</span></td></tr><tr><td class="titleName">上传图片：</td><td><input type="file" class="sendCommentUpload" name="pic[]" /><input type="file" class="sendCommentUpload" name="pic[]" /><input type="file" class="sendCommentUpload" name="pic[]" /><input type="file" class="sendCommentUpload" name="pic[]" /><input type="file" class="sendCommentUpload" name="pic[]"/><p>单张图片小于2mb，支持jpg，bmp，png三种格式</p></td></tr><tr><td class="titleName"></td><td><input type="submit" class="commentSendButton" value="提交评价" /></td></tr></table></form>');
+				 $(".commentSendButton").click(function(){
+					// var formData = $("#comment_real_form").serialize();
+					// alert(formData);
+
+//					 $.ajax({
+//						 type : "POST",
+//						 url : url+'/ajax_addComment.php",
+//						 data : formData,  // 表单中的数据
+//						 dataType : "json",
+//						 success : function(data)
+//						 {
+//
+//						 }
+//					 });
+
+
+
+
+				 });
+
+
+			 } //登陆但未购买商品
+			 if(data.login == 2){
+			 	$("#comment_form").html("<div class='sendCommentInfo fl'>您还没有购买本店商品，请先购买。</div>");
+			 }
+		}
+	});
+
+
+	$("#login_a").click(function(){
+
+		$.ajax({
+			type : "GET",
+			url : url+'/ajax_saveUrl.php',
+			success : function(data)
+			{
+
+				location.href= url  + '/login.php';
+			}
+		});
+	});
+
+
+	$("#rank_pics a").live("mouseover",function(){
+			$(this).prevAll("a").each(function(k,v){
+				$(this).removeClass().addClass("starCover");
+			});
+		   $(this).nextAll("a").each(function(k,v){
+			$(this).removeClass().addClass("starChoce");
+		 });
+	});
+
+	$("#rank_pics a").live("click",function(){
+		var i = $(this).index();
+		$('#star').val(i+1);
+		$(this).prevAll("a").each(function(k,v){
+			$(this).removeClass().addClass("starCover");
+		});
+		$(this).removeClass().addClass("starCover");
+		$(this).nextAll("a").each(function(k,v){
+			$(this).removeClass().addClass("starChoce");
+		});
+
+
+
+	});
+$(function(){
+
+
+	$('.shxq .msfl .left ul li a').on('click', addCart);
+	$(window).scroll(function(){
+		wTop=parseInt($(document).scrollTop());
+		if(wTop>parseInt($(".right").offset().top))
+		{
+			$(".ciads_scroll").addClass("ciads_scroll2").width($(".right").width()).css("right",($(window).width()-1200)/2);
+		}
+		else
+		{
+			$(".ciads_scroll").removeClass("ciads_scroll2");
+		}
+	});
+});
+function addCart(event) {
+var offset = $('#Cart').offset(), flyer = $('<img class="u-flyer" src="templates/images/3333.png"/>');
+flyer.fly({
+    start: {
+        left: event.pageX,
+        top: event.pageY
+    },
+    end: {
+        left: offset.left+20,
+        top: offset.top,
+        width: 20,
+        height: 20
+    },
+	onEnd:function(){
+		flyer.remove();
+	}
+});
+}
+//--------检测评论内容----------//
+function check(){
+
+		var star = $("#first").attr("class");
+		var content = $("#content").val();
+	
+		if (star=='starChoce') {
+			alert('请为商户评分');
+			return false;
+		}else if(content==''||content==null||content==undefined){
+			alert('评价不能为空');
+			return false;
+		}else if(content.length<5){
+			alert('请输入5~500个字评价');
+			return false;
+		}
+
+}
+</script>
+</body>
+</html>

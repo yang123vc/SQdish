@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><?php echo $detail['sellerName'];?>-食器SQdish</title>
+<link href="/templates/wap/css/shanghuxiangqing.css" rel="stylesheet" type="text/css" />
+<script src="/templates/wap/js/jq.js" type="text/javascript"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+
+<body>
+	<div class="header header_fix">
+		<div class="header_pic"><img src="<?php echo $detail['pic'];?>"style="width:100%;height:100%;"></div>
+		<div class="business_detail">
+			<div class="menu">
+				<div class="nav"></div>
+				<a class="icon" href="index.php"></a>
+				<?php if(!isset($_SESSION['user_info'])){?>
+				<a class="log" href="/login.php"></a>
+				<?php } else {?>
+				<a class="logon" href="/user_index.php"> </a>
+				<?php }?>
+			</div>
+			<div class="topnav" >
+				<div class="bussiness_logo"><img src="<?php echo $detail['pic'];?>"></div>
+				<div class="place"><?php echo $detail['sellerName'];?></div>
+				<ul class="list">
+					<a href="javascript:void(0);" onclick= "address();"><li class="one">地址: <?php echo substr($detail['mer_address'],0,20);?><span></span></li></a>
+					<a href="tel:<?php  echo $detail['tel'];?>"><li class="two">联系电话: <?php  echo $detail['tel'];?><span></span></li></a>
+					<a href="/dish/index.php?id=<?php echo $detail['id'];?>"><li class="three">更多菜单<span></span></li></a>
+				</ul>
+			</div>
+		</div>
+    </div>
+    <div class="clear"></div>
+    <div class="main">
+    	<div class="about">
+        	 <span class="bdimg" style="float:left;margin: 10px;"><img src="../templates/theme/bg/star<?php echo $star_avg;?>.png"></span>
+            <div class="sales" style="margin-top:12px;">查看数 <?php echo $detail['click'];?></div>   
+            <?php if($fav_flag==0) { ?>
+            <div class="collection" id="collection" ></div>
+            <div class="img02" id="collection" style="display:none"></div>
+             <? } else { ?>
+            <div class="collection" id="collection" style="display:none"></div>
+            <div class="img02" id="collection" ></div>
+            <?php }?>
+      <div class="main" style= "line-height: 25px;padding: 10px 0;">
+         <ul >
+         <li style= " float:left;margin-left:10px;width: 70px;border: 1px solid #fcb200;text-align: center;margin: 3px 0;border-radius: 5px;" onclick="location.reload();">推荐菜</li>
+        <?php if(!empty($typeList)){foreach($typeList as $v){?>
+            <li style= "float:left;margin-left:10px;width: 70px;border: 1px solid #fcb200;text-align: center;margin: 3px 0;border-radius: 5px;" class="type"><?php echo $v[typeNameCN];?></li>
+        <?php }}?>
+        </ul>
+    </div>
+
+        </div>
+
+    	<div class="border"></div>
+    	<div class="business">营业时间：<?php echo $detail['BH'];?></div>
+        <div class="border"></div>
+        <div class="recommend">
+
+        	<p class="anli">推荐菜</p>
+        	<ul class="food">
+ 	<?php foreach($w_dish as $v){?>
+            	    <li style="width:100%">
+            	       <a href="dish/item.php?id=<?php echo $v['id'];?>&sid=<?php echo $sid;?>">
+                    <div class="pic" style="width:70px;height:70px"><img style="width:auto;height:auto;max-width:100%;max-height:100%;" src="<?php echo empty($v['pic'])?'/templates/images/sellerdefault.jpg':$v['pic'];?>" /></div>
+                    <div class="title" ><p><?php echo empty($v['dishNameCN'])?'暂无中文名':$v['dishNameCN'];?>(<?php echo $v['dishNameTHAI'];?>)</p><span class="price">฿<?php echo $v['price'];?></span></div>
+                    <div class="star"><img src="/templates/wap/images/img-2.jpg" /><?php echo $v['used'];?></div>
+                    <!--<div class="profiles"><?php echo $v['dishIntroCN'];?></div>-->
+                    </a>
+                </li>
+           <?php }?>    
+            </ul>
+  
+        </div>
+        <div class="border"></div>
+        <div class="announcement">
+        	<div class="title">商户简介</div>
+            <div class="profiles"><?php echo $detail['intro'];?></div>
+        </div>
+        <!--<div class="border"></div>
+        <div class="evaluation">
+        	<div class="title">客户评价</div>
+            <ul class="list">
+
+            		<li>
+	                	<div class="position">
+	                    	<div class="clear"></div>
+	                		<div class="profiles">材料很新鲜，肉的口感也很好，客服小杨的态度不错， 给个赞~\(≧▽≦)/~</div>
+	                        <div class="photo1"><img src="images/photo7.jpg" /></div>
+	                        <div class="photo2"><img src="images/photo8.jpg" /></div>
+	                        <div class="clear"></div>
+	                        <div class="photo3"><img src="images/photo9.jpg" /></div>
+	                        <div class="photo4"></div>
+	                    	</div>
+                	</li>
+               
+            </ul>
+        </div>-->
+        <div class="border"></div>
+        <ul class="bottom">
+            <li class="last">
+            	<div class="title">商户二维码</div>
+                <div class="pic" style="text-align: center"><a href="<?php echo $detail['QRCode'];?>"><img style="width:90px;height:90px;" src="<?php echo $detail['QRCode'];?>" /></a></div>
+            </li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+    <div class="footer">
+    	<ul>
+        	<li><a href="index.php"><img src="/templates/wap/images/footer1.jpg" /></a></li>
+            <li><a href="./dish/check.php?id=<?=$sid;?>"><img src="/templates/wap/images/footer2.jpg" /></a></li>
+            <li><a href="user_index.php"><img src="/templates/wap/images/footer3.jpg" /></a></li>
+        </ul>
+    </div>
+</body>
+
+<script>
+$(function(){
+    var mid = "<?php echo $mid;?>";
+    var shop_id = "<?php echo $sid;?>";
+    $(".collection").click(function(){
+
+        //未登录，跳转登录
+            if(mid==0||mid==1)
+            {
+                $.ajax({
+                    type : "GET",
+                    url : 'ajax_saveUrl.php',
+                    success : function(data)
+                    {
+
+                        location.href='login.php';
+                    }
+                });
+                return;
+            }
+            //加入收藏
+            $.ajax({
+                type:"POST",
+                url:"ajax_addFav.php",
+                data:{shop_id:shop_id,type:1},
+                dataType : "json",
+                success:function(data){
+                                if(data==true)
+                        {
+                            $(".collection").hide();
+                            $(".img02").show();
+                        }
+                }
+            });
+        });
+
+    //取消收藏
+        $(".img02").click(function(){
+
+        //未登录，跳转登录
+            if(mid==0||mid==1)
+            {
+                $.ajax({
+                    type : "GET",
+                    url : 'ajax_saveUrl.php',
+                    success : function(data)
+                    {
+
+                        location.href='login.php';
+                    }
+                });
+                return;
+            }
+            //取消收藏
+            $.ajax({
+                type:"POST",
+                url:"ajax_cancelFav.php",
+                data:{shop_id:shop_id,type:1},
+                dataType : "json",
+                success:function(data){
+                                if(data==true)
+                        {
+                            $(".collection").show();
+                            $(".img02").hide();
+                        }
+                }
+            });
+        });
+$(".type").click(function(){
+    var type = $(this).text();
+    $.ajax({
+        type:"GET",
+        url:"ajax_changedish.php",
+        data:{type:type,sid:shop_id},
+        dataType:"json",
+        success:function(data){
+            $(".anli").text(type);
+            $(".food").empty();
+            for(var i=0;i<data.length;i++){
+                if (data[i].pic==''||data[i].pic==null) {
+                    var pic = "/templates/images/sellerdefault.jpg";
+                }else{
+                    var pic = data[i].pic;
+                }
+                $(".food").append('<li style="width:100%"><a href="dish/item.php?id='+data[i].id+'&sid='+shop_id+'"><div class="pic" style="width:70px;height:70px"><img style="width:auto;height:auto;max-width:100%;max-height:100%;" src="'+pic+'" /></div><div class="title"><p>'+data[i].dishNameCN+'('+data[i].dishNameTHAI+')</p><span class="price">฿'+data[i].price+'</span></div><div class="star"><img src="/templates/wap/images/img-2.jpg" />'+data[i].used+'</div><!--<div class="profiles">'+data[i].dishIntroCN+'</div>--></a></li>');
+            }
+        },
+        error:function(){
+            alert("错误");
+        }
+    });
+});
+    
+
+
+});
+//调用导航
+function address(){
+    if(confirm('是否导航到：<?php echo $detail["mer_address"];?>？')){
+        location.href="https://www.google.com/maps/place/<?php echo $deatil['coordinates'];?>";
+    }
+}
+</script>
+</html>

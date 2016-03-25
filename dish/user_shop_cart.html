@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>请确认您的菜品</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="alternate icon" type="image/png" href="/html/assets/i/favicon.png">
+  <link rel="stylesheet" href="/html/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/html/assets/css/sq.css"/>
+   <link rel="stylesheet" href="../templates/wap/theme/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="../templates/wap/theme/css/style.css">
+  <link rel="stylesheet" href="../templates/wap/theme/css/MyShopping.css">
+  <script src="../templates/wap/theme/assets/js/jquery.min.js"></script>
+
+</head>
+<body>
+<style>
+body {
+	background:#f2f2f2;
+	}
+	
+.check_body {
+	background:none;
+	}
+</style>
+<header data-am-widget="header" class="am-header am-header-default sqBgColor">
+      <div class="am-header-left am-header-nav">
+         <a href="../user_index.php" class=""style="width:36px;height:51px;padding-top: 15px;">
+             <i class="am-header-icon am-icon-chevron-left" ></i>
+          </a>
+      </div>
+
+       <h1 class="am-header-title">我的购物车</h1>
+
+         <nav data-am-widget="menu" class="am-menu  am-menu-dropdown1" data-am-menu-collapse > 
+    <a href="javascript: void(0)" class="am-menu-toggle" style="width:36px;height:51px;padding-top: 12px;">
+        <i class="am-header-icon am-icon-bars"></i>
+    </a>
+      <ul class="am-menu-nav am-avg-sm-1 am-collapse">
+          <li class="">
+            <a href="../index.php" class=""style="width:100%;background-color: #0e90d2;color:#fff;height:49px;line-height: 49px;text-indent: 10px;border-bottom: 1px solid #0b76ac;font-size: 1.6rem;font-weight: 400;" ><i class="am-icon-home am-icon-sm" ></i> 首页</a>
+              
+          </li>
+          <li class="">
+            <a href="check.php" class=""style="width:100%;background-color: #0e90d2;color:#fff;height:49px;line-height: 49px;text-indent: 10px;border-bottom: 1px solid #0b76ac;font-size: 1.6rem;font-weight: 400;" ><i class="am-icon-shopping-cart am-icon-sm"></i> 购物车</a>
+              
+          </li>
+          <li class="">
+            <a href="../user_orders.php" class="" style="width:100%;background-color: #0e90d2;color:#fff;height:49px;line-height: 49px;text-indent: 10px;border-bottom: 1px solid #0b76ac;font-size: 1.6rem;font-weight: 400;"><i class="am-icon-check-square-o am-icon-sm"></i> 我的订单</a>
+              
+          </li>
+          <li class="">
+          
+            <a href="../favourite.php" class="" style="width:100%;background-color: #0e90d2;color:#fff;height:49px;line-height: 49px;text-indent: 10px;border-bottom: 1px solid #0b76ac;font-size: 1.6rem;font-weight: 400;"><i class="am-icon-star-o am-icon-sm"></i> 我的收藏</a>
+             
+          </li>
+          <li class="">
+            <a href="../user_coupon.php" class="" style="width:100%;background-color: #0e90d2;color:#fff;height:49px;line-height: 49px;text-indent: 10px;border-bottom: 1px solid #0b76ac;font-size: 1.6rem;font-weight: 400;"><i class="am-icon-cny am-icon-sm"></i> 我的优惠劵</a>
+          </li>
+      </ul>
+  </nav>
+  </header>
+
+<div class="booking_type_name">点击菜品名称进行更多操作</div>
+
+<div class="check_body">
+	<form action="toOrder.php?id=<?=$id?>" method="post">
+
+	<input name="id" type="hidden" value="<?=$id?>" />
+	<div class="am-panel-group" id="accordion">
+	<!--am-panel-->
+		
+		<?php
+			$i = 1;
+			if($cart){
+				foreach($cart as $k1 => $v1){
+					foreach($v1 as $k2 => $v2){
+					 $did = substr($k2,strpos($k2,"_")+1);
+					
+					 if($i++ == 1){
+						$in = "am-in";
+					 }else{
+						$in = "";
+					 }
+						
+					  $totalPrice = $v2['num']*$v2['price'];
+					  
+					  if($v2 && $v2['num']>0){
+						  if($v2['opName']){
+							$opName = '('.$v2['opName'].')';
+						  }else {
+							$opName = "";
+						  }
+					 
+						  if($v2['opNameThai']){
+							$opNameThai = '( '.$v2['opNameThai'].' )';
+						  }else {
+							$opNameThai = "";
+						  }
+					  
+						  echo '<div class="am-panel am-panel-default" id="item-'.$k2.'">'.
+							'<input type="hidden" id="nameCh"name="nameCh[]" value="'.$v2['nameCh'].'"/>'.
+							'<input type="hidden" name="nameThai[]" value="'.$v2['nameThai'].'"/>'.
+							'<input type="hidden" id="price-'.$k2.'" name="price[]" value="'.$v2['price'].'"/>'.
+							'<input type="hidden" name="opName[]" value="'.$v2['opName'].'"/>'.
+							'<input type="hidden" name="opNameThai[]" value="'.$v2['opNameThai'].'"/>'.
+							'<input type="hidden" id="num-'.$k2.'" name="num[]" value="'.$v2['num'].'"/>'.
+							'<input type="hidden" name="did[]" value="'.$did.'"/>'.
+							
+							'<div class="am-panel-hd">'.
+							  '<h4 class="am-panel-title" data-am-collapse="{parent: \'#accordion\', target: \'#do-not-say-'.$i.'\'}">'.  
+								'<div class="am-g">'.
+									'<div class="am-u-sm-6">'.$v2['nameCh'].' '.$opName.'<br/>'.$v2['nameThai'].' '.$opNameThai.'</div>'.
+									'<div class="am-u-sm-3">×<span id="show-num-'.$k2.'">'.$v2['num'].'</span></div>'.
+									'<div class="am-u-sm-3">'.$v2['price'].'铢</div>'.
+								'</div>'.
+							  '</h4>'.
+							'</div>'.
+							'<div id="do-not-say-'.$i.'" class="am-panel-collapse am-collapse '.$in.'">'.
+							  '<div class="am-panel-bd">	'.	  
+								'<div class="am-g">'.
+									'<div class="am-u-sm-6">'.
+										'<a data-id="'.$k2.
+										'" data-num="'.$v2['num'].
+										'" data-price="'.$v2['price'].
+										'" data-dtid="'.$k1.
+										'" data-opid="'.$k2.
+										'" href="javascript:;" class="button-del"><i class="am-icon-trash am-icon-sm"></i></a>'.
+									'</div>'.
+									'<div class="am-u-sm-3" id="data-'.$k2.
+										'" data-num="'.$v2['num'].
+										'" data-price="'.$v2['price'].
+										'" data-dtid="'.$k1.
+										'" data-opid="'.$k2.
+										'" data-id="'.$k2.'">'.
+										'<button type="button" data-id="'.$k2.'"  class="am-badge am-badge-secondary am-btn am-radius button-minus">-</button> '.
+										'<button type="button" data-id="'.$k2.'"  class="am-badge am-badge-secondary am-btn am-radius button-add">+</button>'.
+									'</div>'.
+									'<div class="am-u-sm-3"><span id="show-price-'.$k2.'">'.$totalPrice.'</span>铢</div>'.
+								'</div>'.
+							  '</div>'.
+							'</div>'.
+						  '</div>';	 
+					  }
+					}
+				}
+			}
+	    ?>
+		<!--am-panel-->
+		
+		<!--am-panel-->
+		  <div class="am-panel am-panel-default">
+			<div class="am-panel-hd">
+			  <h4 class="am-panel-title">					  
+				<b>总价：฿<span id="totalPrice"><?=$result['totalPrice']?></span>铢（约合￥<span id="totalPriceCn"><?=number_format(($result['totalPrice'])*$exchangeRate,2)?></span>元）</b><br/><span class="am-list-item-text">注：以上费用不含服务费。<a href="out.php?id=<?=$id?>">清空并返回</a></span>
+			  </h4>
+			</div>
+		  </div>
+	<!--am-panel-->
+		
+	</div>
+	
+</div>
+	<div class="check_button">    
+	  <button <?php if(!$cart) echo 'disabled';?> class="am-btn am-btn-success am-btn-block">现金支付</button>
+	</div>
+</form>
+	<?php if($online_pay){?>
+	<div class="check_button">    
+	  <button <?php if(!$cart) echo 'disabled';?> id='pay' class="am-btn am-btn-success am-btn-block">在线支付</button>
+	</div>	
+	<?php }?>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/polyfill/rem.min.js"></script>
+<script src="assets/js/polyfill/respond.min.js"></script>
+<script src="assets/js/amazeui.legacy.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/amazeui.js"></script>
+<!--<![endif]-->
+
+<script>
+	var totalPrice = <?=$result['totalPrice']?>;
+	var totalNum = <?=$result['totalNum']?>;
+	var exchangeRate =  <?=$exchangeRate?>;
+	
+	$(function(){
+		$(".button-add").click(function(){
+			var id = $(this).data('id');
+			var num = $("#data-"+id).data('num');
+			var price = $("#data-"+id).data('price');
+			var dtid = $("#data-"+id).data('dtid');
+			var opId = $("#data-"+id).data('opid');
+			
+			num = Math.round(num)+1;
+			
+			$("#show-num-"+id).html(num);
+			$("#show-price-"+id).html(num*price);
+			
+			$("#num-"+id).val(num);
+			$("#price-"+id).val(num*price);
+			
+			$("#data-"+id).data('num',num);
+			
+			$.post("change.php",{"dtid":dtid,"opId":opId,"num":num},function(data){
+			
+			});
+			
+			var tPrice = Math.round($("#totalPrice").html())+price;
+			$("#totalPrice").html(tPrice);
+			$("#totalPriceCn").html(Math.round(tPrice*100*exchangeRate)/100);
+			
+		});
+		
+		$(".button-minus").click(function(){
+			var id = $(this).data('id');
+			var num = $("#data-"+id).data('num');
+			var price = $("#data-"+id).data('price');
+			var dtid = $("#data-"+id).data('dtid');
+			var opId = $("#data-"+id).data('opid');
+			
+			num = Math.round(num)-1;
+			
+			if(num >= 1){
+				$("#show-num-"+id).html(num);
+				$("#show-price-"+id).html(num*price);
+				
+				$("#num-"+id).val(num);
+				$("#price-"+id).val(num*price);
+				
+				$("#data-"+id).data('num',num);
+				
+				$.post("change.php",{"dtid":dtid,"opId":opId,"num":num},function(data){
+				
+				});
+				
+				var tPrice = Math.round($("#totalPrice").html())-price;
+				$("#totalPrice").html(tPrice);
+				$("#totalPriceCn").html(Math.round(tPrice*100*exchangeRate)/100);
+				
+			}
+		});
+		
+		$(".button-del").click(function(){
+			var id = $(this).data('id');
+			var num = $(this).data('num');
+			var price = $(this).data('price');
+			var dtid = $(this).data('dtid');
+			var opId = $(this).data('opid');
+			
+			$.post("del.php",{"dtid":dtid,"opId":opId},function(data){
+			
+			});
+			
+			var rPrice = num*price;
+			
+			$("#item-"+id).remove();
+			
+			var tPrice = Math.round($("#totalPrice").html())-rPrice;
+			$("#totalPrice").html(tPrice);
+			$("#totalPriceCn").html(Math.round(tPrice*100*exchangeRate)/100);
+		});
+	});
+	
+</script>
+<span style="display:none;"><?=$statisticalCode?></span>
+<script type="text/javascript" src="https://one.pingxx.com/lib/pingpp_one.js"></script>
+<script type="text/javascript">
+
+	function collectionToArray(collection){ 
+	var ary = []; 
+	for(var i=0, len = collection.length; i < len; i++){ 
+	ary.push(collection[i]['value']); 
+	} 
+	return ary; 
+	}
+    document.getElementById('pay').addEventListener('click',function(){
+    	var id = <?=$id?>;
+    	var nameCh =  collectionToArray(document.getElementsByName('nameCh[]'));
+    	var nameThai = collectionToArray(document.getElementsByName('nameThai[]'));
+    	var price = collectionToArray(document.getElementsByName('price[]'));
+    	var opName = collectionToArray(document.getElementsByName('opName[]'));
+    	var opNameThai = collectionToArray(document.getElementsByName('opNameThai[]'));
+    	var num = collectionToArray(document.getElementsByName('num[]'));
+    	var did = collectionToArray(document.getElementsByName('did[]'));
+
+
+        pingpp_one.init({
+            app_id:'app_1234567890',                     //该应用在ping++的应用ID
+            order_no:'no1234567890',                     //订单在商户系统中的订单号
+            amount:1,                                   //订单价格，单位：人民币 分
+            // 壹收款页面上需要展示的渠道，数组，数组顺序即页面展示出的渠道的顺序
+            // upmp_wap 渠道在微信内部无法使用，若用户未安装银联手机支付控件，则无法调起支付
+            channel:['alipay_wap'<?php if(!empty($res)){ echo ",'wx_pub'";}?>],
+            charge_url:'./toOrders.php',  //商户服务端创建订单的url
+            charge_param:{id:id,nameCh:nameCh,nameThai:nameThai,price:price,opName:opName,opNameThai:opNameThai,opNameThai:opNameThai,num:num,did:did},                      //(可选，用户自定义参数，若存在自定义参数则壹收款会通过 POST 方法透传给 charge_url)
+            open_id:'Openid'
+            //debug:true                            //(可选，使用微信公众号支付时必须传入)
+        },function(res){
+        	  /* if(res.debug&&res.chargeUrlOutput){
+                    alert(res.chargeUrlOutput);
+                }*/
+            if(!res.status){
+                //处理错误
+                alert(res.msg);
+            }
+            else{
+                //若微信公众号渠道需要使用壹收款的支付成功页面，则在这里进行成功回调，调用 pingpp_one.success 方法，你也可以自己定义回调函数
+                //其他渠道的处理方法请见第 2 节
+                pingpp_one.success(function(res){
+                    if(!res.status){
+                        alert(res.msg);
+                    }
+                },function(){
+                    //这里处理支付成功页面点击“继续购物”按钮触发的方法，例如：若你需要点击“继续购物”按钮跳转到你的购买页，则在该方法内写入 window.location.href = "你的购买页面 url"
+                    window.location.href='http://www.sqdish.com/user_orders.php';//示例
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

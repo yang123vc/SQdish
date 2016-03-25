@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>食器管理中心</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="alternate icon" type="image/png" href="templates/assets/i/favicon.png">
+  <link rel="stylesheet" href="templates/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/html/assets/css/sq_mg.css"/>
+  
+  <script src="templates/assets/js/jquery.min.js"></script>
+  <script src="templates/assets/js/amazeui.min.js"></script>
+  <script type="text/javascript">
+function t1(){
+  //获取节点username
+            var user = document.getElementsByName('username')[0];
+            var first = document.getElementById('first');
+            var one = document.getElementById('one');
+    //获取焦点
+    user.onfocus=function(){
+        user.setAttribute('placeholder','<?=$username_text?>');
+    }
+    //失去焦点
+    user.onblur=function(){
+    //客户端正则判断是否合法
+        var patt = /^\S{1,32}$/;
+        if(user.value==''){
+         first.setAttribute('class','am-icon-times');
+          first.innerHTML="<font color='red'><?php echo $username_text,$doest_null;?></font>";
+          one.setAttribute('class','am-form-group am-form-error am-form-icon am-form-feedback');
+        }
+        else if(!(this.value).match(patt)){
+              first.setAttribute('class','am-icon-times');
+            first.innerHTML="<font color='red'><?php echo $username_text,$be_outside_the_law;?></font>";
+            one.setAttribute('class','am-form-group am-form-error am-form-icon am-form-feedback');
+            return false;
+        }else{
+            var uri = "ajax_user.php?username="+user.value;
+            //ajax异步验证,第一步初始化
+            var nokia = tel();
+            nokia.open('GET',uri,true);//第二步，open 操作true异步
+            nokia.onreadystatechange = function(){ //第三步onreadystatachange
+                if(nokia.readyState==4){//状态响应为4说明请求正常回应
+                    if(nokia.responseText == 0){//第4步，根据不同的响应结果进行操作
+                        first.setAttribute('class','am-icon-check');
+                        first.innerHTML = "";
+                        one.setAttribute('class','am-form-group am-form-success am-form-icon am-form-feedback');
+                    }else{
+                        first.setAttribute('class','am-icon-times');
+                        first.innerHTML = "<font color='red'><?php echo $username_text,$repeat_text;?></font>";
+                        one.setAttribute('class','am-form-group am-form-error am-form-icon am-form-feedback');
+                    }
+                }
+            }
+            //第5步，发送
+            nokia.send(null);
+        }
+    }
+    function tel(){
+    //ie和火狐兼容性
+        var phone = false;
+        if(window.XMLHttpRequest){
+            phone = new XMLHttpRequest();
+        }else{
+            phone = new window.ActiveXObject('Microsoft.XMLHttp');
+        }
+        return phone;
+    }
+}
+function t2(){
+            var phone = document.getElementsByName('phone')[0];
+            var second = document.getElementById('second');
+            var two = document.getElementById('two');
+        phone.onfocus=function(){
+        phone.setAttribute('placeholder','<?php echo $please_write,$phone_text;?>');
+    }
+    phone.onblur = function(){
+        if(phone.value==''){
+           second.setAttribute('class','am-icon-times');
+          second.innerHTML="<font color='red'><?php echo $phone_text,$doest_null;?></font>";
+          two.setAttribute('class','am-form-group am-form-error am-form-icon am-form-feedback');
+        }else{
+            second.setAttribute('class','am-icon-check');
+            second.innerHTML = "";
+            two.setAttribute('class','am-form-group am-form-success am-form-icon am-form-feedback');
+        }
+    }
+ }
+function t3(){
+    var email = document.getElementsByName('email')[0];
+    var fourth = document.getElementById('fourth');
+    var patt = /^\w+@[a-z0-9]+(\.com|\.cn|\.org)$/;
+
+    email.onfocus=function(){
+        email.setAttribute('placeholder','<?=$email_text?>');
+    }
+    email.onblur = function(){
+        if(email.value==''){
+         fourth.setAttribute('class','am-icon-times');
+          fourth.innerHTML="<font color='red'><?php echo $email_text,$doest_null;?></font>";
+          four.setAttribute('class','am-form-group am-form-error am-form-icon am-form-feedback');
+        }else if(!email.value.match(patt)){
+            fourth.setAttribute('class','am-icon-times');
+            fourth.innerHTML="<font color='red'><?php echo $email_text,$be_outside_the_law;?></font>";
+            four.setAttribute('class','am-form-group am-form-error am-form-icon am-form-feedback');
+        }else{     
+            var ur = "ajax_email.php?email="+email.value;
+             var sumsang=tel();
+             sumsang.open('GET',ur,true);
+             sumsang.onreadystatechange = function(){
+                if(sumsang.readyState==4){
+                    if(sumsang.responseText == 0){
+                        fourth.setAttribute('class','am-icon-check');
+                        fourth.innerHTML = "";
+                        four.setAttribute('class','am-form-group am-form-success am-form-icon am-form-feedback');
+                    }else{
+                        fourth.setAttribute('class','am-icon-times');
+                        fourth.innerHTML = "<font color='red'><?php echo $email_text,$repeat_text;?></font>";
+                        four.setAttribute('class','am-form-group am-form-error am-form-icon am-form-feedback');
+                    }
+                }
+             }
+        sumsang.send(null);
+        }
+      }   
+        function tel(){
+    //ie678和火狐兼容性
+        var phone = false;
+        if(window.XMLHttpRequest){
+            phone = new XMLHttpRequest();
+        }else{
+            phone = new window.ActiveXObject('Microsoft.XMLHttp');
+        }
+        return phone;
+    }
+}
+function t4(){
+            var pwd = document.getElementsByName('pwd')[0];
+            var third = document.getElementById('third');
+            var three = document.getElementById('three');
+        pwd.onfocus=function(){
+        pwd.setAttribute('placeholder','<?php echo $please_write,$psw_text;?>');
+    }
+    pwd.onblur = function(){
+        if(pwd.value==''){
+           third.setAttribute('class','am-icon-times');
+          third.innerHTML="<font color='red'><?php echo $psw_text,$doest_null;?></font>";
+          three.setAttribute('class','am-form-group am-form-error am-form-icon am-form-feedback');
+        }else{
+            third.setAttribute('class','am-icon-check');
+            third.innerHTML = "";
+            three.setAttribute('class','am-form-group am-form-success am-form-icon am-form-feedback');
+        }
+    }
+ }
+ function t5(){
+            var city = document.getElementsByName('city')[0];
+            var fifth = document.getElementById('fifth');
+            var five = document.getElementById('five');
+        city.onfocus=function(){
+        city.setAttribute('placeholder','<?php echo $please_write,$city_text;?>');
+    }
+    city.onblur = function(){
+        if(city.value==''){
+           fifth.setAttribute('class','am-icon-times');
+          fifth.innerHTML="<font color='red'><?php echo $city_text,$doest_null;?></font>";
+          five.setAttribute('class','am-form-group am-form-error am-form-icon am-form-feedback');
+        }else{
+            fifth.setAttribute('class','am-icon-check');
+            fifth.innerHTML = "";
+            five.setAttribute('class','am-form-group am-form-success am-form-icon am-form-feedback');
+        }
+    }
+ }
+window.onload = function () {
+  t1();//用户名检测
+  t2();//电话号码检测
+  t3();//邮箱检测
+  t4();//密码检测
+  t5();//城市
+};
+</script>
+  <script>
+	function selectLanguage(lan){
+		$.post("selectLanguage.php",{"l":lan},function(data){
+			location.reload();
+		});
+	}
+  </script>
+  <style>
+    .header {
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 200%;
+      margin-top: 30px;
+    }
+    .header p {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body class="login">
+<div class="header">
+  <div class="am-g">
+	 <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+	  <li class="am-dropdown" data-am-dropdown>
+		 <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+          <span class="am-icon-users"></span> <?=$language_text?> <span class="am-icon-caret-down"></span>
+        </a>
+        <ul class="am-dropdown-content">
+          <li><a onclick="selectLanguage('cn');" href="javascript:;"><span class="am-icon-chinese"></span> 中文</a></li>
+          <li><a onclick="selectLanguage('thai');" href="javascript:;"><span class="am-icon-thai"></span> THAI</a></li>
+          <li><a onclick="selectLanguage('en');" href="javascript:;"><span class="am-icon-english"></span> EN</a></li>
+        </ul>
+      </li>
+	 </ul>
+    <h1><?=$website_text?></h1>
+    <p class="login_info"><?=$admin_info_text?></p>
+  </div>
+</div>
+
+<div class="am-g">
+  <div class="am-u-lg-4 am-u-md-8 am-u-sm-centered sqlogin">
+    <h3><?=$reg_text?></h3>
+    <hr class="login_top">
+    <br>
+    <form method="post" action="reg_ok.php" class="am-form">
+    <input type="hidden" name="role" value="3" />
+      <div class="am-g">
+        <div class="am-u-md-8 am-u-sm-centered">
+          <form class="am-form">
+            <fieldset class="am-form-set">
+              <div id="one"class="am-form-group am-form-success am-form-icon am-form-feedback">
+                <input name="username" type="text" placeholder="<?=$username_text?>">
+                <span id="first"class=""></span>
+              </div>
+               <div id="three"class="am-form-group am-form-success am-form-icon am-form-feedback">
+                <input name="pwd" type="password" placeholder="<?=$psw_text?>">
+                <span id="third"class=""></span>
+              </div>
+              <div id="four"class="am-form-group am-form-success am-form-icon am-form-feedback">
+                <input name="email" type="text" placeholder="<?=$email_text?>">
+                <span id="fourth"class=""></span>
+              </div>
+                <div id="two"class="am-form-group am-form-success am-form-icon am-form-feedback">
+                <input name="phone" type="text" placeholder="<?=$phone_text?>">
+                <span id="second"class=""></span>
+              </div>
+    
+                <div id="five"class="am-form-group am-form-success am-form-icon am-form-feedback">
+                <input name="city" type="text" placeholder="<?=$city_text?>">
+                <span id="fifth"class=""></span>
+              </div>
+            <button type="submit" class="am-btn am-btn-primary am-btn-block"><?=$reg_text?></button>       
+               </div>
+          </form>
+        </div>
+      </div>
+    </form>	
+      <br/>
+	<label for="errorCode"><?=$forget_text?></label>
+    <hr>
+    <p>© 2015 Sanho Tec, Inc. Licensed under MIT license.</p>
+  </div>
+</div>
+</body>
+</html>

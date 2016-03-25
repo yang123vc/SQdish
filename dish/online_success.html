@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>点餐成功</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="alternate icon" type="image/png" href="/html/assets/i/favicon.png">
+  <link rel="stylesheet" href="/html/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/html/assets/css/sq.css"/>
+</head>
+<body>
+<style>
+body {
+	background:#f2f2f2;
+	}
+</style>
+<header class="am-header am-header-default">
+	<div class="am-header-left am-header-nav">
+    <a href="index.php?id=<?=$id?>" class="">
+      <i class="am-header-icon am-icon-chevron-left"></i>
+      <span class="am-header-nav-title">重新点餐</span>
+    </a>
+  </div>
+  <h1 class="am-header-title">
+    <a href="#title-link" class="">点餐成功</a>
+  </h1>
+</header>
+
+<div class="booking_type_name">将此页面出示给餐厅服务员即可</div>
+<div class="check_body">
+	<table class="am-table">
+		<thead>
+			<tr>
+				<th width="65%">菜品名称</th>
+				<th width="15%">数量</th>
+				<th width="20%">单价</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php
+				$totalPrice = 0;
+				
+				for($i=0;$i<count($nameCh);$i++){
+					if($opName[$i]){
+						$opN = "($opName[$i])";
+					}else {
+						$opN = "";
+					}
+					
+					if($opNameThai[$i]){
+						$opNThai = "($opNameThai[$i])";
+					}else {
+						$opNThai = "";
+					}
+				
+					echo '<tr>'.
+						'<td>'.$nameCh[$i].' '.$opN.'<br/>'.$nameThai[$i].' '.$opNThai.'</td>'.
+						'<td>×'.$num[$i].'</td>'.
+						'<td>'.$price[$i].'铢</td>'.
+					'</tr>';
+					
+					$totalPrice += $price[$i]*$num[$i];
+				}
+			?>
+			<tr>
+				<td colspan="3">合计：฿<?=$totalPrice?>铢（约合￥<?=number_format($totalPrice*$exchangeRate,2)?>元）</td>
+			</tr>
+			<tr>
+				<td colspan="3">注：以上费用或不含服务费及税费。</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/polyfill/rem.min.js"></script>
+<script src="assets/js/polyfill/respond.min.js"></script>
+<script src="assets/js/amazeui.legacy.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/amazeui.js"></script>
+<!--<![endif]-->
+<span style="display:none;"><?=$statisticalCode?></span>
+</body>
+</html>

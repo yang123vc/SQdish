@@ -1,0 +1,90 @@
+@charset "utf-8";
+/* CSS Document */
+/*公共模块*/
+body { font-family: "微软雅黑";font-size: 12px;color: #333333;margin: 0px;padding: 0px; background:#ffffff;}
+div,ul,li,h1,h2,h3,h4,h5,h6,img,p,dl,dt,dd,ol,th,td{margin: 0px;padding: 0px;}
+li {list-style-type: none;}
+form,input,button,option,textarea,select{ margin: 0px;padding: 0px;}
+input,button,textarea,select{font:100% Tahoma,Helvetica,Arial,sans-serif;}
+a {color:#1d1f20;text-decoration: none;}
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:hover{text-decoration: none;}
+a:active {text-decoration: none;}
+table {font-size:inherit;font:100%;}
+th { font-weight:normal;}
+img { border:0;}
+h3 { font-size: 14px; color: #000;}
+h4 { font-size: 12px;}
+.clear { clear: both; height: 0px; overflow: hidden;}
+
+.header{ background:url(../images/topbg1.jpg) no-repeat; width:100%; height:33.3em; background-size:100% 100%; position:relative; overflow:hidden;}
+.header .menu{ margin:0 auto; width:100%; height:3.75em; position:absolute; top:0; left:0;}
+.header .menu .nav{ background:url(../images/icon1.png) no-repeat center center; width:2em; height:4.5em; position:absolute; left:0.8em;}
+.header .menu a{ display:block;}
+.header .menu .icon{ background:url(../images/icon2.png) no-repeat center 1.5em; width:2em; height:4.5em; position:absolute; left:2.9em; top:0em;}
+.header .menu .log{ background:url(../images/icon3.png) no-repeat center center; width:2.6em; height:4.5em; position:absolute; right:0.91em;}
+.header .topnav{ float:left; margin-top:6.4em; width:100%;}
+.header .topnav .place{ width:12em; height:1.0em; margin:0px auto; background:url(../images/icon6.png) no-repeat left center; font-size:20px; color:#FFF; padding-left:1.2em; font-family:Arial;}
+.header .topnav .list{ font-size:14px; width:19em; margin:3em auto 0 auto;}
+.header .topnav .list a{ display:block;}
+.header .topnav .list li{ float:left; height:2.5em; margin-top:7px; width:16em; color:#FFF; padding-left:1.8em; line-height:2.5em;}
+.header .topnav .one{ background:url(../images/icon7.png) no-repeat 0px center;}
+.header .topnav .two{ background:url(../images/icon8.png) no-repeat 0px center;}
+.header .topnav .three{ background:url(../images/icon9.png) no-repeat 0px center;}
+.header .topnav li span{ float:right; background:url(../images/right2.png) no-repeat right center; height:2.5em; width:1.42em; font-size:14px;}
+
+
+.header_fix {position:relative;z-index:10;}
+.header_pic {position:absolute; width:100%;min-height:33.3em;top:0;z-index:11;-webkit-filter: blur(10px);-moz-filter: blur(10px);-ms-filter: blur(10px); filter: blur(10px);filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false);}
+.header_pic img {min-width:100%;min-height:33.3em;}
+.business_detail {position:absolute;width:100%;z-index:12;}
+.bussiness_logo {width:100%;text-align:center;}
+.bussiness_logo img {width:80px; height:80px; border-radius:50px;border:5px solid #fff; margin:0 0 10px 0;}
+
+.main .about{ width:100%; height:5.4em; border-bottom:1px solid #e5e5e5; background:#f7f7f7;}
+.main .about .star{ background:url(../images/img-1.jpg) no-repeat left center; width:100px; height:5.4em; float:left;}
+.main .about .sales{ color:#333333; float:left; margin-top:1.5em; margin-left:3.75%;}
+.main .about #collection{ width:71px; height:5.4em; float:right;}
+.collection{ background:url(../images/shoucang.jpg) no-repeat;}
+.img02{ background:url(../images/yishoucang.jpg) no-repeat;}
+.main{ float:left; width:100%;}
+.main .prices{ float:left; width:100%;}
+.main .prices li{ float:left; width:33.3%; height:4.16em; text-align:center;}
+.main .prices li .num{ display:block; font-family:Arial; color:#000000; font-size:18px; margin-top:10px; line-height:10px;}
+.main .prices li p{ display:block; color:#666666; line-height:5px;}
+.main .prices li div{ width:100%; height:20px; border-left:1px solid #e5e5e5; margin-top:-1.7em;}
+.main .border{ float:left; background:#f7f7f7; border-bottom:1px solid #e5e5e5; border-top:1px solid #e5e5e5; width:100%; height:0.83em;}
+.main .business{ float:left; color:#000000; font-size:14px; padding-left:3.2%; height:34px; line-height:34px; width:96%;}
+.main .recommend{ float:left; margin-left:4.6%; width:95.4%; }
+.main .recommend .anli{ font-size:14px; color:#666666; height:3.14em; line-height:3.14em; width:100%; border-bottom:1px solid #e5e5e5}
+.main .recommend .food{ float:left; width:100%;}
+.main .recommend .food li{ float:left;}
+.main .recommend .food li .pic{ float:left; font-size:18px; width:3.88em; width:3.88me; margin-top:8px;}
+.main .recommend .food li p{ display:block; float:left;}
+.main .recommend .food li .title{ float:left; color:#000; margin-top:8px; margin-left:10px; width:73.5%; line-height:18px;}
+.main .recommend .food li .title .price{ font-size:18px; color:#F00; width:18px; line-height:18px; display:block; float:right;}
+.main .recommend .food li .title span{ font-size:12px; color:#F00; line-height:18px; display:block; float:right;}
+.main .recommend .food li .star{ float:left; margin-left:10px; margin-bottom:5px; margin-top:2px;}
+.main .recommend .food li .profiles{ word-break:break-all; width:70%; float:left; margin-left:10px;}
+.main .announcement{ float:left; margin-left:4.6%; width:95.4%;}
+.main .announcement .title{ float:left; border-bottom:1px solid #e5e5e5; font-size:14px; color:#666666; height:3.14em; width:100%; line-height:3.14em;}
+.main .announcement .profiles{ float:left; word-break:break-all; color:#eda129; line-height:16px; width:95.4%; padding-top:5px; padding-bottom:10px; border-bottom:1px solid #e5e5e5;}
+.main .evaluation{ float:left; margin-left:4.6%; width:95.4%;}
+.main .evaluation .title{ float:left; font-size:14px; color:#666666; height:3.14em; width:100%; line-height:3.14em;}
+.main .evaluation .list{ float:left; width:100%;}
+.main .evaluation .list li{;}
+.main .evaluation .list li .position{ margin:0px auto; width:95%;}
+.main .evaluation .list li .position .profiles{ margin-top:5px; margin-bottom:7px; float:left;  border-top:1px solid #e5e5e5; width:100%;}
+.main .evaluation .list li .position .photo1{ float:left;}
+.main .evaluation .list li .position .photo2{ float:left; margin-left:2px;}
+.main .evaluation .list li .position .photo3{ float:left; margin-top:2px; margin-bottom:1em;}
+.main .evaluation .list li .position .photo4{ float:left; margin-left:2px; margin-top:2px; margin-bottom:1em;}
+.main .bottom{ float:left; width:100%; margin:0px auto;}
+.main .bottom li .titlefrist{ border-bottom:1px solid #e5e5e5; font-size:14px; padding-left:5%; width:95%; height:3.14em; line-height:3.14em; color:#666666;}
+.main .bottom li .title{ border-bottom:1px solid #e5e5e5; padding-left:5%; width:95%; height:2.9em; line-height:2.9em; color:#000;}
+.main .bottom li .pic{ padding-top:0.71em; margin:0px auto; width:26.6em;}
+.main .bottom .last{ margin-bottom:3.66em;}
+.footer{ background:#ededed; width:100%; height:3.66em; position:fixed; bottom:0px;}
+.footer ul li{ float:left; width:33.3%;}
+.footer ul li img{ display:block; margin-left:50%;}

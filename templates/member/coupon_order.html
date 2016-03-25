@@ -1,0 +1,139 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>SQdish食器-消息管理</title>
+    
+	<meta name="keywords" content="">
+		<meta name="description" content="">
+      <link rel="stylesheet" href="/templates/assets/css/amazeui.min.css">
+  <link href="/templates/theme/css/style.css" type="text/css" rel="stylesheet" />
+    <link href="/templates/theme/css/sqStyle.css" type="text/css" rel="stylesheet" />
+    <link  href="/templates/theme/css/dd.css" type="text/css" rel="stylesheet" />
+     <script type="text/javascript" src="/templates/theme/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/templates/theme/js/jquery.tools.min.js"></script>
+    <script type="text/javascript" src="/templates/theme/js/ciads.js"></script>
+	<script type="text/javascript" src="/templates/theme/js/demo.js"></script>
+</head>
+<body>
+<?php include $_SERVER['DOCUMENT_ROOT']."/templates/inc/header.html";?>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/templates/inc/user_top.html";?>
+   <div class="am-g am-u-md-centered content">
+       <?php include $_SERVER['DOCUMENT_ROOT']."/templates/inc/user_left.html";?>
+
+      <div class="am-u-md-10">
+  <div class="am-g"> 
+  <div class="am-u-md-12" style=" margin-bottom:10px;">
+<div class="am-g" style="margin-left:20px">
+<div class="am-panel-hd column">
+ <strong class="size">优惠券订单确认</strong>
+            </div>
+
+
+
+  
+ <div class="catbox">
+  <table id="cartTable" class="am-table am-table-centered">
+    <thead>
+      <tr>
+       
+        <th>优惠券图片</th>
+         <th>优惠券名称</th>
+        <th>价格</th>
+        <th>小计</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php if($id){?>
+      <tr>
+        <td class="goods"><img src="<?php echo empty($couponOrder['pic'])?'http://www.sqdish.com/templates/images/sellerdefault.jpg':$couponOrder['pic'];?>" alt=""/></td>
+         <td class="goods"><span><?=$couponOrder['couponNameCN']?></span></td>
+        <td class="price">￥<?=$couponOrder['price']?></td>
+        <td class="subtotal">￥<?=$couponOrder['price']?></td>   
+      </tr>
+       <?php }else{foreach($couponOrder as $v){?> 
+            <tr>
+        <td class="goods"><img src="<?php echo empty($v['pic'])?'http://www.sqdish.com/templates/images/sellerdefault.jpg':$v['pic'];?>" alt=""/></td>
+         <td class="goods"><span><?=$v['couponNameCN']?></span></td>
+        <td class="price">￥<?=$v['price']?></td>
+        <td class="subtotal">￥<?=$v['price']?></td>   
+      </tr>
+      <?php }}?>
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="foot" id="foot">
+    <div class="fr total">应付：￥<span id="priceTotal">
+    <?php echo $total;?></span></div> 
+  </div>
+</div>
+  <form action="coupon_pay.php" method="post">
+	<div class="am-u-md-12" style="border-bottom:#CCC 1px solid;">
+     <h3>选择支付方式：</h3>
+    <label class="am-radio-inline">
+      <input type="radio" name="paytype" value="0" checked="checked" data-am-ucheck>
+      <img src="/templates/theme/bg/alipay.png" style="margin-bottom:20px"/>
+    </label>
+    
+     <label class="am-radio-inline">
+      <input type="radio" name="paytype" value="1" data-am-ucheck>
+      <img src="/templates/theme/bg/wxpay.png" style="margin-bottom:20px"/>
+    </label>
+    </div>
+    <?php foreach($couponOrder_id as $v){?>
+    <input name="id[]" value="<?php echo $v;?>" style="display:none;">
+    <?php }?>
+    <input name="price" value="<?=$total?>" style="display:none;">
+    <input name="ordertype" value="coupon" style="display:none">
+    <div class="fr total" style="text-align:center; font-size:14px; margin-right:10px; margin-top:10px">
+    <p>应付：<span style="color:red; font-weight:bold;">￥<?php echo $total;?></span></p>
+    <button type="submit" class="am-btn am-btn-default button">提交订单</button></div>
+  </form>
+</div>
+ </div>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="footer2">
+    <div class="wrap">
+        <span class="s1">
+            <a href="#">关于食器</a><span>丨</span>
+            <a href="#">隐私政策</a><span>丨</span>
+            <a href="#">服务条款</a><span>丨</span>
+            <a href="#">我的账户</a><span>丨</span>
+            <a href="#">客户服务</a><span>丨</span>
+            <a href="#">常见问题</a><span>丨</span>
+            <a href="#">联系我们</a>
+        </span>
+    </div>
+</div>
+<div class="footer3">
+    <div class="wrap">
+        <span class="s1">
+            版权所有@2012-2015 SQDISH RIPPLE CO.,LTD ALL RIGHTS RESERVED<br>
+            DESIGN & CODING BY Sanho Tec / 滇ICP备11010228号<br>
+            HTTP://WWW.SQDISH.COM
+        </span>
+        <span class="s2">
+            <ul class="lifl">
+                <li><a href="#"><img src="/templates/theme/bg/zfb.png" alt=""/></a></li>
+                <li><a href="#"><img src="/templates/theme/bg/wx1.png"alt=""/></a></li>
+                <li><a href="#"><img src="/templates/theme/bg/wx.png" alt=""/></a></li>
+                <li><a href="#"><img src="/templates/theme/bg/qq.png" alt=""/></a></li>
+                <li><a href="#"><img src="/templates/theme/bg/wb.png" alt=""/></a></li>
+            </ul>
+        </span>
+    </div>
+</div>
+
+
+<script src="/templates/assets/js/jquery.min.js"></script>
+
+<script src="/templates/assets/js/amazeui.min.js"></script>
+</body>
+</html>

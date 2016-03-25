@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title><?=$seller['sellerName']?></title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="alternate icon" type="image/png" href="/html/assets/i/favicon.png">
+  <link rel="stylesheet" href="/html/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/html/assets/css/sq.css"/>
+</head>
+<body>
+<style>
+.am-btn-secondary 
+{
+	background-color: #eda129;
+	border-color: #eda129;
+}
+</style>
+<header data-am-widget="header" class="am-header am-header-default header-fix">
+  <div class="am-header-left am-header-nav">
+    <!--<a href="/c/<?=$sid?>" class="">-->
+    <a href="../business_detail.php?sid=<?php echo $sid;?>" class="">
+      <i class="am-header-icon am-icon-home"></i>
+      <span class="am-header-nav-title">首页</span>
+    </a>
+  </div>
+  <h1 class="am-header-title"><?=$seller['sellerName']?></h1>
+  <div class="am-header-right am-header-nav">
+    <button class="am-btn am-btn-secondary " onclick="javascript:location.href='check.php?id=<?=$sid?>';">
+		<!-- <span class="am-header-nav-title">购物车</span> -->
+		<i class="am-header-icon am-icon-shopping-cart"></i>
+	</button>
+  </div>
+</header>
+
+<div class="booking_body">
+	
+	<!-- <div id="sqmmenu" class="am-offcanvas">
+		<div class="am-offcanvas-bar">			
+			<button type="button" class="am-btn am-btn-secondary am-btn-block">菜品分类</button>
+			<button onclick="selectR()" type="button" class="am-btn am-btn-primary am-btn-block sq-text-l">
+				<i class="am-header-icon am-icon-star"></i> 特色推荐 เมนูแนะนำ
+			</button>
+			
+			<?php
+				foreach($dishType as $k => $v){
+					$num = 0;
+					
+					if($result){
+						$classNum = $result['classNum'];
+					}
+					
+					if(isset($classNum[$v['id']]))
+						$num = $classNum[$v['id']];
+						
+					if($num == 0){
+						$isshow = 'style="display:none;"';
+					}else{
+						$isshow = '';
+					}
+				
+					echo '<button onclick="selectType('.$v['id'].',\''.$v['typeNameCN'].' '.$v['typeNameTHAI'].'\')" type="button" class="am-btn am-btn-primary am-btn-block sq-text-l">'.
+							'<span '.$isshow.' class="am-badge am-badge-success am-round type-'.$v['id'].'">'.$num.'</span> '.$v['typeNameCN'].' '.$v['typeNameTHAI'].
+						'</button>';
+				}
+			?>
+			
+		</div>
+	</div> -->
+	
+	<!--menu-box start-->
+	<div class="menu_box">
+		<div class="booking_type_name">菜品图片，请以实物为准</div>
+		<div class="am-u-sm-3 clear-am-padding new_sider">
+			<button id = "000" onclick="selectR()" type="button" class="am-btn am-btn-primary am-btn-block sq-text-l">
+				特色推荐 เมนูแนะนำ
+			</button>
+			
+			<?php
+				foreach($dishType as $k => $v){
+					$num = 0;
+					
+					if($result){
+						$classNum = $result['classNum'];
+					}
+					
+					if(isset($classNum[$v['id']]))
+						$num = $classNum[$v['id']];
+						
+					if($num == 0){
+						$isshow = 'style="display:none;"';
+					}else{
+						$isshow = '';
+					}
+				
+					echo '<button id="'.$v['id'].'" onclick="selectType('.$v['id'].',\''.$v['typeNameCN'].' '.$v['typeNameTHAI'].'\')" type="button" class="am-btn am-btn-default am-btn-block sq-text-l">'.
+							'<span '.$isshow.' class="am-badge am-badge-success text-none-index am-round type-'.$v['id'].'">'.$num.'</span> '.$v['typeNameCN'].' '.$v['typeNameTHAI'].
+						'</button>';
+				}
+			?>
+		</div>
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default am-u-sm-9 clear-am-padding-left">
+			<div class="am-list-news-bd">
+				<ul data-am-widget="gallery" class="am-gallery-default am-list dishUL" data-am-gallery="{ pureview: true }">
+				  <?php
+					
+					foreach($dish as $k => $v){
+						$id = $v['id'];
+					
+						if($v['recommend'] == 1)
+							$rClass = "li-recommend";
+						else
+							$rClass = "";
+							
+						if($v['pic'] != ""){
+							$divPic = '<!--为保证图集功能，有图片时，这个div层必须有-->'.
+								'<div class="am-u-sm-4 am-list-thumb ">'.
+									'<img src="'.$v['pic'].'" alt="'.$v['dishNameCN'].$v['dishNameTHAI'].'" />'.
+								'</div>';
+							$amNo = 8;
+						}else{
+							$divPic = '';
+							$amNo = 12;
+						}
+						
+						//图片 介绍
+						echo  '<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left '.$rClass.' typeId-'.$v['dtid'].'">'.
+							$divPic.
+							'<div class="am-u-sm-'.$amNo.' am-list-main">'.
+							  '<h3 class="am-list-item-hd">'.
+								'<a href="item.php?id='.$id.'&sid='.$sid.'">'.
+								$v['dishNameCN'].'<br>'.$v['dishNameTHAI'].''.
+								'</a>'.
+							  '</h3>';
+							  
+						if($v['dishIntroCN'] || $v['dishIntroTHAI']) echo '<div class="am-list-item-text">'.$v['dishIntroCN'].'<br>'.$v['dishIntroTHAI'].'</div>';
+							  
+						echo '</div>'.
+							'<!--属性和价格是分别用<div class="am-u-sm-12 margin_clear">包裹的，不能融合成一个-->'.
+							'<div class="am-u-sm-12 margin_clear">';
+							
+						//属性
+						$sql = "select * from f_dish_options where did = $id";
+						$options = $db->get_all($sql);
+						
+						$info = "";
+						$infoThai = "";
+						$oPrice = 0;
+						$opId = "";
+						
+						foreach($options as $k1 => $v1){
+							$optionCN = $v1['optionCN'];
+							$optionTHAI = $v1['optionTHAI'];
+							$optionPrice = $v1['optionPrice'];
+							
+							$oCNs = explode(",",$optionCN);
+							$oTHAIs = explode(",",$optionTHAI);
+							$oPrices = explode(",",$optionPrice);
+
+							$info .= $oCNs[0]." ";
+							$infoThai .= $oTHAIs[0]." ";
+							$opId .= "0";
+							$oPrice += (float)$oPrices[0];
+						}
+						
+						//默认
+						
+						echo '<div class="am-u-sm-12 margin_clear booking_price_margin">';
+							if($info) echo '<span class="am-list-item-text">默认：'.$info.' （更多选择请点击菜品名）</span>';
+						echo '</div>';
+
+						
+						//价钱 数量	
+						$price = (float)$v['price']+ (float)$oPrice;
+						$num = 0;
+						
+						if($cart){
+							foreach($cart as $k1 => $v1){
+								foreach($v1 as $k2 => $v2){
+									$did = substr($k2,strpos($k2,"_")+1);
+									
+									if($did == $v['id']){
+										$num += $v2["num"];
+									}
+								}
+							}
+						}
+						
+						echo '</div>'.
+						'<div class="am-u-sm-12 margin_clear">'.
+							  '<div class="am-u-sm-6 booking_price margin_clear">'.
+								 '฿<span class="price-'.$v['id'].'">'. $price .'</span>铢'.
+							  '</div>'.
+							  '<div class="am-u-sm-6 booking_choice margin_clear">'.
+								'<button type="button" onclick="toCart('.$v['dtid'].','.$v['id'].',\''.$v['dishNameCN'].'\',\''.$v['dishNameTHAI'].'\','.$price.',\''.$info.'\',\''.$infoThai.'\',\'minus\',\''.$opId.'\')" class="am-badge am-badge-secondary am-btn am-radius">-</button> '.
+								'<span class="tPrice-'.$v['id'].'">'.$num.'</span> '.
+								'<button type="button" onclick="toCart('.$v['dtid'].','.$v['id'].',\''.$v['dishNameCN'].'\',\''.$v['dishNameTHAI'].'\','.$price.',\''.$info.'\',\''.$infoThai.'\',\'add\',\''.$opId.'\')" class="am-badge am-badge-secondary am-btn am-radius">+</button>'.
+							  '</div>'.
+						'</div>'.
+					  '</li>';
+					}
+				  ?>
+				  
+				  <!--<div class="booking_end"></div>-->
+				</ul>
+			  </div>
+			</div>
+		</div>
+	<!--menu-box end-->
+	</div>
+    
+    
+</div>
+
+<div data-am-widget="gotop" class="am-gotop am-gotop-fixed">
+  <a href="#top" title="">
+    <i class="am-gotop-icon am-icon-angle-double-up am-round"></i>
+  </a>
+</div>
+
+<!-- <footer class="am-header am-header-default foot-fix">
+  <div class="am-header-left am-header-nav">
+      <i class="am-header-icon am-icon-shopping-cart"></i>
+      <span class="am-header-nav-title"><span id="dishNum"><?=$result['totalNum']?></span>份 ฿<span id="dishPrice"><?=$result['totalPrice']?></span>铢</span>
+  </div>
+  <div class="am-header-right am-header-nav">
+    <a type="button" class="am-btn am-btn-success am-radius" href="javascript:location.href='check.php?id=<?=$sid?>';">&nbsp;选好了&nbsp;</a>
+  </div>
+</footer> -->
+
+<div class="new_footer">
+	<div class="right"><a href="check.php?id=<?=$sid?>">去结算</a></div>
+	<div class="left">
+		<div class="gouwuche"><div class="num">1</div></div>
+		<div class="prices"><p>฿</p><span id="dishPrice"><?=$result['totalPrice']?></span> </div>
+		<div class="tips">合计：<span id="dishNum"><?=$result['totalNum']?></span></span> 份</div>
+	</div>
+</div>
+
+
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/polyfill/rem.min.js"></script>
+<script src="assets/js/polyfill/respond.min.js"></script>
+<script src="assets/js/amazeui.legacy.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/amazeui.js"></script>
+<script src="assets/js/DataLazyLoad.min.js" type="text/javascript"></script>
+<!--<![endif]-->
+<script>
+		
+	var page = 1;
+	var flag = 1;
+
+	function toCart(dtid,did,nameCh,nameThai,price,opName,opNameThai,type,opId){
+		//变化量
+		var num = 0;
+		var totalNum = 0;
+		var totalPrice = 0;
+		var classNum = "";
+	
+		if(type == "add"){
+			//打开等待
+		
+			//ajax 新增/或数量加1
+			$.post("toCart.php",{"dtid":dtid,"did":did,"nameCh":nameCh,"nameThai":nameThai,"price":price,"opName":opName,"opNameThai":opNameThai,"type":type,"opId":opId},function(data){
+				var obj =eval("("+data+")");
+				
+				//获取总价格
+				totalPrice = obj['totalPrice'];
+				
+				//获取总量
+				totalNum = obj['totalNum'];
+				
+				//获取当前数量
+				num = obj['num'];
+				
+				//获取分类数量
+				classNum = obj['classNum'];
+				
+				//关闭等待
+				
+				//改变值
+				change(did,num,totalPrice,totalNum,classNum);
+			});
+		}else if(type == "minus"){
+			//判断数量是否大于1
+			if(Math.round($(".tPrice-"+did).html())-1 >= 0){	
+				//打开等待
+		
+				//ajax 数量减1
+				$.post("toCart.php",{"dtid":dtid,"did":did,"nameCh":nameCh,"nameThai":nameThai,"price":price,"opName":opName,"opNameThai":opNameThai,"type":type,"opId":opId},function(data){	
+					var obj =eval("("+data+")");
+					
+					//获取总价格
+					totalPrice = obj['totalPrice'];
+					
+					//获取总量
+					totalNum = obj['totalNum'];
+					
+					//获取当前数量
+					num = obj['num'];
+					
+					//获取分类数量
+					classNum = obj['classNum'];
+					
+					//关闭等待
+					
+					//改变值
+					change(did,num,totalPrice,totalNum,classNum);
+				});
+			}else{
+				
+			}
+		}
+	}
+
+	function change(did,num,totalPrice,totalNum,classNum){
+		//改变当前数量
+		$(".tPrice-"+did).html(num);
+		
+		//改变分类前标
+		for(var i in classNum){
+			$(".type-"+i).html(classNum[i]);
+			if(classNum[i] == 0){
+				$(".type-"+i).hide();
+			}else{
+				$(".type-"+i).show();
+			}
+		}
+		
+		//赋值总价格
+		$("#dishNum").html(totalNum);
+		
+		//赋值总数量
+		$("#dishPrice").html(totalPrice);
+	}
+
+	var order = new Array();
+	
+	//初始化订单 dish为单位
+	function initOrder(did,nameCh,nameThai,price){
+		var dish = new Array();;
+		dish['num'] = 0;
+		dish['nameCh'] = nameCh;
+		dish['nameThai'] = nameThai;
+		dish['price'] = price;
+		
+		order[did] = dish;
+	}
+	
+	function addOrder(dtid,did,nameCh,nameThai,price){
+		if(typeof(order[did])=="undefined")
+			initOrder(did,nameCh,nameThai,price);
+			
+		var addPrice = 0;	
+		if(order[did]['addPrice'])
+			addPrice = order[did]['addPrice'];
+		price = price + addPrice;
+	
+		order[did]['num'] = order[did]['num']+1;
+		
+		//菜品个数
+		$(".tPrice-"+did).html(order[did]['num']);
+		//分类个数
+		$(".type-"+dtid).html(1+Math.round($(".type-"+dtid).html()));
+
+		//总份数
+		$("#dishNum").html(1+Math.round($("#dishNum").html()));
+		//总价钱
+		$("#dishPrice").html(price+Math.round($("#dishPrice").html()));
+
+	}
+	
+	function minusOrder(dtid,did,nameCh,nameThai,price){
+		if(typeof(order[did])=="undefined")
+			initOrder(did,nameCh,nameThai,price);
+	
+		if(order[did]['num']-1 >= 0){
+			order[did]['num'] = order[did]['num']-1;
+			
+			var addPrice = 0;	
+			if(order[did]['addPrice'])
+				addPrice = order[did]['addPrice'];
+			price = price + addPrice;
+		
+		
+			//菜品个数
+			$(".tPrice-"+did).html(order[did]['num']);
+			//分类个数
+			$(".type-"+dtid).html(Math.round($(".type-"+dtid).html()) - 1);
+			
+			//总份数
+			$("#dishNum").html(Math.round($("#dishNum").html()) - 1);
+			//总价钱
+			$("#dishPrice").html(Math.round($("#dishPrice").html()) - price);
+		}
+	}
+	
+	function selectItem(did,nameCh,nameThai,price,addCh,addThai,addPrice){
+		if(typeof(order[did])=="undefined")
+			initOrder(did,nameCh,nameThai,price);
+			
+		order[did]['addCh'] = addCh;
+		order[did]['addThai'] = addThai;
+		order[did]['addPrice'] = addPrice;
+		
+		var orderPrice = order[did]['price'];
+		var tPrice = orderPrice + addPrice;
+		
+		//单价变化
+		$(".price-"+did).html(tPrice);
+		
+		//总价变化
+		$("#dishPrice").html(getTotalPrice());
+	}
+	
+
+	function doOrder(){
+		var orderJson = "[";
+	
+		for(var i in order){
+			var price = order[i]['price'];
+			var num = order[i]['num'];
+			var nameCh = order[i]['nameCh'];
+			var nameThai = order[i]['nameThai'];
+			
+			orderJson += "{price:"+price+",num:"+num+",nameCh:'"+nameCh+"',nameCh:'"+nameThai+"'},";
+		}
+		
+		orderJson = orderJson.substring(0,orderJson.length-1);
+		orderJson += "]";
+		
+		
+	
+		location.href='check.php?order='+orderJson+"&tPrice="+getTotalPrice()+"&tNum="+getTotalNum();
+	}
+	
+	
+	function selectType(typeId,type){
+		$('.booking_type_name').html(type);
+		
+		//$(".dishUL li").hide();
+		//$("li."+typeId).show();
+		
+		$("#sqmmenu").trigger("click");
+		$("button[id]").attr('class','am-btn am-btn-default am-btn-block sq-text-l');
+		$("#"+typeId+"").attr('class','am-btn am-btn-primary am-btn-block sq-text-l');
+		
+		$.post("selectType.php",{"dtid":typeId,id:<?=$sid?>},function(data){
+		
+			if(data){
+				$('.dishUL').html(data);
+				page = 1;
+				flag = 1;
+			}else{
+				$('.dishUL').html("");
+			}
+		});
+	}
+	
+	function getTotalPrice(){
+		var tPrice = 0;
+	
+		for(var i in order){
+			var price = order[i]['price'];
+			var addPrice = order[i]['addPrice'];
+			var num = order[i]['num'];
+			
+			tPrice += price*num + addPrice*num;
+		}
+		
+		return tPrice;
+	}
+	
+	function getTotalNum(){
+		var tNum = 0;
+	
+		for(var i in order){
+
+			var num = order[i]['num'];
+			
+			tNum += num;
+		}
+		
+		return tNum;
+	}
+	
+	function selectR(){
+		$('.booking_type_name').html("特色推荐 เมนูแนะนำ");
+		
+		//$(".dishUL li").hide();
+		//$(".li-recommend").show();
+		
+		$("#sqmmenu").trigger("click");
+		$("button[id]").attr('class','am-btn am-btn-default am-btn-block sq-text-l');
+		$("#000").attr('class','am-btn am-btn-primary am-btn-block sq-text-l');
+		$.post("selectType.php",{"recommend":1,id:<?=$sid?>},function(data){
+			if(data){
+				$('.dishUL').html(data);
+				page = 1;
+				flag = 1;
+			}else{
+				$('.dishUL').html("");
+			}
+		});
+	}
+
+	
+	$.ajaxSetup({
+		async: false
+	});
+	
+	$(function(){
+		$(".dishUL").DataLazyLoad({load : function(pageObj, unLocked){
+			var html = '';
+			
+			page++;
+
+		    //Generate the data
+			if(flag != -1){
+				$.post("getMore.php",{"page":page,id:<?=$sid?>},function(data){
+				
+					if(data){
+						html = data;
+						$('.dishUL >li:last-child').after(html);
+					}else{
+						flag = -1;
+						$("<li class = 'h2'>没有菜品了!</li><li class = 'h2'>end</li>").appendTo('.dishUL');
+					}
+					
+				});
+			}
+			
+			//You must call after loading the data, To prevent repeated load, The first parameter to the next page, No page is 0
+			unLocked(page);
+			
+			//Check whether to end
+			//page = flag == -1 ? 0 : page;
+			
+			
+
+		}});
+	});
+</script>
+<span style="display:none;"><?=$statisticalCode?></span>
+</body>
+</html>

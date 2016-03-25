@@ -1,0 +1,486 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><?=$add_user_text?> - <?=$website_name?> <?=$admin_center?></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="templates/assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="templates/assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="templates/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="templates/assets/css/admin.css">
+  <link href="/js/umeditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet">
+  <script type="text/javascript">
+  function check(){
+  //阻止表单提交
+
+    var user = document.getElementsByName('username')[0].value;
+    var phone = document.getElementsByName('phone')[0].value;
+    var map = document.getElementsByName('password')[0].value;
+    var address = document.getElementsByName('firstName')[0].value;
+    var contacts = document.getElementsByName('surname')[0].value;
+    var business_hour = document.getElementsByName('email')[0].value;
+    var QRcode_sum = document.getElementsByName('birthday')[0].value;
+
+    
+    if (user==""||user==null||user==undefined) {
+          alert('<?php echo $please_write,$username_text;?>');return false;
+    }else if(phone==""||phone==null||phone==undefined){
+                  alert('<?php echo $please_write,$phone_text;?>');return false;
+            }else if (map==""||map==null||map==undefined) {
+                  alert('<?php echo $please_write,$psw_text;?>');return false;
+            }else if(address==""||address==null||address==undefined){
+                  alert('<?php echo $please_write,$useradd_FirstName;?>');return false;
+            }else if(contacts==""||contacts==null||contacts==undefined){
+                  alert('<?php echo $please_write,$useradd_Surname;?>');return false;
+            }else if(business_hour==""||business_hour==null||business_hour==undefined){
+                   alert('<?php echo $please_write,$email_text;?>');return false;
+            }else if(QRcode_sum==""||QRcode_sumQRcode_sum==null||QRcode_sum==undefined){
+                  alert('<?php echo $please_write,$useradd_Birthday;?>');return false;
+            }else{
+                  return true;
+            }
+      
+  
+} 
+
+function t1(){
+  //获取节点username
+            var user = document.getElementsByName('username')[0];
+            var first = document.getElementById('first');
+            var one = document.getElementById('one');
+    //获取焦点
+    user.onfocus=function(){
+        user.setAttribute('placeholder','<?=$username_text?>');
+    }
+    //失去焦点
+    user.onblur=function(){
+    //客户端正则判断是否合法
+        var patt = /^\S{1,32}$/;
+        if(user.value==''){
+         first.setAttribute('class','am-icon-times');
+         first.setAttribute('style','display;margin-right:20px;');
+          first.innerHTML="<font color='red'><?php echo $username_text,$doest_null;?></font>";
+          one.setAttribute('class','am-form-group am-form-error am-form-icon am-form-feedback');
+        }
+        else if(!(this.value).match(patt)){
+              first.setAttribute('class','am-icon-times');
+              first.setAttribute('style','display;margin-right:20px;');
+            first.innerHTML="<font color='red'><?php echo $username_text,$be_outside_the_law;?></font>";
+            one.setAttribute('class','am-form-group am-form-error am-form-icon am-form-feedback');
+            return false;
+        }else{
+            var uri = "ajax_user.php?username="+user.value;
+            //ajax异步验证,第一步初始化
+            var nokia = tel();
+            nokia.open('GET',uri,true);//第二步，open 操作true异步
+            nokia.onreadystatechange = function(){ //第三步onreadystatachange
+                if(nokia.readyState==4){//状态响应为4说明请求正常回应
+                    if(nokia.responseText == 0){//第4步，根据不同的响应结果进行操作
+                        first.setAttribute('class','am-icon-check');
+                        first.innerHTML = "";
+                        first.setAttribute('style','display;margin-right:20px;');
+                        one.setAttribute('class','am-form-group am-form-success am-form-icon am-form-feedback');
+                    }else{
+                        first.setAttribute('class','am-icon-times');
+                        first.setAttribute('style','display;margin-right:20px;');
+                        first.innerHTML = "<font color='red'><?php echo $username_text,$repeat_text;?></font>";
+                        one.setAttribute('class','am-form-group am-form-error am-form-icon am-form-feedback');
+                    }
+                }
+            }
+            //第5步，发送
+            nokia.send(null);
+        }
+    }
+    function tel(){
+    //ie和火狐兼容性
+        var phone = false;
+        if(window.XMLHttpRequest){
+            phone = new XMLHttpRequest();
+        }else{
+            phone = new window.ActiveXObject('Microsoft.XMLHttp');
+        }
+        return phone;
+    }
+}
+function t2(){
+            var phone = document.getElementsByName('phone')[0];
+            var second = document.getElementById('second');
+            var two = document.getElementById('two');
+        phone.onfocus=function(){
+        phone.setAttribute('placeholder','<?php echo $please_write,$phone_text;?>');
+    }
+    phone.onblur = function(){
+        if(phone.value==''){
+           second.setAttribute('class','am-icon-times');
+           second.setAttribute('style','display;margin-right:20px;');
+          second.innerHTML="<font color='red'><?php echo $phone_text,$doest_null;?></font>";
+          two.setAttribute('class','am-form-group am-form-error am-form-icon am-form-feedback');
+        }else{
+            second.setAttribute('class','am-icon-check');
+            second.setAttribute('style','display;margin-right:20px;');
+            second.innerHTML = "";
+            two.setAttribute('class','am-form-group am-form-success am-form-icon am-form-feedback');
+        }
+    }
+ }
+
+ function t5(){
+            var map = document.getElementsByName('password')[0];
+            var fifth = document.getElementById('fifth');
+            var five = document.getElementById('five');
+        map.onfocus=function(){
+
+        map.setAttribute('placeholder','<?php echo $please_write,$psw_text;?>');
+    }
+    map.onblur = function(){
+        if(map.value==''){
+          fifth.setAttribute('class','am-icon-times');
+          fifth.setAttribute('style','display;margin-right:20px;');
+          fifth.innerHTML="<font color='red'><?php echo $psw_text,$doest_null;?></font>";
+          five.setAttribute('class','am-form-group am-form-error am-form-icon am-form-feedback');
+        }else{
+            fifth.setAttribute('class','am-icon-check');
+            fifth.innerHTML = "";
+            fifth.setAttribute('style','display;margin-right:20px;');
+            five.setAttribute('class','am-form-group am-form-success am-form-icon am-form-feedback');
+        }
+    }
+ }
+  function t6(){
+            var address = document.getElementsByName('firstName')[0];
+            var sixth = document.getElementById('sixth');
+            var six = document.getElementById('six');
+        address.onfocus=function(){
+
+        address.setAttribute('placeholder','<?php echo $please_write,$useradd_FirstName;?>');
+    }
+    address.onblur = function(){
+        if(address.value==''){
+          sixth.setAttribute('class','am-icon-times');
+          sixth.setAttribute('style','display;margin-right:20px;');
+          sixth.innerHTML="<font color='red'><?php echo $useradd_FirstName,$doest_null;?></font>";
+          six.setAttribute('class','am-form-group am-form-error am-form-icon am-form-feedback');
+        }else{
+            sixth.setAttribute('class','am-icon-check');
+            sixth.innerHTML = "";
+            sixth.setAttribute('style','display;margin-right:20px;');
+            six.setAttribute('class','am-form-group am-form-success am-form-icon am-form-feedback');
+        }
+    }
+ }
+   function t7(){
+            var contacts = document.getElementsByName('surname')[0];
+            var seventh = document.getElementById('seventh');
+            var seven = document.getElementById('seven');
+        contacts.onfocus=function(){
+
+        contacts.setAttribute('placeholder','<?php echo $useradd_Surname;?>');
+    }
+    contacts.onblur = function(){
+        if(contacts.value==''){
+          seventh.setAttribute('class','am-icon-times');
+          seventh.setAttribute('style','display;margin-right:20px;');
+          seventh.innerHTML="<font color='red'><?php echo $useradd_Surname,$doest_null;?></font>";
+          seven.setAttribute('class','am-form-group am-form-error am-form-icon am-form-feedback');
+        }else{
+            seventh.setAttribute('class','am-icon-check');
+            seventh.innerHTML = "";
+            seventh.setAttribute('style','display;margin-right:20px;');
+            seven.setAttribute('class','am-form-group am-form-success am-form-icon am-form-feedback');
+        }
+    }
+ }
+function t8(){
+    var email = document.getElementsByName('email')[0];
+    var eighth = document.getElementById('eighth');
+    var eight = document.getElementById('eight');
+    var patt = /^\w+@[a-z0-9]+(\.com|\.cn|\.org)$/;
+
+    email.onfocus=function(){
+        email.setAttribute('placeholder','<?=$email_text?>');
+    }
+    email.onblur = function(){
+        if(email.value==''){
+         eighth.setAttribute('class','am-icon-times');
+         eighth.setAttribute('style','display;margin-right:20px;');
+          eighth.innerHTML="<font color='red'><?php echo $email_text,$doest_null;?></font>";
+          eight.setAttribute('class','am-form-group am-form-error am-form-icon am-form-feedback');
+        }else if(!email.value.match(patt)){
+            eighth.setAttribute('class','am-icon-times');
+            eighth.setAttribute('style','display;margin-right:20px;');
+            eighth.innerHTML="<font color='red'><?php echo $email_text,$be_outside_the_law;?></font>";
+            eight.setAttribute('class','am-form-group am-form-error am-form-icon am-form-feedback');
+        }else{     
+            var ur = "ajax_email.php?email="+email.value;
+             var sumsang=tel();
+             sumsang.open('GET',ur,true);
+             sumsang.onreadystatechange = function(){
+                if(sumsang.readyState==4){
+                    if(sumsang.responseText == 0){
+                        eighth.setAttribute('class','am-icon-check');
+                        eighth.setAttribute('style','display;margin-right:20px;');
+                        eighth.innerHTML = "";
+                        eight.setAttribute('class','am-form-group am-form-success am-form-icon am-form-feedback');
+                    }else{
+                        eighth.setAttribute('class','am-icon-times');
+                        eighth.setAttribute('style','display;margin-right:20px;');
+                        eighth.innerHTML = "<font color='red'><?php echo $email_text,$repeat_text;?></font>";
+                        eight.setAttribute('class','am-form-group am-form-error am-form-icon am-form-feedback');
+                    }
+                }
+             }
+        sumsang.send(null);
+        }
+      }   
+        function tel(){
+    //ie678和火狐兼容性
+        var phone = false;
+        if(window.XMLHttpRequest){
+            phone = new XMLHttpRequest();
+        }else{
+            phone = new window.ActiveXObject('Microsoft.XMLHttp');
+        }
+        return phone;
+    }
+}
+     function t9(){
+            var QRcode_sum = document.getElementsByName('birthday')[0];
+            var nineth = document.getElementById('nineth');
+            var nine = document.getElementById('nine');
+
+        QRcode_sum.onfocus=function(){
+       QRcode_sum.setAttribute('placeholder','<?php echo $please_write,$useradd_Birthday;?>');
+    }
+    QRcode_sum .onblur = function(){
+        if(QRcode_sum .value==''){
+          nineth.setAttribute('class','am-icon-times');
+          nineth.setAttribute('style','display;margin-right:20px;');
+          nineth.innerHTML="<font color='red'><?php echo $useradd_Birthday,$doest_null;?></font>";
+          nine.setAttribute('class','am-form-group am-form-error am-form-icon am-form-feedback');
+        }else{
+            nineth.setAttribute('class','am-icon-check');
+            nineth.innerHTML = "";
+            nine.setAttribute('class','am-form-group am-form-success am-form-icon am-form-feedback');
+        }
+    }
+ }
+      function t10(){
+            var city = document.getElementsByName('city')[0];
+            var tenth = document.getElementById('tenth');
+            var ten = document.getElementById('ten');
+
+        city.onfocus=function(){
+       city.setAttribute('placeholder','<?php echo $please_write,$city_text;?>');
+    }
+    city .onblur = function(){
+        if(city .value==''){
+          tenth.setAttribute('class','am-icon-times');
+          tenth.setAttribute('style','display;margin-right:20px;');
+          tenth.innerHTML="<font color='red'><?php echo $city_text,$doest_null;?></font>";
+          ten.setAttribute('class','am-form-group am-form-error am-form-icon am-form-feedback');
+        }else{
+            tenth.setAttribute('class','am-icon-check');
+            tenth.innerHTML = "";
+            ten.setAttribute('class','am-form-group am-form-success am-form-icon am-form-feedback');
+        }
+    }
+ }
+
+
+
+window.onload = function () {
+    t1();//用户名称检测
+     t5();//密码检测
+     t6();//用户名检测
+     t7();//用户性联系人
+    t2();//电话号码检测
+    t8();//邮箱
+    t9();//生日
+    t10();//城市
+};
+</script>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+<?php
+	// header
+	include 'templates/header.htm';
+?>
+
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php
+	// 左边栏
+	include 'templates/sidebarReferee.htm';
+  ?>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg"><?=$add_user_text?></div>
+    </div>
+
+    <hr/>
+
+    <div class="am-g">
+
+      <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
+
+      </div>
+
+      <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
+        <form action="doUser.php" id="form" onsubmit = "return check();" method="post" class="am-form am-form-horizontal">
+			<input type="hidden" name="action" value="<?=$action?>" />
+			<input type="hidden" name="id" value="<?php if(isset($id))echo $id;?>" />
+                <input type="hidden" name="role" value="2">
+			
+			<div class="am-form-group" id="one">
+				<label for="username" class="am-u-sm-3 am-form-label"><?=$username_text?></label>
+				<div class="am-u-sm-9">
+				  <input type="text" name="username" value="<?php if(isset($username))echo $username;?>" id="username" placeholder="<?=$username_text?>"><small id="first"></small>
+				</div>
+			</div>
+
+
+          <div class="am-form-group" id="five">
+            <label for="password" class="am-u-sm-3 am-form-label"><?=$psw_text?> </label>
+            <div class="am-u-sm-9">
+              <input type="password" name="password" value="<?php if(isset($password))echo $password;?>" id="password" placeholder="<?=$psw_text?>"><small id='fifth' class=""></small>
+            </div>
+          </div>
+                   <div class="am-form-group">
+            <label for="user-phone" class="am-u-sm-3 am-form-label"><?=$merchant_name_text?></label>
+
+            <div class="am-u-sm-9">
+        <select name="sid" data-am-selected="{searchBox: 1}">
+            <?php foreach($list as $v){ 
+              if($_GET['sid'] == $v['id'])
+                echo '<option selected value="'.$v['id'].'">'.$v['sellerName'].'</option>';
+              else
+                echo '<option value="'.$v['id'].'">'.$v['sellerName'].'</option>';
+            }
+            ?>
+        </select>
+            </div>
+          </div>
+
+          <div class="am-form-group" id="six">
+            <label for="sid" class="am-u-sm-3 am-form-label"><?=$useradd_FirstName?></label>
+            <div class="am-u-sm-9">
+              <input type="text" name="firstName" value="<?php if(isset($firstName))echo $firstName;?>" id="firstName" placeholder="<?=$useradd_FirstName?>"><small id="sixth" class=""></small>
+            </div>
+          </div>
+
+          <div class="am-form-group" id="seven">
+            <label for="sid" class="am-u-sm-3 am-form-label"><?=$useradd_Surname?></label>
+            <div class="am-u-sm-9">
+              <input type="text" name="surname" value="<?php if(isset($surname))echo $surname;?>" id="surname" placeholder="<?=$useradd_Surname?>"><small id="seventh" class=""></small>
+            </div>
+          </div>
+
+             <div class="am-form-group" id="eight">
+            <label for="sid" class="am-u-sm-3 am-form-label"><?=$email_text?></label>
+            <div class="am-u-sm-9">
+              <input type="text" name="email" value="<?php if(isset($email))echo $email;?>" id="email" placeholder="<?=$email_text?>"><small id="eighth"></small>
+            </div>
+          </div>
+
+
+             <div class="am-form-group" id="two">
+            <label for="sid" class="am-u-sm-3 am-form-label"><?=$phone_text?></label>
+            <div class="am-u-sm-9">
+              <input type="text" name="phone" value="<?php if(isset($phone))echo $phone;?>" id="phone" placeholder="<?=$phone_text?>"><small id="second"></small>
+            </div>
+          </div>
+
+            <div class="am-form-group" id="ten">
+            <label for="sid" class="am-u-sm-3 am-form-label"><?=$city_text?></label>
+            <div class="am-u-sm-9">
+              <input type="text" name="city" value="<?php if(isset($city))echo $city;?>" id="city" placeholder="<?=$city_text?>"><small id="tenth"></small>
+            </div>
+          </div>
+
+          <div class="am-form-group" id="poDiv">
+            <label for="sid" class="am-u-sm-3 am-form-label"><?=$useradd_Position?></label>
+            <div class="am-u-sm-9">
+              <label class="am-radio-inline">
+				<input type="radio" <?php if(isset($position) && $position == 1){echo "checked";}?>  value="1" name="position"> <?=$useradd_Manager?>
+			  </label>
+			  <label class="am-radio-inline">
+				<input type="radio"  <?php if(isset($position) && $position == 2){echo "checked";}?> value="2" name="position"> <?=$useradd_Owner?>
+			  </label>
+            </div>
+          </div>
+
+          <div class="am-form-group" id="nine">
+            <label for="sid" class="am-u-sm-3 am-form-label"> <?=$useradd_Birthday?></label>
+            <div class="am-u-sm-9">
+              <input type="text" name="birthday" value="<?php if(isset($birthday))echo $birthday;?>" id="Birthday" placeholder="D/M/Y"><small id="nineth" class=""></small>
+            </div>
+          </div>
+
+          <div class="am-form-group">
+            <div class="am-u-sm-9 am-u-sm-push-3">
+              <button type="submit" class="am-btn am-btn-primary"><?=$save_text?></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- content end -->
+
+</div>
+
+<a class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+
+<?php
+	// footer
+	include 'templates/footer.htm';
+?>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/polyfill/rem.min.js"></script>
+<script src="assets/js/polyfill/respond.min.js"></script>
+<script src="assets/js/amazeui.legacy.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="templates/assets/js/jquery.min.js"></script>
+<script src="templates/assets/js/jquery.form.js"></script>
+<script src="templates/assets/js/jquery.Jcrop.js"></script>
+<script src="templates/assets/js/amazeui.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/umeditor/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/umeditor/umeditor.min.js"></script>
+<script type="text/javascript" src="/js/umeditor/lang/zh-cn/zh-cn.js"></script>
+<!--<![endif]-->
+<script>
+	(function($) {
+	  'use strict';
+
+	  $(function() {
+		var $fullText = $('.admin-fullText');
+		$('#admin-fullscreen').on('click', function() {
+		  $.AMUI.fullscreen.toggle();
+		});
+
+		$(document).on($.AMUI.fullscreen.raw.fullscreenchange, function() {
+		  $.AMUI.fullscreen.isFullscreen ? $fullText.text('<?=$close_full_text?>') : $fullText.text('<?=$open_full_text?>');
+		});
+	  });
+	})(jQuery);
+</script>
+</body>
+</html>

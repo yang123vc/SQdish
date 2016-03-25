@@ -1,0 +1,28 @@
+
+.sqBgColor {
+	background:#eda128;
+}
+.psswordform {
+	padding:5% 2%;
+}
+.psswordform input{
+	padding:3%;
+	font-size:2rem;
+}
+
+.am-btn{
+	color:#FFF;
+}
+.am-list a{display:block; 
+	float:right; 
+	color:#666; 
+	font-size:2rem;
+	margin:0 2%;
+}
+.am-list span{
+	font-size:2.5rem; 
+}
+.am-list img{
+	width:5%; 
+	margin:2% 3%;
+}

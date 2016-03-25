@@ -1,0 +1,14 @@
+Options +FollowSymLinks     
+RewriteEngine on     
+RewriteCond %{HTTP_HOST} ^sqdish.com [NC]     
+RewriteRule ^(.*)$ https://www.sqdish.com/$1 [L,R=301]
+
+#http跳https规则，服务器用
+#RewriteCond %{SERVER_PORT} !^443$
+#RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [L,R]
+
+#http跳https规则，Cloudflare用(顶部Options +FollowSymLinks也要注释)
+#RewriteCond %{HTTP:CF-Visitor} '"scheme":"http"'
+#RewriteRule ^(.*)$ https://www.sqdish.com/$1 [L]
+
+RewriteRule ^c/([0-9]+)$ c/?id=$1

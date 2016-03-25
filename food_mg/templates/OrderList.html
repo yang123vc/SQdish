@@ -1,0 +1,242 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><?=$website_name?><?=$admin_center?></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="templates/assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="templates/assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="templates/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="templates/assets/css/admin.css">
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+<?php
+	// header
+	include 'templates/header.htm';
+?>
+
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php
+	// 左边栏
+	include 'templates/sidebar.htm';
+  ?>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg"><?=$order_list_text?></strong></div>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12 am-u-md-6">
+        <div class="am-btn-toolbar">
+        </div>
+      </div>
+      <div class="am-u-sm-12 am-u-md-3">
+        <!-- <div class="am-input-group am-input-group-sm"> -->
+		<form action="#" method="post" class="am-input-group am-input-group-sm">
+          <input type="text" name="key" class="am-form-field">
+          <span class="am-input-group-btn">
+            <button class="am-btn am-btn-default" type="submit"><?=$search_text?></button>
+          </span>
+	    </form>
+        <!-- </div> -->
+      </div>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+        <form class="am-form">
+          <table class="am-table am-table-striped am-table-hover table-main">
+            <thead>
+              <tr>
+                <th class="table-check"><input type="checkbox" /></th>
+				<th class="table-id">ID</th>
+				<th class="table-title"><?=$create_time_text?></th>
+				<th class="table-title"><?=$order_num_text?></th>
+				<th class="table-type"><?=$money_text?></th>
+				<th class="table-author "><?=$pay_status_text?></th>
+				<th class="table-author "><?=$done_status_text?></th>
+				<th class="table-set"><?=$operation_text?></th>
+              </tr>
+          </thead>
+          <tbody>
+          <?php foreach($OrderList as $v){?>
+				<tr>
+						<td><input data-id="1" class="select-id" type="checkbox"></td>
+						<td><?php echo $v['id'];?></td>
+						<td><?php echo date('Y-m-d H:i:s',$v['time']);?></td>
+						<td><?php echo $v['ordercode'];?></td>
+						<td>฿<?php echo $v['all_cost'];?></td>
+						<td>
+						<span class="am-badge am-badge-<?php
+							switch ($v['status'])
+							{
+							case 1:
+							  echo 'success';
+							  break;
+							case 2:
+							  echo 'warning';
+							  break;
+							case 3:
+							  echo 'danger';
+							  break;
+							default:
+							  echo 'danger';
+							}?>
+						 am-radius">
+						<?php
+							switch ($v['status'])
+							{
+							case 1:
+							  echo "已付款";
+							  break;
+							case 2:
+							  echo "已付现";
+							  break;
+							case 3:
+							  echo "已取消";
+							  break;
+							default:
+							  echo "订单异常";
+							}
+						?>
+						</span>
+						</td>
+						<td><span class="am-badge am-badge-<?php
+							switch ($v['is_done'])
+							{
+							case 0:
+							  echo 'danger';
+							  break;
+							case 1:
+							  echo 'success';
+							  break;
+							default:
+							  echo 'warning';
+							}?>
+						am-radius">
+						<?php
+							switch ($v['is_done'])
+							{
+							case 0:
+							  echo "未结算";
+							  break;
+							case 1:
+							  echo "已结算";
+							  break;
+							default:
+							  echo "结算异常";
+							}
+						?>
+						</span></td>					 
+  						<td>
+						<div class="am-btn-toolbar">
+						  <div class="am-btn-group am-btn-group-xs">
+							<a href="OrderDetail.php?id=<?php echo $v['id'];?>" class="am-btn am-btn-default am-btn-xs am-text-secondary"><span class="am-icon-pencil-square-o"></span><?=$details_text?></a>
+						  </div>
+						</div>
+						</td>
+				</tr>
+	<?php }?>		
+				
+          </tbody>
+        </table>
+		<div class="am-cf">
+		  <?=$total_text?> <?=$count?> <?=$records_text?>
+		  <div class="am-fr">
+			<ul class="am-pagination">
+				<li><a href="OrderList.php?page=1&amp;key=">1</a></li>
+				<li class="am-disabled"><a href="#">«</a></li>      
+				<li class="am-active"><a>1</a></li>
+				<li><a href="OrderList.php?page=2&amp;key=">2</a></li>
+				<li><a href="OrderList.php?page=3&amp;key=">3</a></li>	  
+				<li><input style="width:60px;" type="text" name="page">
+				<input style="width:60px;" type="hidden" name="key" value="">
+				</li>
+				<li><a href="OrderList.php?page=2&amp;key=">»</a></li>
+			  <li><a href="OrderList.php?page=935&amp;key=">4</a></li>
+			</ul>
+		  </div>
+		</div>
+          <hr />
+          <p>注：.....</p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <!-- content end -->
+</div>
+
+<a class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+
+<?php
+	// footer
+	include 'templates/footerDish.htm';
+?>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/polyfill/rem.min.js"></script>
+<script src="assets/js/polyfill/respond.min.js"></script>
+<script src="assets/js/amazeui.legacy.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="templates/assets/js/jquery.min.js"></script>
+<script src="templates/assets/js/amazeui.min.js"></script>
+<!--<![endif]-->
+<script>
+	(function($) {
+	  'use strict';
+
+	  $(function() {
+		var $fullText = $('.admin-fullText');
+		$('#admin-fullscreen').on('click', function() {
+		  $.AMUI.fullscreen.toggle();
+		});
+
+		$(document).on($.AMUI.fullscreen.raw.fullscreenchange, function() {
+		  $.AMUI.fullscreen.isFullscreen ? $fullText.text('<?=$close_full_text?>') : $fullText.text('<?=$open_full_text?>');
+		});
+	  });
+	})(jQuery);
+</script>
+<script>
+	$(function(){
+		$("#del-by-ids").click(function(){		
+			var ids = "";
+		
+			$(".select-id:checked").each(function(){
+				ids += $(this).data("id")+",";
+			});
+			
+			if(ids == ""){
+				alert("请选择用户");
+				return;
+			}else{
+				ids = ids.substring(0,ids.length-1);
+			}
+			
+			if(confirm("确认删除所选用户？")){
+				location.href="delDish.php?ids="+ids;
+			}
+		});
+	});
+</script>
+</body>
+</html>

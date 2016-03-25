@@ -1,0 +1,1 @@
+<?php 	//header("Location:http://".$_SERVER['SERVER_NAME']);	//exit();//    $db_config["hostname"] = "192.168.31.67"; //服务器地址    $db_config["hostname"] = "127.0.0.1";    $db_config["username"] = "root"; //数据库用户名    $db_config["password"] = "568131"; //数据库密码    $db_config["database"] = "caipin"; //数据库名称

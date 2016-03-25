@@ -1,0 +1,37 @@
+.content{max-width:1200px; margin-bottom:4rem;font-family:Microsoft YaHei,LiHei Pro; display:block; overflow:hidden; margin-top:30px; padding:0 0;}
+.dh{overflow:hidden;float:left;}
+.name{  float:right;}
+.name .color{ color:#eda129;}
+.dh ul li a{ font-size:14px;color:#000;height:48px; line-height:24px; padding-left:20px;}
+.dh ul li{ margin-bottom:18px}
+.dh ul li:hover{ background:#eda129; border-radius:5px;}
+.nav1{ padding-left:20px;}
+.dh ul li a:hover{ color:#fff;}
+.dh ul .nav1:hover{background:#FFF;}
+.dh ul .nav1 a:hover{color:#eda129;}
+.Breadcrumb a{ color:#000;}
+.color{ color:#eda129;}
+.size{ font-size:16px;font-family:Microsoft YaHei,LiHei Pro; color:#4c4c4c;}
+.column{ border-bottom:#d6d6d6 2px solid;}
+.tabs{ border-bottom:#CCC 2px solid;}
+.content .tabs li{ color:#444; margin-right:20px; padding:5px 20px; margin-bottom:-2px}
+.field{ border:#eda129 solid 2PX; border-radius:5px; color:#444; font-size:12px; padding:5PX 10px; width:200PX}
+.am-panel-title span{ margin-right:20px}
+.am-panel-hd{ padding:.6rem 0;}
+.am-panel-default .hover a:hover{ color:#eda129;}
+.am-table th{ text-align:center; font-size:14px;}
+.am-table td{ text-align:center; font-size:14px;}
+.default{ border-bottom:#ccc 2px solid; margin-bottom:20px;}
+.border{ border:#eda129 1px solid; padding:4px 6px;}
+.baung{ background: url(../bg/%E7%AB%96%E7%BA%BF.png) no-repeat center; height:30px;}
+.s3 a:hover, .s3 a.hover{background: url(../bg/quan.png) no-repeat center;color: #eda129;}
+.s3 a {
+    border-radius: 50%;
+    padding: 10px 13px;
+	color: #6f675f;
+	line-height:32px}
+.am-g .fy{width: 700px;
+    text-align: center;
+    display: block;
+    overflow: hidden;
+    margin: 0 300px;}

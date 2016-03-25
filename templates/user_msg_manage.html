@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>SQdish食器-系统消息</title>  
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+    <link rel="stylesheet" href="templates/assets/css/amazeui.min.css">
+    <link href="templates/theme/css/style.css" type="text/css" rel="stylesheet" />
+    <link href="templates/theme/css/sqStyle.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="templates/theme/css/xx.css">
+    <script type="text/javascript" src="templates/theme/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="templates/theme/js/jquery.tools.min.js"></script>
+    <script type="text/javascript" src="templates/theme/js/ciads.js"></script>
+</head>
+<body>
+<?php include "inc/header.html"?>
+<?php include "user_left.html";?>
+<div class="am-u-md-10">
+  <div class="am-g"> 
+	  <div class="am-panel am-panel-default Collection Message">
+            <div class="am-panel-hd" style="background:#FFF;">
+            <strong>系统消息</strong> 
+            </div>
+            <?php if(!empty($msg_rs)){?> 
+            <div class="am-u-md-12" style="border-bottom:#CCC 1px solid;">
+		      <div class="am-panel-bd"> 
+		      <?php foreach($msg_rs as $key=>$val){?> 		      
+		        <div class="am-u-md-12  rule" data-am-alert>
+		        	<div class="am-u-md-2 osysmsglog"></div>
+		        	<!-- <a href="#" class="am-close am-close-alt am-icon-times" style="float:right"></a>  -->
+			        <div class="am-u-md-10" style="float:left;">
+				        <h2>
+				            <span class="title">系统通知</span>
+				            <span class="time"><?php echo $val['time'];?></span>          
+				        </h2>
+				        <div class="am-u-md-12 news"><?php echo $val['content'];?></div>
+			        </div>
+		        </div> 
+		      <?php }?>	     
+		     </div>
+           </div>
+           <?php if($count > 10){?><?php  echo $pages->display(); ?><?php } ?>
+           <?php }else{echo "暂时没有系统消息通知！";}?>
+	   </div>
+   </div>
+   </div>
+   </div>
+</div>
+<?php include "inc/footer.html"?>
+</body>
+</html>

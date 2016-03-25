@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>SQdish食器-消息管理</title>
+    
+	<meta name="keywords" content="">
+		<meta name="description" content="">
+      <link rel="stylesheet" href="/templates/assets/css/amazeui.min.css">
+  <link href="/templates/theme/css/style.css" type="text/css" rel="stylesheet" />
+    <link href="/templates/theme/css/sqStyle.css" type="text/css" rel="stylesheet" />
+    <link  href="/templates/theme/css/dd.css" type="text/css" rel="stylesheet" />
+     <script type="text/javascript" src="/templates/theme/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/templates/theme/js/jquery.tools.min.js"></script>
+    <script type="text/javascript" src="/templates/theme/js/ciads.js"></script>
+	<script type="text/javascript" src="/templates/theme/js/demo.js"></script>
+</head>
+<body>
+<?php include "inc/header.html"?>
+<?php include "inc/user_top.html"?>
+<div class="am-g am-u-md-centered content">
+    <?php include "inc/user_left.html"?>
+      <div class="am-u-md-10">
+  <div class="am-g"> 
+  <div class="am-u-md-12" style=" margin-bottom:10px;">
+<div class="am-g" style="margin-left:20px">
+<div class="am-panel-hd column">
+ <strong class="size">提交订单</strong>
+            </div>
+
+
+
+  
+ <div class="catbox">
+  <table id="cartTable" class="am-table am-table-centered">
+    <thead>
+      <tr>
+       
+        <th>商品图片</th>
+         <th>商品名称</th>
+        <th>单价</th>
+        <th>数量</th>
+        <th>小计</th>
+        <th>优惠</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php foreach($goods_list as $goods) { ?>
+      <tr>
+        <td class="goods"><img src="<?php echo $goods['img'];?>" alt=""/></td>
+         <td class="goods"><span><?php echo $goods['name'];?></span></td>
+        <td class="price"><?php echo $goods['cost']; ?></td>
+        <td class="price"><?php echo $goods['count'];?></td>
+        <td class="subtotal"><?php echo $goods['cost']*$goods['count'];?></td>
+        <td><select data-am-selected>
+        <option value="a" selected>不使用优惠</option>
+
+            </select>
+        </td>
+      
+      </tr>
+    <?php } ?>
+    
+      
+    </tbody>
+  </table>
+  
+  
+  
+  <div class="foot" id="foot">
+    <div class="fr total">
+	合计泰铢：฿<span id="priceTotal"><?php echo $selectedSum; ?>株</span></div>
+    <div class="fr selected" id="selected">已选商品<span id="selectedTotal"><?php echo $selectedNum;?></span>件
+    </div>
+  </div>
+</div>
+    <form action="/makeorder.php" method="post" onsubmit="return orderSubmit();">
+	<div class="am-u-md-12" style="border-bottom:#CCC 1px solid;">
+     <h3>人民币付款请选择支付方式：</h3>
+    <label class="am-radio-inline">
+      <input type="radio" name="radio1" value="0" checked="checked" data-am-ucheck>
+      <img src="/templates/theme/bg/alipay.png" style="margin-bottom:20px"/>
+    </label>
+    
+     <label class="am-radio-inline">
+      <input type="radio" name="radio1" value="1" data-am-ucheck>
+      <img src="/templates/theme/bg/wxpay.png" style="margin-bottom:20px"/>
+    </label>
+    </div>
+    <div class="fr total" style="text-align:center; font-size:14px; margin-right:10px; margin-top:10px">
+    <p>当前汇率<?php echo $exchangeRateArray['value'];?>，应付人民币：￥<span style="color:red; font-weight:bold;"><?php echo $RmbSum; ?></span></p>
+    <button  type="submit" class="am-btn am-btn-default button">提交订单</button></div>
+        <input id="paytype" name="pay_type" type="hidden" value="0"/>
+        <input  name="confirm_flag" type="hidden" value="1"/>
+
+        <?php if($sourceFlag == 2) { ?>
+        <input  name="goods_id" type="hidden"  value="<?php echo $imGoodsId;?>" />
+        <input  name="goods_img" type="hidden"  value="<?php echo $imGoodsImg;?>" />
+        <input  name="goods_name" type="hidden"  value="<?php echo $imGoodsName;?>" />
+        <input  name="goods_price" type="hidden"  value="<?php echo $imGoodsPrice;?>" />
+        <input name="imBuyNum" type="hidden" value="<?php echo $imGoodsNum;?> " />
+        <input  name="shop_id" type="hidden"  value="<?php echo $imShopId;?>" />
+        <input  name="im_buy_flag" type="hidden"  value="1" />
+        <?php } else { ?>
+
+        <input  name="im_buy_flag" type="hidden"  value="0" />
+        <?php } ?>
+
+
+</form>
+
+</div>
+ </div>
+  </div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+
+
+function orderSubmit()
+{
+
+
+
+    var paytype = $("input[name='radio1']:checked").val();
+    $('#paytype').val(paytype);
+
+
+}
+
+
+</script>
+
+<!--<div class="footer">
+    <div class="wrap">
+        <span class="s1">
+            <a class="a1" href="#">品牌酒店 </a>
+            <a href="#">清迈艾美酒店</a>
+            <a href="#">清迈香格里拉酒店</a>
+            <a href="#">清迈美居酒店</a>
+            <a href="#">清迈智选假日酒店 </a>
+            <a href="#">清迈宜必思酒店</a>
+            <br>
+            <a class="a1" href="#">热门国家 </a>
+            <a href="#">美国</a>
+            <a href="#">韩国</a>
+            <a href="#">泰国</a>
+            <a href="#">日本</a>
+            <a href="#">法国</a>
+            <a href="#">澳大利亚</a>
+            <a href="#">加拿大</a>
+            <a href="#">马尔代夫</a>
+            <a href="#">印度</a>
+            <a href="#">马来西亚</a>
+            <a href="#">西班牙</a>
+            <a href="#">瑞士</a>
+            <a href="#">荷兰</a>
+            <a href="#">英国</a>
+            <a href="#">德国</a>
+            <a href="#">意大利</a>
+            <a href="#">希腊</a>
+            <a href="#">俄罗斯</a>
+            <a href="#">墨西哥</a>
+              <br>
+            <a class="a1" href="#">热门城市</a>
+            <a href="#">东京</a>
+            <a href="#">曼谷</a>
+            <a href="#">首尔</a>
+            <a href="#">新加坡</a>
+            <a href="#">普吉岛</a>
+            <a href="#">大阪</a>
+            <a href="#">清迈</a>
+            <a href="#">拉斯维加斯</a>
+            <a href="#">巴黎</a>
+            <a href="#">苏梅岛</a>
+            <a href="#">纽约</a>
+            <a href="#">长滩岛</a>
+            <a href="#">吉隆坡</a>
+            <a href="#">伦敦</a>
+            <a href="#">墨尔本</a>
+            <a href="#">济州岛</a>
+            <a href="#">洛杉矶</a>
+            <a href="#">塞班岛</a>
+        </span>
+    </div>
+</div>-->
+<?php include "inc/footer.html"?>
+</body>
+</html>

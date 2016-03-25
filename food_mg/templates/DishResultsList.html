@@ -1,0 +1,207 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><?=$order_statistics_text?> - <?=$website_name?> <?=$admin_center?></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="templates/assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="templates/assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="templates/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="templates/assets/css/admin.css">
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+<?php
+	// header
+	include 'templates/header.htm';
+?>
+
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php
+	// 左边栏
+	include 'templates/sidebar.htm';
+  ?>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg"><?=$order_statistics_text?></strong></div>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12 am-u-md-6">
+        <div class="am-btn-toolbar">
+          <div class="am-btn-group am-btn-group-xs">
+            <a id="del-by-ids" class="am-btn am-btn-default"><span class="am-icon-trash-o"></span> <?=$delete_text?></a>
+            <a href="getExcelStatistics.php" class="am-btn am-btn-default"><span class="am-icon-file-excel-o"></span> <?=$export_text?></a>
+          </div>
+        </div>
+      </div>
+      <div class="am-u-sm-12 am-u-md-3">
+		<form action="search.php" method="post" class="am-input-group am-input-group-sm"> 
+		  <input type="text" name="key" class="am-form-field">
+		  <span class="am-input-group-btn">
+			<button class="am-btn am-btn-default" type="submit"><?=$search_text?></button>
+		  </span>
+		</form>  
+      </div>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+        <form class="am-form">
+         <table class="am-table am-table-striped am-table-hover table-main">
+            <thead>
+              <tr>
+                <th class="table-check"><input type="checkbox" />
+				</th><th class="table-id">ID</th>
+				<th class="table-title"><?=$create_time_text?></th>
+				<th class="table-type"><?=$restaurant_name_text?></th>
+				<th class="table-type"><?=$details_dishes_text?></th>
+				<th class="table-author "><?=$total_price_text?></th>
+				<th class="table-author "><?=$operation_text?></th>
+              </tr>
+          </thead>
+          <tbody>
+			<?php
+				foreach($statisticsList as $k => $v){
+					echo '<tr>'.
+					  '<td><input class="select-id" data-id="'.$v['id'].'" type="checkbox" /></td>'.
+					  '<td>'.$v['id'].'</td>'.
+					  '<td>'.$v['date'].'</td>'.
+					  '<td><a href="/c/'.$v['sid'].'">'.$v['name'].'</a></td>'.
+					  '<td>'.$v['detail'].'</td>'.
+					  '<td class="am-hide-sm-only">'.$v['price'].'铢</td>'.
+					  '<td>'.
+						'<div class="am-btn-toolbar">'.
+						  '<div class="am-btn-group am-btn-group-xs">'.
+							'<a onclick="return confirm(\''.$delete_text.'？\');"  href="delStatistics.php?id='.$v['id'].'" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only"><span class="am-icon-trash-o"></span> '.$delete_text.'</a>'.
+						  '</div>'.
+						'</div>'.
+					  '</td>'.
+					'</tr>';
+				}
+            ?>
+          </tbody>
+        </table>
+          <div class="am-cf">
+  <?=$total_text?> <?=$count?> <?=$records_text?>
+  <div class="am-fr">
+    <ul class="am-pagination">
+		<li><a href="DishResultsList.php?page=1">1</a></li>
+		<?php
+			if($prev == -1){
+				echo '<li class="am-disabled"><a href="#">«</a></li>';
+			}else{
+				echo '<li><a href="DishResultsList.php?page='.$prev.'">«</a></li>';
+			}
+		?>
+      
+		<?php
+			for($i=$start;$i<=$end;$i++){
+				if($page == $i){
+					echo '<li class="am-active"><a>'.$i.'</a></li>';
+				}else{
+					echo '<li><a href="DishResultsList.php?page='.$i.'">'.$i.'</a></li>';
+				}	
+			}
+		?>
+	  
+		<li>
+			<form action="DishResultsList.php">
+				<input style="width:60px;" type="text" name="page" />
+			</form>
+		</li>
+		
+		<?php
+			if($next == -1){
+				echo '<li class="am-disabled"><a href="#">»</a></li>';
+			}else{
+				echo '<li><a href="DishResultsList.php?page='.$next.'">»</a></li>';
+			}
+		?>
+
+	  <li><a href="DishResultsList.php?page=<?=$totalPage?>"><?=$totalPage?></a></li>
+    </ul>
+  </div>
+</div>
+          <hr />
+          <p>注：.....</p>
+        </form>
+      </div>
+
+    </div>
+  </div>
+  <!-- content end -->
+</div>
+
+<a class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+
+<?php
+	// footer
+	include 'templates/footer.htm';
+?>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/polyfill/rem.min.js"></script>
+<script src="assets/js/polyfill/respond.min.js"></script>
+<script src="assets/js/amazeui.legacy.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="templates/assets/js/jquery.min.js"></script>
+<script src="templates/assets/js/amazeui.min.js"></script>
+<!--<![endif]-->
+<script>
+	(function($) {
+	  'use strict';
+
+	  $(function() {
+		var $fullText = $('.admin-fullText');
+		$('#admin-fullscreen').on('click', function() {
+		  $.AMUI.fullscreen.toggle();
+		});
+
+		$(document).on($.AMUI.fullscreen.raw.fullscreenchange, function() {
+		  $.AMUI.fullscreen.isFullscreen ? $fullText.text('<?=$close_full_text?>') : $fullText.text('<?=$open_full_text?>');
+		});
+	  });
+	})(jQuery);
+</script>
+<script>
+	$(function(){
+		$("#del-by-ids").click(function(){		
+			var ids = "";
+		
+			$(".select-id:checked").each(function(){
+				ids += $(this).data("id")+",";
+			});
+			
+			if(ids == ""){
+				alert("请选择商家");
+				return;
+			}else{
+				ids = ids.substring(0,ids.length-1);
+			}
+			
+			if(confirm("确认删除所选商家？")){
+				location.href="delStatisticsByIds.php?ids="+ids;
+			}
+		});
+	});
+</script>
+</body>
+</html>

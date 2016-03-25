@@ -1,0 +1,146 @@
+.am-icon-chinese, .am-icon-thai, .am-icon-english {
+
+	width:30px;
+
+	height:20px;
+
+	background:url(/html/assets/i/chinese.jpg) no-repeat;
+
+}
+
+.am-icon-thai {
+
+	background:url(/html/assets/i/thai.jpg) no-repeat;
+
+}
+
+.am-icon-english {
+
+	background:url(/html/assets/i/english.jpg) no-repeat;
+
+}
+
+.header h1, .login_info{
+
+	color:#fff;
+
+	text-shadow: #ccc 0 1px 0;
+
+}
+
+.login {
+
+	background:url(/html/assets/i/login_bg.jpg) no-repeat;
+
+	filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";  
+
+	-moz-background-size:100% 100%;
+
+	background-size:100% 100%;
+
+}
+
+.login .am-dropdown a, .login .am-topbar-nav>li.am-active>a:hover, .login .am-topbar-nav>li.am-active>a:focus  {
+
+	color:#fff;
+
+}
+
+.login .am-dropdown li a {
+
+	color:#333;
+
+}
+
+.sqlogin {
+
+	padding-top:10px;
+
+	padding-bottom:10px;
+
+	background:#fff;
+
+	width:600px;
+
+	border-radius:25px;
+
+	filter:alpha(Opacity=80);
+
+	-moz-opacity:0.8;
+
+	opacity: 0.8; 
+
+	margin-bottom:50px;
+
+}
+
+.sqlogin h3 {
+
+	margin-bottom:15px;
+
+	}
+
+.login_top {
+
+	background:url(/html/assets/i/login_bg_top.jpg) no-repeat;
+
+	height:5px;
+
+	border-top:none;
+
+	-webkit-margin-before:10px;
+
+	-webkit-margin-after:10px;
+
+}
+
+.admin-content {
+
+	overflow-y:scroll;
+
+	}
+
+.fieldset_right {
+
+	float:right;
+
+	background:#f8f8f8;
+
+	padding:10px 0;
+
+	margin:10px 0;
+
+	border: 1px solid #cecece;
+
+	}
+
+.am-btn-danger {
+
+	background-color: #dd694c;
+
+}
+.dictionaries{
+	  background-color: #fff;
+	  border: 1px solid #ddd;
+	  list-style:none;
+	  padding-left:0;
+	  margin-top:0;
+	}
+.dictionaries li{
+	  position: relative;
+  	  cursor: pointer;
+  	  padding: 5px 15px;
+ 	  -webkit-transition: background-color .15s;
+  	  transition: background-color .15s;
+	}
+.dictionaries li:hover{
+	background-color: #f8f8f8;
+	background-image:url(../i/right_icon.png);
+	background-repeat:no-repeat;
+	background-position:98%;
+	}
+.dictionaries li a{
+	color:#000;
+	font-size:14px;
+	}
+	

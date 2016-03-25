@@ -1,0 +1,86 @@
+<div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+
+    <div class="am-offcanvas-bar admin-offcanvas-bar">
+
+      <ul class="am-list admin-sidebar-list">
+
+        <li class="admin-parent">
+
+          <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> <?=$menu_manage_text?><span class="am-icon-angle-down am-fr am-margin-right"></span></a>
+
+          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+
+            <li><a href="dishAdd.php" class="am-cf"><span class="am-icon-plus"></span> <?=$new_menu_text?></a></li>
+
+            <li><a href="dishMenuUpload.php" class="am-cf"><span class="am-icon-upload"></span> <?=$upload_new_menu_text?></a></li>
+
+            <li><a href="dishType.php" class="am-cf"><span class="am-icon-file-text-o"></span> <?=$dishes_category?></a></li>
+
+            <li><a href="dishList.php"><span class="am-icon-table"></span> <?=$dishes_list?></a></li>
+          
+
+          </ul>
+
+        </li>
+
+        <li class="admin-parent">
+
+          <a class="am-cf" data-am-collapse="{target: '#collapse-nav2'}"><span class="am-icon-file"></span> <?=$manage_coupon_text?><span class="am-icon-angle-down am-fr am-margin-right"></span></a>
+
+          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav2">
+
+            <li><a href="couponAdd.php" class="am-cf"><span class="am-icon-plus"></span> <?=$add_coupon_text?></a></li>
+
+            <li><a href="couponList.php"><span class="am-icon-table"></span> <?=$coupon_list?></a></li>
+
+            <li><a href="couponListPaper.php"><span class="am-icon-table"></span> <?=$coupon_list_paper?></a></li>
+
+            <li><a href="couponUse.php"><span class="am-icon-exchange"></span> <?=$coupon_use_text?></a></li>
+
+            <li><a href="couponStatus.php"><span class="am-icon-history"></span> <?=$coupon_status_text?></a></li>
+          
+
+          </ul>
+
+        </li>		
+		
+		<?php if($_SESSION[USERSESSION]['username']=='admin' || $_SESSION[USERSESSION]['username']=='wongvio' || $_SESSION[USERSESSION]['username']=='songhua'){ ?>
+        <li class="admin-parent">
+
+          <a class="am-cf" data-am-collapse="{target: '#order'}"><span class="am-icon-money"></span> 订单及结算<span class="am-icon-angle-down am-fr am-margin-right"></span></a>
+
+          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="order">
+
+            <li><a href="ownerOrderList.php" class="am-cf"><span class="am-icon-table"></span> 订单列表</a></li>
+
+            <li><a href="ownerSettleCenter.php" class="am-cf"><span class="am-icon-pencil"></span> 结算中心</a></li>
+          
+
+          </ul>
+
+        </li>
+		<?php }?>
+
+        <li><a href="exit.php"><span class="am-icon-sign-out"></span> <?=$exti_text?></a></li>
+
+      </ul>
+
+
+
+      <div class="am-panel am-panel-default admin-sidebar-panel">
+
+        <div class="am-panel-bd">
+
+          <p><span class="am-icon-bookmark"></span> <?=$system_announcement_text?></p>
+
+          <p><?=$call_text?></p>
+
+        </div>
+
+      </div>
+
+	  
+
+    </div>
+
+</div>

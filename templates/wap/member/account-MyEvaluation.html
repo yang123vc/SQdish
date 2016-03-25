@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>我的评价-SQdish食器</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
+  <link rel="stylesheet" href="/templates/wap/theme/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/templates/wap/theme/css/style.css">
+</head>
+<body>
+ <header data-am-widget="header" class="am-header am-header-default sqBgColor">
+      <div class="am-header-left am-header-nav">
+         <a href="user_index.php" class="">
+             <i class="am-header-icon am-icon-chevron-left"></i>
+          </a>
+      </div>
+
+       <h1 class="am-header-title">我的评价
+       </h1>
+         <?php include "nav.html"?>
+  </header>
+  
+   <div class="am-g lan"></div>
+   
+   
+   
+   <div class="am-g">
+       <?php if($comList) {foreach($comList as $v){?>
+     <div class="am-panel am-panel-default">
+       <div class="am-panel-hd"><span class="headerimg"><img style="width:30px;height:30px;"src="<?php echo $v['seller']['pic'];?>"></span><?php echo $v['seller']['sellerName'];?></div>
+         <div class="am-panel-bd" style="overflow:hidden;">
+            <?php echo date('Y-m-d H:i:s',$v['addtime']);?>
+            
+            <div class="am-u-sm-10" style="padding:0;">
+              <span class="bdimg"><img src="../../templates/theme/bg/star<?php echo $v['star'];?>.png"></span>
+                <div class="am-u-sm-12" style="padding:0;">
+                <strong><?php echo $v['content'];?></strong> <br />
+                 <?php if($v['pic_num']!=0) { ?>
+                    <ul>
+                  <?php for($i=0;$i<$v['pic_num'];$i++) { ?>
+                  <li style="float:left;"><a href="<?php echo $v['img'][$i];?>"><img style="width:30px;height:30px;"src="<?php echo $v['img'][$i];?>" alt="" /></a></li>
+                  <?php } ?>
+                      </ul>
+                  <?php } ?>
+                </div>
+            </div>
+         </div>
+      </div>
+    <?php }} ?>    
+  
+       
+  
+  
+   </div>
+    
+   <div class="am-g lan"></div>
+   
+    <div data-am-widget="gotop" class="am-gotop am-gotop-fixed" >
+    <a href="#top" title="">
+        <img class="am-gotop-icon-custom" src="../theme/bg/top.png" />
+    </a>
+  </div>
+  
+<?php include "footer.html"?>
+
+ 
+<script src="/templates/wap/theme/assets/js/jquery.min.js"></script>
+<script src="/templates/wap/theme/assets/js/amazeui.min.js"></script>
+</body>
+</html>
+</body>
+</html>

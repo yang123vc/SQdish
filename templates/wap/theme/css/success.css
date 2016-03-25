@@ -1,0 +1,19 @@
+a{color:#000; }
+
+ul{ list-style:none; display:block; padding:0;}
+
+.sqBgColor {background:#eda128;}
+
+.sqBgColor a{ color:#FFF;}
+
+.bigimg{ text-align:center; font-size:2rem; color:#eda128; font-weight:bold; margin-bottom:1rem;}
+
+.bigimg span{ max-width:60%; display:inline-block; margin:2rem auto;}
+
+.bigimg span img{ width:100%;}
+
+.table{ border-bottom:#ccc 2px solid;}
+
+.table .am-u-sm-6{ text-align:center;font-size:2rem; margin-bottom:1rem; font-weight:500;}
+
+.s-btn{ width:90%; background:#eda129; color:#FFF; font-size:2rem; padding: 1rem; margin: 10% 5%; border-radius:5px;}

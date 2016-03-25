@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>完成-SQdish食器</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="alternate icon" type="image/png" href="/templates/wap/theme/assets/i/favicon.png">
+   <link rel="stylesheet" href="/templates/wap/theme/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/templates/wap/theme/css/success.css">
+</head>
+
+<body>
+ <header data-am-widget="header" class="am-header am-header-default sqBgColor">
+      <div class="am-header-left am-header-nav">
+         <a href="ndex.php" class="">
+             <i class="am-header-icon am-icon-chevron-left"></i>
+          </a>
+      </div>
+       <h1 class="am-header-title">支付详情</h1>
+ </header>
+  
+  <div class="am-g" style="border-bottom:#ccc 2px solid;">
+     <div class="am-u-sm-4 am-u-sm-centered bigimg">
+        <span><img src="/templates/wap/theme/bg/Bigsuccess.png"></span><br>支付成功
+     </div>
+  </div>
+  
+  <div class="am-g table">
+      <div class="am-u-sm-6">订单号码</div>
+      <div class="am-u-sm-6"><?=$orders['ordercode']?></div>
+      <div class="am-u-sm-6">交易时间</div>
+      <div class="am-u-sm-6"><?php echo date('Y-m-d H:i:s',$orders['time']);?></div>
+      <div class="am-u-sm-6">交易金额</div>
+      <div class="am-u-sm-6" style="color:#eda128;">￥<?=$orders['all_cost']?></div>
+      <div class="am-u-sm-6">商品名称</div>
+     <?php if($detail){foreach($detail as $v){?>
+ <div class="am-g text">
+     <div class="am-u-sm-6"><?php echo $db->get_a("select dishNameCN from f_dish where id='$v[did]'");?></div>
+     <div class="am-u-sm-3">￥<?php echo $v['goods_price'];?></div>
+     <div class="am-u-sm-3"><?php echo $v['goods_count'];?>份</div></div>
+ </div>
+ <?php }}?>
+  </div>
+  
+  <div class="am-g">
+      <div class="am-u-sm-12">
+        <a href="user_orders.php"><button class="s-btn" type="button">完成</button></a> 
+      </div>
+  </div>
+  
+<script src="/templates/wap/theme/assets/js/jquery.min.js"></script>
+<script src="/templates/wap/theme/assets/js/amazeui.min.js"></script>
+</body>
+</html>

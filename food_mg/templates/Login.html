@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>食器管理中心</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="alternate icon" type="image/png" href="templates/assets/i/favicon.png">
+  <link rel="stylesheet" href="templates/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/html/assets/css/sq_mg.css"/>
+  
+  <script src="templates/assets/js/jquery.min.js"></script>
+  <script src="templates/assets/js/amazeui.min.js"></script>
+  <script>
+	function selectLanguage(lan){
+		$.post("selectLanguage.php",{"l":lan},function(data){
+			location.reload();
+		});
+	}
+  </script>
+  <style>
+    .header {
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 200%;
+      margin-top: 30px;
+    }
+    .header p {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body class="login">
+<div class="header">
+  <div class="am-g">
+	 <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+	  <li class="am-dropdown" data-am-dropdown>
+		 <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+          <span class="am-icon-users"></span> <?=$language_text?> <span class="am-icon-caret-down"></span>
+        </a>
+        <ul class="am-dropdown-content">
+          <li><a onclick="selectLanguage('cn');" href="javascript:;"><span class="am-icon-chinese"></span> 中文</a></li>
+          <li><a onclick="selectLanguage('thai');" href="javascript:;"><span class="am-icon-thai"></span> THAI</a></li>
+          <li><a onclick="selectLanguage('en');" href="javascript:;"><span class="am-icon-english"></span> EN</a></li>
+        </ul>
+      </li>
+	 </ul>
+    <h1><?=$website_text?></h1>
+    <p class="login_info"><?=$admin_info_text?></p>
+  </div>
+</div>
+
+<div class="am-g">
+  <div class="am-u-lg-4 am-u-md-8 am-u-sm-centered sqlogin">
+    <h3><?=$login_text?></h3>
+    <hr class="login_top">
+    <br>
+    <form method="post" action="doLogin.php" class="am-form">
+      <label for="username_"><?=$username_text?>:</label>
+	  <div class="am-input-group">
+		<span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
+		<input type="text" name="username" id="email" value="">
+	  </div>
+	  <br/>
+      <label for="password"><?=$psw_text?>:</label>
+	  <div class="am-input-group">
+		<span class="am-input-group-label"><i class="am-icon-lock am-icon-fw"></i></span>
+		<input type="password" name="password" id="password" value="">
+	  </div>
+	  <br/>
+	  <label for="validateCode"><?=$code_text?> <font style="color:red;"><?=$error?></font>:</label>
+	  <hr/>
+	  <div class="am-u-sm-2" style="padding:0">
+		<input type="text" name="validateCode" id="validateCode" value="" maxlength="4">
+	  </div>
+	  <div class="am-u-sm-3">
+		<img title="点击刷新" src="captcha.php" align="absbottom" height="43" onclick="this.src='captcha.php?'+Math.random();">
+	  </div>	
+      <br/>
+	  <label for="errorCode">&nbsp;</label>
+      <div class="am-cf">
+        <input type="submit" name="" value="<?=$login_text?>" class="am-btn am-btn-primary am-btn-sm am-fl">
+        <!--
+        <a href="reg.php"><input type="button" name="reg" value="<?=$reg_text?>" class="am-btn am-btn-primary am-btn-sm am-fl"></a>
+        -->
+      </div>
+    </form>	
+      <br/>
+	<label for="errorCode"><?=$forget_text?></label>
+    <hr>
+    <p>© 2015 Sanho Tec, Inc. Licensed under MIT license.</p>
+  </div>
+</div>
+</body>
+</html>

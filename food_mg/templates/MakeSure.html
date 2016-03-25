@@ -1,0 +1,131 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>食器管理中心</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="alternate icon" type="image/png" href="/food_mg/templates/assets/i/favicon.png">
+  <link rel="stylesheet" href="/food_mg/templates/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/html/assets/css/sq_mg.css"/>
+  
+  <script src="/food_mg/templates/assets/js/jquery.min.js"></script>
+  <script src="/food_mg/templates/assets/js/amazeui.min.js"></script>
+  <script>
+	function selectLanguage(lan){
+		$.post("/food_mg/selectLanguage.php",{"l":lan},function(data){
+			if(lan == 'cn'){
+				location.href = "MakeSure.html";
+			}else if(lan == 'thai'){
+				location.href = "MakeSure_thai.html";
+			}else if(lan == 'en'){
+				location.href = "MakeSure_en.html";
+			}
+		});
+	}
+  </script>
+  <style>
+    .header {
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 200%;
+      margin-top: 30px;
+    }
+    .header p {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body class="login">
+<div class="header">
+  <div class="am-g">
+	 <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+	  <li class="am-dropdown" data-am-dropdown>
+		 <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+          <span class="am-icon-users"></span> 语言 <span class="am-icon-caret-down"></span>
+        </a>
+        <ul class="am-dropdown-content">
+          <li><a onclick="selectLanguage('cn');" href="javascript:;"><span class="am-icon-chinese"></span> 中文</a></li>
+          <li><a onclick="selectLanguage('thai');" href="javascript:;"><span class="am-icon-thai"></span> THAI</a></li>
+          <li><a onclick="selectLanguage('en');" href="javascript:;"><span class="am-icon-english"></span> EN</a></li>
+        </ul>
+      </li>
+	 </ul>
+    <h1><img src="/html/assets/i/logo.png"> 食器 sqdish.com</h1>
+    <p class="login_info">如果您希望使用食器平台，请先同意服务使用协议</p>
+  </div>
+</div>
+
+<div class="am-g">
+  <div class="am-u-lg-4 am-u-md-8 am-u-sm-centered sqlogin">
+    <h3>服务使用协议</h3>
+    <hr class="login_top">
+    <br>
+    <form method="post" action="doLogin.php" class="am-form">
+		<div class="am-form-group">
+			<textarea class="" rows="20" id="doc-ta-1">
+一、服务条款的确认和接纳
+SQdish平台涉及的产品、相关软件的所有权和运作权归Lanna Ricto Business Consulting Co.,Ltd所有，商户通过本网站注册程序，勾选“我已经阅读并同意以下条款，提交注册信息”，即表示商户与Lanna Ricto Business Consulting Co.,Ltd已达成协议，自愿接受本服务条款的所有内容和相关使用流程。
+二、商户账户的安全性
+1.商户一旦注册成功，成为SQdish平台的商户，将得到一个商户名和密码，并有权利使用自己的商户名及密码随时登陆SQdish平台。
+2.商户对商户名和密码的安全负全部责任，同时对以其商户名进行的所有活动和事件负全责。
+3.商户不得以任何形式擅自转让或授权他人使用自己的SQdish平台商户名。
+4.如果商户泄漏了密码，有可能导致不利的法律后果，因此不管任何原因导致商户的密码安全受到威胁，应该立即和SQdish平台客服人员取得联系，否则后果自负。
+三、商户声明与保证
+1.商户承诺其为具有完全民事行为能力的民事主体，具有达成交易履行其义务的能力。
+2.商户有义务在注册时提供自己的真实资料，并保证诸如商铺名称、电子邮件、联系电话、商铺地址等内容的有效性及安全性，保证SQdish平台工作人员可以通过上述联系方式与商户取得联系。同时，商户也有义务在相关资料实际变更时及时更新有关注册资料。
+四、 SQdish平台提供的服务内容
+1.SQdish平台为商户及顾客提供中文菜单服务。 
+服务包括以下功能：
+(1) 商户上传菜单后，SQdish平台为商户提供免费的中文菜单翻译服务，若商户未能将对应的宣传图片上传，SQdish将通过网络平台查找并上传对应的菜品图片，当中产生的问题由双方共同承担；
+(2)菜单的承载形式为二维码，SQdish保证二维码可有效使用，商户保证二维码的完整和可视性，若二维码出现破损而导致无法使用时，因及时通知SQdish；
+(3)SQdish在平台生成中文菜单后，将与商户确认信息的准确性，菜单一旦投入使用，即视为商户已认可相关信息的准确性，在餐厅菜品及价格有所变更时，应及时告知SQdish修改，若因信息错误导致与消费者之间的纠纷，责任由商户承担；
+(4)SQdish保证点菜系统的支撑服务。
+2.SQdish平台有权随时审核或者删除商户发布的涉嫌违法信息；
+3.为保证平台的运营，SQdish享有在平台发布广告的权益，广告将出现在商户信息页面，由此产生的收益归SQdish所有。
+五、 服务的变更、中断
+1.鉴于网络服务的特殊性，商户需同意SQdish平台会变更、中断部分网络服务；
+2.SQdish平台需要定期或不定期地对提供网络服务的平台或相关的设备进行检修或者维护，如因此类情况而造成网络服务在合理时间内的中断，SQdish平台无需为此承担任何责任。
+六、 服务条款修改
+1.SQdish平台有权随时修改本服务条款的任何内容，一旦本服务条款的任何内容发生变动，SQdish平台将会通过适当方式向商户提示修改内容。
+2.如果不同意SQdish平台对本服务条款所做的修改，商户有权停止使用此平台的相关服务。
+3.如果商户继续使用此平台的服务，则视为商户接受SQdish平台对本服务条款所做的修改。
+七、 通告
+所有发给商户的通告都可通过电子邮件或常规的信件传送。SQdish平台会通过邮件服务发报消息给商户，告诉他们服务条款的修改、服务变更、或其它重要事项。
+八、 免责与赔偿声明
+1.若SQdish平台已经明示其服务提供方式发生变更并提醒商户应当注意事项，商户未按要求操作所产生的一切后果由商户自行承担。
+2.商户明确同意其使用SQdish平台服务所存在的风险将完全由其自己承担；因其使用SQdish平台服务而产生的一切后果也由其自己承担。
+3.商户同意保障和维护SQdish平台的利益，由于商户登录网站内容违法、不真实、不正当、侵犯第三方合法权益，或商户违反本协议项下的任何条款而给SQdish及任何其他第三人造成损失，商户同意承担由此造成的损害赔偿责任。
+九、 隐私声明
+1.适用范围：
+在商户注册SQdish平台账户时，根据要求提供的注册信息。
+2.信息使用：
+(1) SQdish平台不会向任何人泄露商户的注册信息，除非事先得到商户的许可；
+(2)SQdish平台亦不允许任何第三方以任何手段收集、编辑、出售或者无偿传播平台信息，若需转载、传播，需提前告知SQdish，经SQdish同意后，注明信息来源于SQdish，才能使用。任何单位及个人如从事上述活动，一经发现，SQdish平台有权立即追溯其法律责任。
+3.信息披露--商户的注册信息将在下述情况下部分或全部被披露：
+(1)经商户同意，向第三方披露；
+(2)根据法律的有关规定，或者行政或司法机构的要求，向第三方或者行政、司法机构披露；
+(3)如果商户出现违反有关法律或者网站政策的情况，需要向第三方披露；
+(4)为提供商户所要求的产品和服务，而必须和第三方分享商户的个人信息；
+(5)其它SQdish平台根据法律或者网站政策认为合适的披露；
+(6) 商户使用SQdish平台服务时提供的银行账户信息，SQdish平台将严格履行相关保密约定。
+以上条款的解释权归Lanna Ricto Business Consulting Co.,Ltd最终所有
+lannaricto@gmail.com
+			</textarea>
+		</div>
+		<div class="am-cf" style="margin:0 0 0 217px;">
+		<a class="am-btn am-btn-success am-btn-sm am-fl" href="../login.php">同意</a>
+        <a class="am-btn am-btn-danger am-btn-sm am-fl" href="#">不同意</a>
+      </div>
+    </form>	
+    <hr>
+    <p>© 2015 Sanho Tec, Inc. Licensed under MIT license.</p>
+  </div>
+</div>
+</body>
+</html>

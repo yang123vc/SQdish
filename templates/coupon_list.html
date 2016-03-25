@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>优惠券|SQdish食器</title>
+    <link href="/templates/theme/css/style.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<?php include "inc/header.html";?>
+<?php include "inc/header_info.html"?>
+<div class="banner5"></div>
+<div class="ctdp">
+    <div class="wrap clear">
+        <div class="top"><a class="a1 hover" href="#1">优惠券列表</a></div>
+        <div class="d3 d31">
+            <div class="lb">
+                <ul class="lifl clear">
+		<?php foreach($couponList as $v){?>			
+                    <li>
+                        <a href="coupon_detail.php?cid=<?php echo $v['id'];?>">
+                            <img class="img" src="<?php echo $v['pic'];?>" alt=""/>
+                            <span class="s1"><?=$v['couponNameCN']?></span>
+                            <span class="s2">
+                                <span class="s21 fl"><img src="/templates/theme/bg/13.png" alt=""/></span>
+                                <span class="s22 fl">累计3名吃货光临</span>
+                            </span>
+                            <span class="s3">在线支付<i>满15减2，满40减10！</i></span>
+                        </a>
+                    </li>
+		<?php }?>			
+
+					
+                </ul>
+                <div class="fy fy1">
+                    <!-- <a href="#1"><span class="s1"><img src="/templates/theme/bg/zuo.png" alt=""/></span></a> -->
+					<span class="s2">                
+							   <?php  echo $pages->display(); ?>
+					</span>
+                    <!-- <a href="#1"><span class="s3"><img src="/templates/theme/bg/you.png" alt=""/></span></a> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php include "inc/footer.html"?>
+
+
+<script type="text/javascript" src="/templates/theme/common/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/templates/theme/common/jquery.tools.min.js"></script>
+<script type="text/javascript" src="/templates/theme/common/ciads.js"></script>
+</body>
+</html>

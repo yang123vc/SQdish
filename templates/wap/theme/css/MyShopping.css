@@ -1,0 +1,43 @@
+a{color:#000; }
+
+ul{ list-style:none; display:block; padding:0;}
+
+.sqBgColor {background:#eda128;}
+
+.sqBgColor a{ color:#FFF;}
+
+.am-menu-dropdown1 .am-menu-nav>li>a{ background:#eda128; border-bottom:#fff;width:20%;float:right; font-size:1rem;}
+
+.am-menu-dropdown1 .am-menu-nav>li{ margin:1px 0;}
+
+.am-menu-dropdown1 .am-menu-nav{ right:-10px}
+
+.lan{ height:10px; background:#f5f5f5;}
+
+[class*=am-icon-]{ display:inline;}
+
+.am-accordion-title{ overflow:hidden;}
+
+.am-accordion-title img{ display:inline-block; width:100%;}
+
+.am-accordion-gapped .am-accordion-title{ padding:.8rem 0 .8rem 0; }
+
+.am-accordion-gapped .am-active .am-accordion-title{background:#FFF;}
+
+.sign ul li{ float:left;}
+
+.Minus-sign{ width:100%; border:#eda129 1px solid;padding: .5rem 0;display: block;text-align: center; font-size: 2rem;cursor:pointer;}
+
+.spinnerExample{ width:100%; border:#eda129 1px solid; text-align:center;padding: 1rem 0;}
+
+.am-accordion-gapped .am-accordion-item.am-active{ border:0;}
+
+.am-accordion-gapped .am-accordion-title{ border:0;}
+
+.am-accordion-gapped .am-accordion-item{border:0;}
+
+.am-accordion-gapped{ border-bottom:#ccc 1px solid;}
+
+.text{ font-size:2rem; padding:2rem 0; }
+
+.s-btn{ width:90%; background:#eda129; color:#FFF; font-size:2rem; padding: 1rem; margin: 10% 5%; border-radius:5px;}

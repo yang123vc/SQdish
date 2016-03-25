@@ -1,0 +1,92 @@
+<div class="admin-sidebar am-offcanvas" id="admin-offcanvas">
+    <div class="am-offcanvas-bar admin-offcanvas-bar">
+      <ul class="am-list admin-sidebar-list">
+        <li><a href="/food_mg"><span class="am-icon-home"></span> <?=$index_text?></a></li>
+        <li class="admin-parent">
+          <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}"><span class="am-icon-file"></span> <?=$merchant_manage_text?><span class="am-icon-angle-down am-fr am-margin-right"></span></a>
+          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
+            <li><a href="/food_mg/sellerAdd.php" class="am-cf"><span class="am-icon-plus"></span> <?=$new_businesses_text?></a></li>
+            <li><a href="/food_mg/sellerList.php"><span class="am-icon-table"></span> <?=$merchant_text?></a></li>
+          </ul>
+        </li>
+        <li class="admin-parent">
+          <a class="am-cf" data-am-collapse="{target: '#collapse-nav-user'}"><span class="am-icon-user"></span> <?=$user_manage_text?><span class="am-icon-angle-down am-fr am-margin-right"></span></a>
+          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav-user">
+            <li><a href="/food_mg/UserAdd.php" class="am-cf"><span class="am-icon-plus"></span> <?=$add_user_text?></a></li>
+            <li><a href="/food_mg/UserList.php"><span class="am-icon-table"></span> <?=$user_list_text?></a></li>
+          </ul>
+        </li>
+         <li class="admin-parent">
+          <a class="am-cf" data-am-collapse="{target: '#collapse-nav-u'}"><span class="am-icon-file"></span> <?=$member_manager_text?><span class="am-icon-angle-down am-fr am-margin-right"></span></a>
+          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav-u">
+            <li><a href="/food_mg/MemberList.php"><span class="am-icon-table"></span><?=$member_list_text?></a></li>
+          </ul>
+        </li>
+          <li class="admin-parent">
+          <a class="am-cf" data-am-collapse="{target: '#collapse-nav-o'}"><span class="am-icon-file"></span><?=$order_manager_text?><span class="am-icon-angle-down am-fr am-margin-right"></span></a>
+          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav-o">
+            <li><a href="/food_mg/OrderList.php"><span class="am-icon-table"></span><?=$order_list_text?></a></li>
+          </ul>
+        </li>
+        <li class="admin-parent">
+          <a class="am-cf" data-am-collapse="{target: '#collapse-nav-article'}"><span class="am-icon-book"></span> <?=$cms_article_text?><span class="am-icon-angle-down am-fr am-margin-right"></span></a>
+          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav-article">
+            <li><a href="/food_mg/articleAdd.php" class="am-cf"><span class="am-icon-plus"></span> <?=$add_article_text?></a></li>
+            <li><a href="/food_mg/articleList.php"><span class="am-icon-pencil"></span> <?=$list_article_text?></a></li>
+            <li><a href="/food_mg/ArticleCategoryList.php"><span class="am-icon-newspaper-o"></span> <?=$article_type_text?></a></li>
+            <li><a href="/food_mg/articleKeywordList.php"><span class="am-icon-bookmark"></span> <?=$keywords_admin_text?></a></li>
+          </ul>
+        </li>
+      <?php //if($_SESSION[USERSESSION]['username']=='admin' || $_SESSION[USERSESSION]['username']=='wongvio'){ ?>
+        <li class="admin-parent">
+          <a class="am-cf" data-am-collapse="{target: '#collapse-nav-option'}"><span class="am-icon-user"></span><?php echo $option_list_text?><span class="am-icon-angle-down am-fr am-margin-right"></span></a>
+          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav-option">
+            <li><a href="/food_mg/OptionManage.php"><span class="am-icon-cogs"></span> <?=$Option_Manage_text?></strong></a></li>
+            <li><a href="dishExtra.php"><span class="am-icon-file-image-o"></span> <?=$icon_service_text?></a></li>
+            <li><a href="restaurantType.php"><span class="am-icon-server"></span> <?=$custom_type_text?></a></li>
+          </ul>
+        </li>
+      <?php //} ?>
+     <?php if($_SESSION[USERSESSION]['username']=='admin' || $_SESSION[USERSESSION]['username']=='wongvio'){ ?>
+              <li class="admin-parent">
+          <a class="am-cf" data-am-collapse="{target: '#collapse-nav-email'}"><span class="am-icon-book"></span><?=$email_manage_text?><span class="am-icon-angle-down am-fr am-margin-right"></span></a>
+          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav-email">
+            <li><a href="/food_mg/emailAdd.php" class="am-cf"><span class="am-icon-plus"></span>&nbsp;<?=$write_email_text?></a></li>
+             <li><a href="/food_mg/emailCatAdd.php" class="am-cf"><span class="am-icon-plus"></span>&nbsp;新增分类</a></li>
+            <li><a href="/food_mg/emailList.php"><span class="am-icon-pencil"></span> <?=$email_list_text?></a></li>
+          </ul>
+        </li>
+       <li class="admin-parent">
+          <a class="am-cf" data-am-collapse="{target: '#collapse-nav-rdone'}"><span class="am-icon-book"></span>推荐人结算<span class="am-icon-angle-down am-fr am-margin-right"></span></a>
+          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav-rdone">
+            <li><a href="/food_mg/refereeDone.php" class="am-cf"><span class="am-icon-plus"></span>&nbsp;结算</a></li>
+            <li><a href="/food_mg/refereeDoneList.php" class="am-cf"><span class="am-icon-plus"></span>&nbsp;结算清单</a></li>
+
+          </ul>
+        </li>
+               <li class="admin-parent">
+          <a class="am-cf" data-am-collapse="{target: '#collapse-nav-bdone'}"><span class="am-icon-book"></span>商家结算<span class="am-icon-angle-down am-fr am-margin-right"></span></a>
+          <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav-bdone">
+            <li><a href="/food_mg/merchantDone.php" class="am-cf"><span class="am-icon-plus"></span>&nbsp;结算</a></li>
+            <li><a href="/food_mg/merchantDoneList.php" class="am-cf"><span class="am-icon-plus"></span>&nbsp;结算清单</a></li>
+
+          </ul>
+        </li>
+              <?php } ?>
+	  <li><a href="/food_mg/dishAllList.php"><span class="am-icon-table"></span> <?=$dishes_list?></a></li>	
+        <li><a href="/food_mg/TranslateManage.php"><span class="am-icon-building"></span> <?=$Translate_Manage?></strong></a></li>
+
+        <li><a href="/food_mg/DishResultsList.php"><span class="am-icon-bar-chart"></span> <?=$order_statistics_text?></a></li>
+        <li><a href="/food_mg/System.php"><span class="am-icon-gear"></span> <?=$global_setting_text?></a></li>
+        <li><a href="exit.php"><span class="am-icon-sign-out"></span> <?=$exti_text?></a></li>
+      </ul>
+
+      <div class="am-panel am-panel-default admin-sidebar-panel">
+        <div class="am-panel-bd">
+          <p><span class="am-icon-bookmark"></span> <?=$system_announcement_text?></p>
+          <p><?=$call_text?></p>
+        </div>
+      </div>
+	  
+    </div>
+</div>

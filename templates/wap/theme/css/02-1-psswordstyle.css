@@ -1,0 +1,64 @@
+
+.sqBgColor {
+	background:#eda128;
+}
+.psswordform {
+	padding:5% 2%;
+}
+.psswordform input, .am-form input[type=text], .am-form input[type=password] {
+	padding:3%;
+	font-size:2rem;
+}
+.am-form input[type=validation]{
+	padding:4%;
+	width: 100%;	
+}
+.am-form-group input[type=submit]{
+	padding:13% 0;
+}
+.psswordform p a{
+	color:#333;
+	font-size:2rem;
+}
+.floating{
+	float:left;
+}
+.size{
+	width:72%;
+}
+.size1{
+	width:25%;
+	margin-left:3%;
+}
+
+.prompt img{
+	width:100%;
+}
+.prompt p{
+	text-align:center;
+	color:#999999;
+	font-size:2rem;
+}
+
+
+.container{
+	width:100%; 
+	height:100%; 
+	background-color:#000;
+	opacity:0.5; 
+	position: fixed;
+}
+
+.im img{
+	position: absolute; 
+	margin:50% 0;
+	width:100%;
+}
+
+.am-btn{
+	color:#FFF;
+}
+
+.margin{ margin-bottom:15%;}
+
+

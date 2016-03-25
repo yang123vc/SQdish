@@ -1,0 +1,103 @@
+				
+
+				<div class="ciads_scroll" id="cartlist">
+
+						<form action="<?php echo $url;?>/confirmorder.php" method="post" onsubmit="return checkGoodsCart();">
+						<div class="r1">
+							<span class="s1 fl">已选商品</span>
+							<a onclick="clearCart();"><span class="s2 fr">清空<?php echo $url;?></span></a>
+						</div>
+						<ul >
+							<li>
+								<div class="l1 fl">菜品</div>
+								<div class="l2 fl">份数</div>
+								<div class="l3 fl">单价</div>
+							</li>
+							<?php if (count($goods_list) > 0) { ?>
+							<?php foreach($goods_list as $goods) { ?>
+							<li>
+								<div class="l1 fl"><?php echo $goods['name']; ?></div>
+								<div class="l2 fl"><a onclick="removeonedish(<?php echo $goods['id'];?>,<?php echo $goods['shop_id'];?>,1);"class="a1" href="#1"></a><span><?php echo $goods['count']; ?></span><a onclick="addonedish(<?php echo $goods['id'];?>,<?php echo $goods['shop_id'];?>,1);" class="a2" href="#1"></a></div>
+								<div class="l3 fl"><?php echo $goods['cost']; ?></div>
+							</li>
+							<?php }  ?>
+							<?php } ?>
+
+						</ul>
+						<div class="r2">
+							<span class="s1 fl">当前汇率</span>
+							<span class="s2 fr">0.182</span>
+						</div>
+						<div class="r3">可使用支付宝、微信在线人民币支付</div>
+						<div class="r4">
+							<span class="s1 fl" id="Cart">共计฿<?php echo $carinfo['sum']; ?>铢</span>
+							<input type="submit" class="fr tj" value="提交订单"/>
+						</div>
+						<div class="r5 clear">
+							<span class="s1">商家信息</span>
+							<span class="s2"><?php echo $detail['intro'];?></span>
+							<div id="mapContainer" style="height:274px;"></div>
+						</div>
+							<input id="goodsNum" type="hidden" value="<?php echo $carinfo['count'];?>"/>
+						</form>
+				</div>
+				<!--谷歌地图-->				
+				<style type="text/css">
+				.markerContentStyle{ position:relative;}
+				.markerContentStyle2{ background:url(theme/bg/1113.png) no-repeat; width:240px; height:50px; position:absolute; top:-180px; left:-168px; display:none;}
+				.markerContentStyle2 .close{ position:absolute; top:18px; right:18px; width:17px; height:17px; background:url(theme/bg/1114.png) no-repeat;}
+				.markerContentStyle2 .tx{ margin:64px 20px 0 0 ;display: block;width: 74px;height: 74px;border-radius: 5px;-moz-border-radius:5px; -webkit-border-radius:5px;float: right}
+				.markerContentStyle2 .pj{width: 66px;height: 13px;display: block;position: relative;top: 17px;left: 0px }
+				.markerContentStyle2 .dd{width: 250px;height: 48px;position: absolute;top: 0;left: 20px;line-height: 48px;font-size: 16px;color: #333333;}
+				.markerContentStyle2 .dd a{font-size: 12px;color: #449eb5;margin-left: 8px;}
+				.markerContentStyle2 .d1{font-size:12px;width: 240px;height: 100px;position: absolute;top:50px;left: 20px;}
+				.markerContentStyle2 .d1 h2{ font-size:12px; color:#777777; line-height:23px; padding-top:10px; padding-bottom:1px;display: inline;margin-left: 80px;}
+				.markerContentStyle2 .d1 h2 span{color: #e09028;}
+				.markerContentStyle2 .d1 .p1,.markerContentStyle2 .d1 .p2{ color:#666666; line-height:16px;margin-top: 5px;}
+				.markerContentStyle3{ z-index:999;}
+				</style>
+				<script type="text/javascript">
+				var data=new Array();
+				var Marker=new Array();
+				//----
+				data[0]=new Array(<?php echo explode(',',$detail['coordinates'])[1];?>,<?php echo explode(',',$detail['coordinates'])[0];?>,"<?php echo $detail['pic'];?>","/templates/theme/bg/pj1.png","<?php echo $detail['sellerName'];?>","http://www.sqdish.com","起价：","￥280","五星级","<?php echo $detail['address'];?>","<?php echo $detail['tel'];?>");
+
+				//------
+				var panorama;
+
+				function initMap() {
+					//----
+					var astorPlace = {lat:<?php echo explode(',',$detail['coordinates'])[0];?>, lng: <?php echo explode(',',$detail['coordinates'])[1];?>};
+
+
+				//-----
+				  // Set up the map
+				  var map = new google.maps.Map(document.getElementById('mapContainer'), {
+					center: astorPlace,
+					zoom: 15,
+					streetViewControl: false
+				  });
+
+				  for(i=0;i<data.length;i++)
+				  {
+					 eval("var Marker"+i+" = new google.maps.Marker({ position: {lat:"+data[i][1]+", lng:"+data[i][0]+"},		  map:map,		  icon: '/templates/images/marker_spritez.png',		  title: ''	  });");
+					 eval("var infowindow"+i+" = new google.maps.InfoWindow({content : '<div style=\" width:210px; height:150px; position:relative; \"><div style=\"width:250px;height: 48px;position: absolute;top: 0;left: 20px;line-height: 28px;font-size: 16px;color: #333333;\" class=dd>"+data[i][4]+"<img style=\"margin:10px 0 0 0 ;display: block;width: 210px;height: 80px;border-radius: 5px;-moz-border-radius:5px; -webkit-border-radius:5px;float: left\" class=tx src="+data[i][2]+" class=fr /></div></div>'});");
+					 eval("Marker"+i+".addListener('click', function(){ zkla(); map.setCenter(Marker"+i+".getPosition()); infowindow"+i+".open(map,Marker"+i+");});");
+				  }
+			
+				
+				
+				
+					
+					function zkla()
+					{
+					 for(i=0;i<data.length;i++)
+					  {
+						eval("infowindow"+i+".close();");
+					  }
+					}
+
+				}
+				</script>
+				<script src="http://ditu.google.cn/maps/api/js?key=AIzaSyCKF7cDuYawaLgh8tO2jY9-vusUuANh9NY&signed&callback=initMap"></script>
+				<!--谷歌地图-->

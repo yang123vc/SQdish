@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><?php echo $detail['sellerName'];?>|SQdish食器</title>
+    <link href="templates/theme/css/style.css" type="text/css" rel="stylesheet" />
+    
+</head>
+<body>
+<?php include "inc/header.html"?>
+<div class="city1">
+    <div class="city wrap">
+        <span class="s1">当前位置：清迈  <a href="#">[ 点击切换 ]</a></span>
+        <span class="s2"><a href="#">登录</a><span>丨</span><a href="#">注册</a></span>
+        <div class="xlk2">
+            <a href="">中文</a>
+            <span class="arrow"></span>
+            <span class="yuyan">
+                <a href="#">English</a>
+            </span>
+        </div>
+        <div class="xlk1">
+            <a href="">清迈</a>
+            <span class="arrow"></span>
+            <span class="chengshi">
+                <a href="#">清迈</a>
+                <a href="#">清迈</a>
+                <a href="#">清迈</a>
+            </span>
+        </div>
+
+    </div>
+</div>
+<div class="shxq">
+    <div class="d1">
+        <div class="wrap">
+            <img class="img fl" src="<?php echo $detail['pic'];?>" alt=""/>
+            <div class="d2 fl">
+                <span class="s1"><?php echo $detail['sellerName'];?></span>
+                <span class="s2">
+                    <span class="s21 fl"><img src="templates/theme/bg/13.png" alt=""/></span>
+                    <span class="s22 fl">月售<?php echo $detail['count'];?>份</span>
+                    <span class="s23 fl"><?php echo $detail['BH'];?></span>
+                </span>
+                <span class="s5">
+                                <?php foreach($ser_icon as $k){?>
+                                <span class="s52" ><img style= "width:auto; height:auto; max-width:100%;max-height:100%;"src="<?=$k?>" /></span>
+                                <?php }?>
+                </span>
+            </div>
+            <div class="d3 fl">
+                <a class="hover" href="#1">菜 单<?php echo $detail['id'];?></a>
+				<a href="#1">优惠券</a><!--此按钮需要判断商户是否有优惠券-->
+				<a href="#1">评 价</a>
+				<a href="#1" class="sh">商户名片<div class="wx"><img src="<?php echo $detail['QRCode'];?>"></div></a>
+            </div>
+            <ul class="d4 fr lifl">
+                <li><span class="s1"><?php echo $detail['click'];?>次</span><span class="s2">浏览量</span></li>
+                <li><span class="s1">฿100</span><span class="s2">人均消费</span></li>
+                <li><span class="s1">78条</span><span class="s2">评价数</span></li>
+                <li><a href="#1"><span class="s1 s11"></span><span class="s2 s21">收藏商户</span></a></li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="msfl">
+        <div class="wrap clear">
+            <div class="left fl">
+                <div class="t1"><span>美食分类</span></div>
+                <div class="t2">
+					<span><a href="#" class="hover">全部 (415)</a></span> 
+					<?php foreach($typeList as $v){?>
+					<span><a href="business_detail_type.php?sid=<?php echo $detail['id'];?>&dtid=<?php echo $v['id'];?>"><?php echo $v['typeNameCN'];?> (<?php echo $v['count'];?>)</a></span>
+					<?php }?>
+                </div>
+                <?php foreach($type_dish as $k=>$v){?>
+                <div class="t1"><span><?php echo $k;?></span></div>
+                <ul class="clear lifl">
+                        <?php foreach($v as $s){?>
+                    <li>							
+                            <a href="#goodsurl"><img class="img fl" src="<?php echo $s['pic'];?>" alt=""/></a>
+                            <div class="ld fl">
+                                <a href="#goodsurl"><span class="s1"><?php echo $s['dishNameCN'];?></span></a>
+                                <span class="s2">
+                                    <span class="s21">6人推荐</span><span class="s22">|</span><span class="s21"> 已售<?php echo $s['used'];?>份</span>
+                                </span>
+                                <span class="s3">฿<?php echo $s['price'];?></span>
+                            </div>
+							<a href="#cartButton" class="cartButton" id="<?php echo $s['id'].'_'.$detail['id'];?>"></a>
+                    </li>
+                    <?php }?>
+                </ul>
+                  <?php }?>
+            </div>
+            <div class="right fr">
+
+
+				<div class="ciads_scroll">
+					<div class="r1">
+						<span class="s1 fl">已选商品</span>
+						<a href="#1"><span class="s2 fr">清空</span></a>
+					</div>
+					<ul id="cart_list">
+						<li>
+							<div class="l1 fl">菜品</div>
+							<div class="l2 fl">份数</div>
+							<div class="l3 fl">单价</div>
+						</li>
+                        <?php if (count($goods_list) > 0) { ?>
+                        <?php foreach($goods_list as $goods) { ?>
+						<li>
+							<div class="l1 fl"><?php echo $goods['name']; ?></div>
+							<div class="l2 fl"><a class="a1" href="#1"></a><span><?php echo $goods['count']; ?></span><a class="a2" href="#1"></a></div>
+							<div class="l3 fl"><?php echo $goods['cost']; ?></div>
+						</li>
+                        <?php }  ?>
+                        <?php } ?>
+
+					</ul>
+					<div class="r2">
+						<span class="s1 fl">配送费（不计入起送价）</span>
+						<span class="s2 fr">0</span>
+					</div>
+					<div class="r3">可使用支付宝、微信、手机QQ进行在线支付</div>
+					<div class="r4">
+						<span class="s1 fl" id="Cart">共计฿<?php echo $carinfo['sum']; ?>元</span>
+						<input type="submit" class="fr tj" value="提交订单"/>
+					</div>
+					<div class="r5 clear">
+						<span class="s1">商家信息</span>
+						<span class="s2"><?php echo $detail['intro'];?></span>
+						<img src="templates/images/24.jpg">
+					</div>
+				</div>
+
+
+
+
+
+
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+<?php include "inc/footer.html"?>
+
+<script type="text/javascript" src="templates/theme/common/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="templates/theme/common/jquery.tools.min.js"></script>
+<script type="text/javascript" src="templates/theme/common/ciads.js"></script>
+<script type="text/javascript" src="templates/theme/common/jquery.fly.min.js"></script> 
+<script type="text/javascript">
+$(function(){
+	$('.shxq .msfl .left ul li a.cartButton').on('click', addCart);
+
+	$(window).scroll(function(){
+		wTop=parseInt($(document).scrollTop());
+		if(wTop>parseInt($(".right").offset().top))
+		{
+			$(".ciads_scroll").addClass("ciads_scroll2").width($(".right").width()).css("right",($(window).width()-1200)/2);
+		}
+		else
+		{
+			$(".ciads_scroll").removeClass("ciads_scroll2");
+		}
+	});
+});
+function addCart(event) {
+
+var shop_goods = this.id.split("_");
+var goods_id = shop_goods[0];
+var shop_id =  shop_goods[1];
+var num = 1;
+
+
+	$.ajax({
+		type : "POST",
+		url : 'http://www.caipin.com/ajax_addCart.php/ajax_addCart.php',
+        data:{goods_id:goods_id,shop_id:shop_id,num:num},
+		dataType : "json",
+		success : function(data)
+		{
+			
+		        alert(data);
+		}
+	});
+
+
+var offset = $('#Cart').offset(), flyer = $('<img class="u-flyer" src="templates/images/3333.png"/>');
+flyer.fly({
+    start: {
+        left: event.pageX,
+        top: event.pageY
+    },
+    end: {
+        left: offset.left+20,
+        top: offset.top,
+        width: 20,
+        height: 20
+    },
+	onEnd:function(){
+		flyer.remove();
+	}
+});
+}
+
+
+
+</script>
+</body>
+</html>

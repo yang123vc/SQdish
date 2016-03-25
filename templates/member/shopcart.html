@@ -1,0 +1,244 @@
+  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>SQdish食器-消息管理</title>
+    
+	<meta name="keywords" content="">
+		<meta name="description" content="">
+     <link rel="stylesheet" href="/templates/assets/css/amazeui.min.css">
+  <link href="/templates/theme/css/style.css" type="text/css" rel="stylesheet" />
+    <link href="/templates/theme/css/sqStyle.css" type="text/css" rel="stylesheet" />
+  <link rel="stylesheet" href="/templates/theme/css/jy.css">
+  <link rel="stylesheet" href="/templates/theme/css/nstyle.css"/>
+    <script type="text/javascript" src="/templates/theme/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/templates/theme/js/jquery.tools.min.js"></script>
+    <script type="text/javascript" src="/templates/theme/js/ciads.js"></script>
+	<script type="text/javascript" src="/templates/theme/js/demo.js"></script>
+
+
+   
+</head>
+<body>
+<div class="header">
+    <div class="wrap clear">
+        <h1 class="logo fl"><a href="#"></a>
+        
+        </h1>
+        <div class="nav fl">
+            <ul class="lifl clear">
+                <li class="li1"><a href="/"><span class="s1">首页</span><span class="s2">home</span><span class="s4"></span></a></li>
+                <li class="li2"><a href="#"><span class="s1">榜单推荐</span><span class="s2">Recommend</span><span class="s4"></span></a></li>
+                <li class="li3"><a href="#"><span class="s3"></span><span class="s4"></span></a></li>
+                <li class="li4"><a href="#"><span class="s1">优惠劵</span><span class="s2">coupon</span><span class="s4"></span></a></li>
+                <li class="li5"><a href="#"><span class="s1">心愿单</span><span class="s2">wish list</span><span class="s4"></span></a></li>
+                <li class="li6"><a href="article_list.php"><span class="s1">印记</span><span class="s2">marking</span><span class="s4"></span></a></li>
+                <li class="li7">
+                    <input class="ssk" type="text" value="输入关键字进行查找"/>
+                    <input class="btn" type="button"/>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+<div class="city1">
+    <div class="city wrap">
+        <ol class="am-breadcrumb am-breadcrumb-slash Breadcrumb">
+         <span><i class="am-icon-map-marker am-icon-sm"></i> </span>
+  <li><a href="#">首页</a></li>
+  <li><a href="#">个人中心</a></li>
+   <li><a href="#">交易管理</a></li>
+  <li class="color">我的购物车</li>
+         
+         <div class="name">
+          <li class="am-dropdown" data-am-dropdown>
+        <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;" style="color:#eda129;">
+          吃货小胖88 <span class="am-icon-caret-down"></span>
+        </a>
+        <ul class="am-dropdown-content down">
+          <li><a href="#"><span class="am-icon-user am-margin-left-md"></span> 个人中心</a></li>
+          <li><a href="#"><span class="am-icon-star am-margin-left-md"></span> 我的收藏</a></li>
+          <li><a href="#"><span class="am-icon-file am-margin-left-md"></span> 我的订单</a></li>
+          <li><a href="#"><span class="am-icon-cny am-margin-left-md"></span> 我的优惠券</a></li>
+          <li><a href="#"><span class="am-icon-cog am-margin-left-md"></span> 账号设置</a></li>
+          <li><a href="#"><span class="am-icon-sign-out am-margin-left-md"></span> 注销
+          </a></li>
+          
+        </ul>
+      </li>
+         </div>
+         </ol>
+    </div>
+</div>
+
+<div class="am-g am-u-md-centered content">
+  <?php include 'user_sidebar.html';?>
+  
+      <div class="am-u-md-10">
+  <div class="am-g"> 
+  <div class="am-u-md-12" style=" margin-bottom:10px;">
+<div class="am-g" style="margin-left:20px">
+<div class="am-panel-hd column">
+ <strong class="size">我的购物车</strong>
+            </div>
+
+
+<form action="<?php echo $url;?>/confirmorder.php" method="post" onsubmit="return checkCart();">
+
+
+  <div class="catbox">
+  <table id="cartTable" class="am-table am-table-centered">
+    <thead>
+      <tr>
+        <th></th>
+        <th>商品图片</th>
+         <th>商品名称</th>
+        <th>单价</th>
+        <th>数量</th>
+        <th>小计</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+   <?php if( count($goods_list) > 0 ){ ?>
+    <?php foreach($goods_list as $goods) { ?>
+        <tr id="<?php echo $goods['id'].'_'.$goods['shop_id'];?>">
+        <td class="checkbox"><input class="check-one check" type="checkbox"/></td>
+        <td class="goods"><img src="<?php echo $goods['img'];?>" alt=""/></td>
+         <td class="goods"><span><?php echo $goods['name'];?></span></td>
+        <td class="price"><?php echo $goods['cost'];?></td>
+        <td class="count">
+            <span class="reduce">-</span>
+          <input class="count-input" type="text" value="<?php echo $goods['count'];?>"/>
+          <span  class="add">+</span></td>
+        <td class="subtotal"><?php echo $goods['cost']*$goods['count'];?></td>
+        <td class="operation"><span class="delete">删除</span>
+
+        <?php if($goods['fav_flag']==0) { ?>
+             <p id="addFav_<?php echo $goods['id'];?>" onclick="addDishFav(<?php echo $goods['id'];?>,2);" class="sc"  data-am-modal="{target: '#my-alert'}">收藏</p>
+             <p id="delFav_<?php echo $goods['id'];?>" style="display:none" onclick="cancelDishFav(<?php echo $goods['id'];?>,2);" class="sc">取消收藏</p>
+        <?php } else { ?>
+            <p id="delFav_<?php echo $goods['id'];?>" onclick="cancelDishFav(<?php echo $goods['id'];?>,2);" class="sc">取消收藏</p>
+            <p id="addFav_<?php echo $goods['id'];?>" style="display:none" onclick="addDishFav(<?php echo $goods['id'];?>,2);" class="sc"  data-am-modal="{target: '#my-alert'}">收藏</p>
+         <?php } ?>
+
+        </td>
+      </tr>
+    <?php } ?>
+   <?php } ?>
+      
+    </tbody>
+  </table>
+  
+  <div class="am-modal am-modal-alert" tabindex="-1" id="my-alert">
+  <div class="am-modal-dialog">
+    <div class="am-modal-hd">收藏成功！</div>
+    <div class="am-modal-footer">
+      <span class="am-modal-btn">确定</span>
+    </div>
+  </div>
+</div>
+      <?php if( count($goods_list) > 0 ){ ?>
+  <div class="foot" id="foot">
+    <label class="fl select-all"><input type="checkbox" class="check-all check"/>&nbsp;&nbsp;全选</label>
+    <a class="fl delete" id="deleteAll" href="javascript:;">删除</a>
+    
+    <input type="hidden" id="cartTotalPrice" />
+    <div class="fr total">合计：￥<span id="priceTotal">0</span></div>
+    <div class="fr selected" id="selected">已选商品<span id="selectedTotal">0</span>件
+    </div>
+    <div class="selected-view">
+      <div id="selectedViewList" class="clearfix">
+        <div><span>取消选择</span></div>
+      </div>
+       </div>
+  </div>
+      <?php } ?>
+
+</div>
+    <?php if( count($goods_list) > 0 ){ ?>
+	<button type="submit"  class="am-btn am-btn-default button">提交订单</button>
+    <?php } ?>
+    <input type="hidden" id="selectedGoods" name="selectedGoods" value="" />
+    <input type="hidden" id="unselectedGoods"  name="unselectedGoods" value="" />
+    <input type="hidden"  name="sourceFlag" value="1" />
+    <input type="hidden" id="selectedNum" name="selectedNum" value="0" />
+    <input type="hidden" id="selectedSum"  name="selectedSum" value="0" />
+
+</form>
+</div>
+ </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+<!--<div class="footer">
+    <div class="wrap">
+        <span class="s1">
+            <a class="a1" href="#">品牌酒店 </a>
+            <a href="#">清迈艾美酒店</a>
+            <a href="#">清迈香格里拉酒店</a>
+            <a href="#">清迈美居酒店</a>
+            <a href="#">清迈智选假日酒店 </a>
+            <a href="#">清迈宜必思酒店</a>
+            <br>
+            <a class="a1" href="#">热门国家 </a>
+            <a href="#">美国</a>
+            <a href="#">韩国</a>
+            <a href="#">泰国</a>
+            <a href="#">日本</a>
+            <a href="#">法国</a>
+            <a href="#">澳大利亚</a>
+            <a href="#">加拿大</a>
+            <a href="#">马尔代夫</a>
+            <a href="#">印度</a>
+            <a href="#">马来西亚</a>
+            <a href="#">西班牙</a>
+            <a href="#">瑞士</a>
+            <a href="#">荷兰</a>
+            <a href="#">英国</a>
+            <a href="#">德国</a>
+            <a href="#">意大利</a>
+            <a href="#">希腊</a>
+            <a href="#">俄罗斯</a>
+            <a href="#">墨西哥</a>
+              <br>
+            <a class="a1" href="#">热门城市</a>
+            <a href="#">东京</a>
+            <a href="#">曼谷</a>
+            <a href="#">首尔</a>
+            <a href="#">新加坡</a>
+            <a href="#">普吉岛</a>
+            <a href="#">大阪</a>
+            <a href="#">清迈</a>
+            <a href="#">拉斯维加斯</a>
+            <a href="#">巴黎</a>
+            <a href="#">苏梅岛</a>
+            <a href="#">纽约</a>
+            <a href="#">长滩岛</a>
+            <a href="#">吉隆坡</a>
+            <a href="#">伦敦</a>
+            <a href="#">墨尔本</a>
+            <a href="#">济州岛</a>
+            <a href="#">洛杉矶</a>
+            <a href="#">塞班岛</a>
+        </span>
+    </div>
+</div>-->
+
+
+<input id="url" type="hidden" value="<?php echo $url;?>"/>
+<script type="text/javascript" src="/templates/theme/js/cart.js"></script>
+<script src="/templates/theme/js/favourite.js"></script>
+<script src="/templates/assets/js/jquery.min.js"></script>
+<script src="/templates/assets/js/amazeui.min.js"></script>
+<script type="text/javascript">
+
+</script>
+<?php include "/templates/inc/footer.html"?>
+</body>
+</html>

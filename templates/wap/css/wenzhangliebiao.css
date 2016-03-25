@@ -1,0 +1,61 @@
+@charset "utf-8";
+/* CSS Document */
+/*公共模块*/
+body { font-family: "微软雅黑";font-size: 12px;color: #333333;margin: 0px;padding: 0px; background:#ffffff;}
+div,ul,li,h1,h2,h3,h4,h5,h6,img,p,dl,dt,dd,ol,th,td{margin: 0px;padding: 0px;}
+li {list-style-type: none;}
+form,input,button,option,textarea,select{ margin: 0px;padding: 0px;}
+input,button,textarea,select{font:100% Tahoma,Helvetica,Arial,sans-serif;}
+a {color:#1d1f20;text-decoration: none;}
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:hover{text-decoration: none;}
+a:active {text-decoration: none;}
+table {font-size:inherit;font:100%;}
+th { font-weight:normal;}
+img { border:0;}
+h3 { font-size: 14px; color: #000;}
+h4 { font-size: 12px;}
+.clear { clear: both; height: 0px; overflow: hidden;}
+
+
+.header{ float:left; width:100%; background:#FFF; height:43px;}
+.header .return{ float:left; background:url(../images/images/fanhui1.jpg) no-repeat left center; background-size:25px 43px; width:25px; height:43px;}
+.header .logo{ margin:0px auto; background:url(../images/images/logo3.jpg) no-repeat left center; width:30px; height:43px; background-size:30px 43px;}
+.header .lookup{ float:right; width:37px; height:43px; background:url(../images/images/fangdajing2.jpg) no-repeat right center; background-size:37px 43px;}
+
+.topnav{ width:100%; height:38px; background:#eda128; float:left;}
+.topnav .nav{ margin:0px auto; width:275px;}
+.topnav .nav li{ float:left;height:16px; padding-left:21px; margin-right:20px; border-left:1px solid #fff; margin-top:8px;}
+.topnav .nav li a{ color:#fff;}
+.topnav .nav li a p{ display:block; float:left; font-size:16px; line-height:16px;}
+.topnav .nav .frist{ padding-left:0px; border-left:none;}
+
+
+.main{ float:left; width:100%; border-bottom:7px solid #fbfbfb;}
+.main .mainnav{ float:left; border-bottom:1px solid #eeeeee; width:100%; height:34px;}
+.main .mainnav .nav{ margin:0px auto; width:320px;}
+.main .mainnav .nav li{ float:left; font-size:14px; height:34px; margin-left:15px; line-height:34px;}
+.main .mainnav .nav li a{ color:#666666;}
+.main .mainnav .nav .frist{ border-bottom:2px solid #eda128;}
+.main .mainnav .nav .frist a{ color:#eda128;}
+.main .article{ margin:0px auto; width:320px;}
+.main .article .list{ float:left; width:100%;}
+.main .article .list li{ float:left; margin-left:10px; width:295px; margin-top:10px; margin-bottom:12px; height:90px;}
+.main .article .list li .left{ float:left; width:90px; margin-right:5px;}
+.main .article .list li .right{ float:left; margin-top:5px; height:85px; width:200px;}
+.main .article .list li .right .title{ float:left; font-size:14px; color:#383838;}
+.main .article .list li .right .author{ float:left; color:#757575; width:100%; margin-top:5px; margin-bottom:5px;}
+.main .article .list li .right .author .name{ float:left;}
+.main .article .list li .right .author .time{ float:right;}
+.main .article .list li .right .browse{ width:100%; float:left; color:#999999;}
+.main .article .list .border{ float:left; width:100%; height:1px; background:#eeeeee;}
+
+.footer{ margin:0px auto; width:100%;}
+.footer .border{ float:left; width:100%; border-top:1px dotted #c6c6c6; border-bottom:1px dotted #c6c6c6;}
+.footer .border .menu{ width:320px; margin:0px auto;}
+.footer .border .menu li{ margin:2px 0px 2px 0px; border-left:1px dotted #c6c6c6; float:left;}
+.footer .border .menu .frist{ border-left:none;}
+.footer .bottom{ margin:0px auto; width:320px;}
+.footer .bottom li{ width:8.83em; float:left; color:#222222; text-align:center; height:5em; line-height:5em;}
+.footer .copyright{ width:320px; text-align:center; margin:0px auto; color:#b0b0b0;}

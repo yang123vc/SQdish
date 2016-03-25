@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>SQdish食器-个人中心</title>    
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+    <link rel="stylesheet" href="templates/assets/css/amazeui.min.css">
+    <link href="templates/theme/css/style.css" type="text/css" rel="stylesheet" />
+    <link href="templates/theme/css/sqStyle.css" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="templates/theme/css/men.css">
+    <script type="text/javascript" src="templates/theme/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="templates/theme/js/jquery.tools.min.js"></script>
+    <script type="text/javascript" src="templates/theme/js/ciads.js"></script>
+</head>
+<body>
+<?php include "inc/header.html"?>
+<?php include "inc/user_top.html"?>
+
+<div class="am-g am-u-md-centered content">	
+	<?php include "inc/user_left.html"?>
+       <div class="am-u-md-10">
+       <div class="am-g" style="margin-left:10px">
+	       <div class="am-u-md-6" >
+		       <div class="am-g">        
+		           <div class="am-u-md-4 user">
+		           	<?php if($user_rs['pic162']){?><img src="<?php echo $user_rs['pic162'];?>" /><?php }else{ ?><img src="templates/theme/image/ures.jpg"/><?php } ?>
+		           </div>
+		            <div class="am-u-md-8 user">
+		            <p><?php if($user_rs['nickname']){?><span><?php echo $user_rs['nickname'];?></span>，<?php } ?>欢迎您！</p>
+		             <?php if($user_rs['qq_openid']){?><p>QQ：<span><?php echo $user_rs['qq_openid'];?></span></p><?php } ?>
+		             <?php if($user_rs['phone']){?><p>电话：<span><?php echo $user_rs['phone'];?></span></p><?php } ?>
+		             <?php if($user_rs['email']){?><p>邮箱：<span><?php echo $user_rs['email'];?></span></p><?php } ?>
+		            </div>
+		        </div>
+	        </div>   
+	      <div class="am-u-md-6" style="padding:0;">          
+	          <div class="am-panel am-panel-default Collection">
+	            <div class="am-panel-hd column">
+		            <strong>我的收藏</strong>
+		            <?php if(count($merchant_rs) > 4){?><a href="#">更多 ></a><?php } ?>
+	            </div>
+	            <div class="am-panel-bd">
+	             <?php if(!empty($merchant_rs)) {?>       
+          
+	                <div class="am-g">
+	                  <?php foreach($merchant_rs as $key => $val) { if($key < 4){?>
+			           <div class="am-u-md-3">
+				           <a target="_blank" href="business_detail.php?sid=<?php echo $val['id'];?>" title="<?php echo $val['sellerName'];?>">
+				            <img src="<?php echo $val['pic'];?>" alt=""/>
+				               <figcaption class="am-thumbnail-caption"><?php echo $val['sellerName_cut'];?></figcaption>
+				            </a>
+			           </div>
+			          <?php }} ?>
+	                </div>
+	             <?php }else{ echo "暂无收藏"; }?>	             
+	            </div>
+			  </div>
+          </div>
+        </div>
+<div class="am-g">
+	<div class="am-u-md-12" style=" margin-bottom:10px;">
+		<div class="am-g magin">
+				<div class="am-panel-hd column">
+		 			<strong class="size">最近订单</strong>
+		            <?php if(count($order_rs) > 3){?><a href="user_orders.php" class="float">查看全部订单 ></a><?php } ?>
+		        </div>
+		</div>
+	</div>
+</div>
+<div class="am-g">
+	<div class="am-u-md-12">
+		<div class="am-g magin">
+		    <?php if(!empty($order_rs)) {?>
+			<table class="am-table am-table-bordered am-table-striped am-table-compact am-table-centered am-table-radius ">
+			  <thead>
+			  <tr>
+			    <th>商家</th>
+			    <th>订单号</th>
+			    <th>金额</th>
+			    <th>时间</th>
+			    <th>订单状态</th>
+			    <th>操作</th>
+			  </tr>
+			  </thead>			  
+			  <tbody>			  
+			  	  <?php foreach($order_rs as $key=>$val) {?>
+				  <tr>
+				    <td style=" width:12rem;"><a target="_blank" href="business_detail.php?sid=<?php echo $val['sid'];?>"  class=" am-thumbnail">
+				             <img style="width:70px;height:70px;"src="<?php echo $val['seller']['pic'];?>" alt=""/>
+				               <figcaption class="am-thumbnail-caption"><?php echo $val['seller']['selelrName'];?></figcaption>
+				            </a></td>
+				    <td class="hover"><a href="#"><?php echo $val['ordercode'];?></a></td>
+				    <td>￥ <?php echo $val['all_cost'];?></td>
+				    <td><?php echo date('Y-m-d H:i:s',$val['time']);?></td>
+				    <td class="hover">
+				        <?php if($val['status'] == 0) {?>
+				    	<a href="#">等待买家付款</a>
+				        <?php }else if($val['status'] == 1 || $val['status'] == 2) { 
+								echo "已付款";
+							  }else if($val['status'] == 3){
+								echo "订单已取消";
+							  }else if($val['status'] == 4){
+								echo "订单异常";
+							  }								
+						?>
+				    </td>
+				    <td><?php if($val['status'] == 0) {?><a href="ordersuccess.php?orderid=<?php echo $val['id'];?>&orderNo=<?php echo $val['ordercode'];?>"><button class="am-btn button">付款</button></a><?php } ?></td>
+				  </tr>
+			      <?php } ?>
+			   </tbody>
+			</table>
+			<?php }else{echo "<tr>暂时无订单信息</tr>";}?>			   
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
+<?php include "inc/footer.html"?>
+</body>
+</html>

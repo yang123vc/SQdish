@@ -1,0 +1,24 @@
+
+.sqBgColor {
+	background:#eda128;
+}
+.namefrom {
+	padding:5% 2%;
+}
+.namefrom input, .am-form input[type=text], .am-form input[type=password] {
+	padding:3%;
+	font-size:2.5rem;
+}
+
+.am-form-group {
+	margin-bottom: -1rem;
+}
+.namefrom p {
+	text-align:left;
+	font-size:2rem;
+	color:#989794;
+	line-height:2rem;
+	padding-top:0.2%;
+}
+	
+

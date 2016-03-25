@@ -1,0 +1,80 @@
+@charset "utf-8";
+/* CSS Document */
+/*公共模块*/
+body { font-family: "微软雅黑";font-size: 12px;color: #333333;margin: 0px;padding: 0px; background:#ffffff;}
+div,ul,li,h1,h2,h3,h4,h5,h6,img,p,dl,dt,dd,ol,th,td{margin: 0px;padding: 0px;}
+li {list-style-type: none;}
+form,input,button,option,textarea,select{ margin: 0px;padding: 0px;}
+input,button,textarea,select{font:100% Tahoma,Helvetica,Arial,sans-serif;}
+a {color:#1d1f20;text-decoration: none;}
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+a:hover{text-decoration: none;}
+a:active {text-decoration: none;}
+table {font-size:inherit;font:100%;}
+th { font-weight:normal;}
+img { border:0;}
+h3 { font-size: 14px; color: #000;}
+h4 { font-size: 12px;}
+.clear { clear: both; height: 0px; overflow: hidden;}
+
+
+.header{ float:left; width:100%; background:#FFF; height:43px;}
+.header .return{ float:left; background:url(../images/fanhui1.jpg) no-repeat left center; background-size:25px 43px; width:25px; height:43px;}
+.header .logo{ margin:0px auto; background:url(../images/logo3.jpg) no-repeat left center; width:30px; height:43px; background-size:30px 43px;}
+.header .lookup{ float:right; width:37px; height:43px; background:url(../images/fangdajing2.jpg) no-repeat right center; background-size:37px 43px;}
+
+.topnav{ width:100%; height:38px; background:#eda128; float:left;}
+.topnav .nav{ margin:0px auto; width:275px;}
+.topnav .nav li{ float:left;height:16px; padding-left:21px; margin-right:20px; border-left:1px solid #fff; margin-top:8px;}
+.topnav .nav li a{ color:#fff;}
+.topnav .nav li a p{ display:block; float:left; font-size:16px; line-height:16px;}
+.topnav .nav .frist{ padding-left:0px; border-left:none;}
+
+.main{ float:left; width:100%; border-bottom:7px solid #fbfbfb;}
+.main .mainnav{ float:left; border-bottom:1px solid #eeeeee; width:100%; height:34px;}
+.main .mainnav .nav{ margin:0px auto; width:100%;}
+.main .mainnav .nav li{ float:left; font-size:14px; height:34px; margin-left:15px; line-height:34px;}
+.main .mainnav .nav li a{ color:#666666;}
+.main .mainnav .nav .frist{ border-bottom:2px solid #eda128;}
+.main .mainnav .nav .frist a{ color:#eda128;}
+.main .title{ float:left; width:90%; text-align:center; font-size:24px; color:#575757; line-height:32px; margin:auto 15px;padding:15px 0;}
+.main .authorbg{ float:left; width:100%; background:#fbfbfb; height:21px; text-align:center; line-height:21px;}
+.main .authorbg .position{ margin:0px auto; width:170px; height:21px;}
+.main .authorbg .position .author{ float:left;}
+.main .authorbg .position .num{ float:right;}
+.main .authorbg .position span{ color:#eda128;}
+.main .content{ margin-left:7.8%; width:84%; float:left; border-bottom:1px dashed #b4b4b4; padding-bottom:2px;}
+.main .content .pic{ margin-top:15px;}
+.main .content .article{ float:left;line-height:18px; font-size:14px; line-height:22px;margin-top:15px; border-bottom:2px dashed #b4b4b4; padding-bottom:10px;}
+.main .content .article p {padding:0 0 15px 0;}
+.article img {width:100%;}
+
+.next{ margin-left:4%; width:90%; float:left; text-align:center; font-size:18px; color:#403c36; height:63px; line-height:63px;}
+.next .left{ float:left;}
+.next .right{ float:right;}
+
+.bottom1{ float:left; width:100%; border-bottom:7px solid #fbfbfb;}
+.bottom1 .recommend{ margin:0px auto; width:92%; margin-top:22px;}
+.bottom1 .recommend .books{ margin:0px auto; width:13px;}
+.bottom1 .recommend .hot{ width:100%; text-align:center; font-size:16px; color:#666666; margin-top:8px; margin-bottom:8px;}
+.bottom1 .recommend .tips{ width:100%; text-align:center; color:#909090; margin-bottom:18px;}
+.bottom1 .recommend .show{ margin:0px auto; width:290px;}
+.bottom1 .recommend .show .top { margin-bottom:6px;}
+.bottom1 .recommend .show .bot{ margin-bottom:30px;}
+.bottom1 .recommend .show .top, .bot{ width:100%; text-align:center; font-size:14px; color:#fff; line-height:72px; height:72px;}
+.bottom1 .recommend .show .left{ float:left;}
+.bottom1 .recommend .show .right{ float:right;}
+.bottom1 .recommend .show .top .left{ background:url(../images/banner6.jpg) no-repeat; width:141px; height:72px; background-size:141px 72px;}
+.bottom1 .recommend .show .top .right{ background:url(../images/banner7.jpg) no-repeat; width:141px; height:72px; background-size:141px 72px;}
+.bottom1 .recommend .show .bot .left{ background:url(../images/banner9.jpg) no-repeat; width:141px; height:72px; background-size:141px 72px;}
+.bottom1 .recommend .show .bot .right{ background:url(../images/banner8.jpg) no-repeat; width:141px; height:72px; background-size:141px 72px;}
+
+.footer{ margin:0px auto; width:100%;}
+.footer .border{ float:left; width:100%; border-top:1px dotted #c6c6c6; border-bottom:1px dotted #c6c6c6;}
+.footer .border .menu{ width:320px; margin:0px auto;}
+.footer .border .menu li{ margin:2px 0px 2px 0px; border-left:1px dotted #c6c6c6; float:left;}
+.footer .border .menu .frist{ border-left:none;}
+.footer .bottom{ margin:0px auto; width:320px;}
+.footer .bottom li{ width:8.83em; float:left; color:#222222; text-align:center; height:5em; line-height:5em;}
+.footer .copyright{ width:320px; text-align:center; margin:0px auto; color:#b0b0b0;}

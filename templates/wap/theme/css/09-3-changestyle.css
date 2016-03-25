@@ -1,0 +1,50 @@
+
+.sqBgColor {
+	background:#eda128;
+}
+.psswordform {
+	padding:5% 2%;
+}
+.psswordform input, .am-form input[type=text], .am-form input[type=password] {
+	padding:3%;
+	font-size:2rem;
+}
+.am-form input[type=validation]{
+	padding:4%;
+	width: 100%;	
+}
+.change button[type=button]{
+	padding:3% 10%;
+	font-size:2rem;
+	margin:5% 2%;
+}
+.change{
+	text-align:center;
+}
+.am-form-group input[type=submit]{
+	padding:12.5% 0;
+}
+.psswordform p{
+	color:#333;
+	font-size:2rem;
+	margin-left:20px;
+}
+.sqRegQuick {
+	background:#fff;
+	border:1px solid #eda128;
+	color:#eda128;
+}
+.psswordform span{
+	color:#eda128;
+}
+.floating{
+	float:left;
+}
+.size{
+	width:72%;
+}
+.size1{
+	width:25%;
+	margin-left:3%;
+}
+

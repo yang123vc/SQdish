@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>餐厅名称</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
+  <link rel="stylesheet" href="assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="assets/css/sq.css"/>
+</head>
+<body>
+
+<header data-am-widget="header" class="am-header am-header-default">
+  <div class="am-header-left am-header-nav">
+    <a href="#left-link" class="">
+      <i class="am-header-icon am-icon-home"></i>
+      <span class="am-header-nav-title">首页</span>
+    </a>
+  </div>
+  <h1 class="am-header-title">餐厅名称</h1>
+  <div class="am-header-right am-header-nav">
+    <button class="am-btn am-btn-secondary " data-am-offcanvas="{target: '#sqmmenu'}">
+		<span class="am-header-nav-title">分类</span>
+		<i class="am-header-icon am-icon-bars"></i>
+	</button>
+  </div>
+</header>
+
+<div class="booking_body">
+	
+	<div id="sqmmenu" class="am-offcanvas">
+		<div class="am-offcanvas-bar">			
+			<button type="button" class="am-btn am-btn-primary am-btn-block">菜品分类</button>
+			<button type="button" class="am-btn am-btn-secondary am-btn-block sq-text-l"><i class="am-header-icon am-icon-star am-text-warning"></i> 特色推荐 เมนูแนะนำ</button>
+			<button type="button" class="am-btn am-btn-secondary am-btn-block sq-text-l"><span class="am-badge am-badge-success am-round">4</span> 主食 เมนูอาหาร</button>
+			<button type="button" class="am-btn am-btn-secondary am-btn-block sq-text-l"><span class="am-badge am-badge-success am-round">1</span> 盖饭 เมนูราดข้าว</button>
+		</div>
+	</div>
+	
+	<!--menu-box start-->
+	<div class="menu_box">
+		<div class="booking_type_name">特色推荐 เมนูแนะนำ</div>
+        <div data-am-widget="list_news" class="am-list-news am-list-news-default">
+			<div class="am-list-news-bd">
+				<ul data-am-widget="gallery" class="am-gallery-default am-list" data-am-gallery="{ pureview: true }">
+				  <!--缩略图在标题左边-->
+				  <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+						<!--为保证图集功能，有图片时，这个div层必须有-->
+						<div class="am-u-sm-4 am-list-thumb ">
+							<img src="assets/i/dish01.jpg" alt="培根、香菇奶酪酱意大利面(สปาเก็ตตี้คาโบนาร่า)" />
+						</div>
+						<a href="#">
+							<div class=" am-u-sm-8 am-list-main">
+							  <h3 class="am-list-item-hd">
+								培根、香菇奶酪酱意大利面<br/>สปาเก็ตตี้คาโบนาร่า
+							  </h3>
+							  <div class="am-list-item-text">菜品介绍，超过两行会自动隐藏，实际显示字数还受到手机平面大小的影响</div>
+							</div>
+						</a>
+					<!--默认属性请添加<div class="am-u-sm-12 margin_clear booking_price_margin">-->
+					<div class="am-u-sm-12 margin_clear booking_price_margin">
+						<span class="am-list-item-text">默认：小碗 （更多选择请点击菜品名）</span>
+					</div>
+					<div class="am-u-sm-12 margin_clear">
+						  <div class="am-u-sm-6 booking_price margin_clear">
+							 ฿129铢
+						  </div>
+						  <div class="am-u-sm-6 booking_choice margin_clear">
+							<button type="button" class="am-badge am-badge-secondary am-btn am-radius">-</button> 0 <button type="button" class="am-badge am-badge-secondary am-btn am-radius">+</button>
+						  </div>
+					</div>
+				  </li>
+				  <!--缩略图在标题左边-->
+				  <!--无缩略图-->
+				  <li class="am-g am-list-item-desced">
+					<a href="#">
+						<div class=" am-list-main">
+						  <h3 class="am-list-item-hd">
+							椰奶鸡肉汤<br/>ต้มข่าไก่
+						  </h3>
+						  <div class="am-list-item-text">菜品介绍，超过两行会自动隐藏，实际显示字数还受到手机平面大小的影响</div>
+						</div>
+					</a>
+					<!--默认属性请添加<div class="am-u-sm-12 margin_clear booking_price_margin">-->
+					<div class="am-u-sm-12 margin_clear booking_price_margin">
+						<span class="am-list-item-text">默认：小碗猪肉 （更多选择请点击菜品名）</span>
+					</div>
+					  <!--当没有属性只有价格时，请添加booking_price_margin-->
+					  <div class="am-u-sm-12 margin_clear ">
+						  <div class="am-u-sm-6 margin_clear booking_price">
+							 ฿119铢
+						  </div>
+						  <div class="am-u-sm-6 margin_clear booking_choice">
+							<button type="button" class="am-badge am-badge-secondary am-btn am-radius">-</button> 0 <button type="button" class="am-badge am-badge-secondary am-btn am-radius">+</button>
+						  </div>
+					</div>
+				  </li>
+				  <!--无缩略图-->
+				  <!--缩略图在标题左边-->
+				  <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left">
+					<div class="am-u-sm-4 am-list-thumb ">
+						<img src="assets/i/dish02.jpg" alt="酸辣虾汤(ต้มยำกุ้ง)" />
+					</div>
+						<a href="#">
+							<div class=" am-u-sm-8 am-list-main">
+								<h3 class="am-list-item-hd">
+								酸辣虾汤<br/>ต้มยำกุ้ง 
+								</h3>
+								<div class="am-list-item-text">菜品介绍，超过两行会自动隐藏，实际显示字数还受到手机平面大小的影响</div>
+							</div>
+						</a>
+						<div class="am-u-sm-12 margin_clear booking_price_margin">
+							<div class="am-u-sm-6 margin_clear booking_price">
+							 ฿129铢
+							</div>
+							<div class="am-u-sm-6 margin_clear booking_choice">
+							<button type="button" class="am-badge am-badge-secondary am-btn am-radius">-</button> 0 <button type="button" class="am-badge am-badge-secondary am-btn am-radius">+</button>
+							</div>
+						</div>
+				  </li>
+				  <!--缩略图在标题左边-->
+				  <!--无缩略图-->
+				  <li class="am-g am-list-item-desced">
+					<a href="#">
+						<div class=" am-list-main">
+						  <h3 class="am-list-item-hd">
+							椰奶鸡肉汤<br/>ต้มข่าไก่
+						  </h3>
+						  <div class="am-list-item-text">菜品介绍，超过两行会自动隐藏，实际显示字数还受到手机平面大小的影响</div>
+						</div>
+					</a>
+					<!--默认属性请添加<div class="am-u-sm-12 margin_clear booking_price_margin">-->
+						<div class="am-u-sm-12 margin_clear booking_price_margin">
+							<span class="am-list-item-text">默认：牛肉 （更多选择请点击菜品名）</span>
+						</div>
+						<div class="am-u-sm-12 margin_clear">
+							<div class="am-u-sm-6 margin_clear booking_price">
+							 ฿119铢
+							</div>
+							<div class="am-u-sm-6 margin_clear booking_choice">
+								<button type="button" class="am-badge am-badge-secondary am-btn am-radius">-</button> 0 <button type="button" class="am-badge am-badge-secondary am-btn am-radius">+</button>
+							</div>
+						</div>
+				  </li>
+				  <!--无缩略图-->
+				  <div class="booking_end"></div>
+				</ul>
+			  </div>
+			</div>
+		</div>
+	<!--menu-box end-->
+	</div>
+    
+    
+</div>
+
+
+<footer class="am-header am-header-default foot-fix">
+  <div class="am-header-left am-header-nav">
+      <i class="am-header-icon am-icon-shopping-cart"></i>
+      <span class="am-header-nav-title">3份 ฿241铢</span>
+  </div>
+  <div class="am-header-right am-header-nav">
+    <a type="button" class="am-btn am-btn-success am-radius" href="check.html">&nbsp;确认菜单&nbsp;</a>
+  </div>
+</footer>
+
+
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/polyfill/rem.min.js"></script>
+<script src="assets/js/polyfill/respond.min.js"></script>
+<script src="assets/js/amazeui.legacy.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/amazeui.js"></script>
+<!--<![endif]-->
+</body>
+</html>

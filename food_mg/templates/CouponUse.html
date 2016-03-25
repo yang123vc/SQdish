@@ -1,0 +1,140 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><?=$website_name?><?=$admin_center?></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="templates/assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="templates/assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="templates/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="templates/assets/css/admin.css">
+  <link rel="stylesheet" href="/html/assets/css/sq_mg.css"/>
+  <style>
+	.fieldset_right a{
+		padding: 4px;
+	}
+	
+	.fieldset_right{
+		margin-top: 10px;
+	}
+  </style>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+<?php
+	// header
+	include 'templates/headerDish.htm';
+?>
+
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php
+	// 左边栏
+	include 'templates/sidebarDish.htm';
+  ?>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg"><?=$coupon_use_text?></strong></div>
+    </div>
+
+    <hr/>
+
+    <div class="am-g">
+
+      <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
+        <div class="am-panel am-panel-default">
+          <div class="am-panel-bd">
+            <div class="am-g">
+              <div class="am-u-md-12">
+                <img id="showimg" class="am-img-circle am-img-thumbnail" src="<?php if(isset($pic))echo $pic;?>" alt=""/>
+              </div>
+              <div class="am-u-md-12">
+                <p><?=$coupon_exchange_text?></p>
+                <p><?=$coupon_exchange_content?></p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
+        <form action="doCoupon.php" onSubmit="return doSubmit();" method="post" class="am-form am-form-horizontal">
+			<input type="hidden" name="action" value="<?=$action?>" />
+			<input type="hidden" name="sid" value="<?php if(isset($sid))echo $sid;?>" />
+			<?php if(isset($_GET['msg'])):?>
+			  <div class="am-form-group">
+	            <div class="am-u-sm-9">
+	              <center><p class="am-text-danger"><?=$_GET['msg']?></p></center>
+	            </div>
+	          </div>
+      		<?php endif;?>
+
+          <div class="am-form-group">
+            <label for="couponcode" class="am-u-sm-3 am-form-label"><?=$coupon_code_text?></label>
+            <div class="am-u-sm-9">
+              <input type="text" name="couponcode" id="couponcode" placeholder="<?=$coupon_code_text?>">
+            </div>
+          </div>
+
+      <div class="am-form-group">
+        <label for="typeChoose" class="am-u-sm-3 am-form-label"><?=$coupon_type?></label>
+        <div class="am-u-sm-9">
+          <label class="am-radio-inline"><input type="radio" value="1" name="type" checked> <?=$coupon_digital?></label>
+          <label class="am-radio-inline"><input type="radio" value="2" name="type"> <?=$coupon_paper?></label>
+        </div> 
+      </div>
+
+          <div class="am-form-group">
+            <div class="am-u-sm-9 am-u-sm-push-3">
+              <button type="submit" class="am-btn am-btn-primary"><?=$coupon_submit?></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- content end -->
+
+</div>
+
+<a class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+
+<?php
+	// footer
+	include 'templates/footerDish.htm';
+?>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/polyfill/rem.min.js"></script>
+<script src="assets/js/polyfill/respond.min.js"></script>
+<script src="assets/js/amazeui.legacy.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="templates/assets/js/jquery.min.js"></script>
+<script src="templates/assets/js/amazeui.min.js"></script>
+<script src="templates/assets/js/jquery.form.js"></script>
+<script src="templates/assets/js/jquery.Jcrop.js"></script>
+<!--<![endif]-->
+<script>
+	function doSubmit(){
+		return true;
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+ul li {
+	list-style:none;
+	display:inline;
+}
+.sqBgColor {
+	background:#eda128;
+}
+.loginfrom {
+	padding:5% 2%;
+}
+.loginfrom input, .am-form input[type=text], .am-form input[type=password] {
+	padding:3%;
+	font-size:2rem;
+}
+.am-form input[type=validation]{
+	padding:4%;
+	width: 100%;	
+}
+.am-form-group input[type=submit]{
+	padding:12.5% 0;
+}
+.loginfrom p a, .threeLogin ul li a {
+	color:#333;
+	font-size:2rem;
+}
+.sqRegQuick {
+	background:#fff;
+	border:1px solid #eda128;
+	color:#eda128;
+}
+.threeLogin ul li {
+	width:35%;
+	float:left;
+	text-align:center;
+	line-height:35px;
+	background:#f5f5f5;
+	border:1px solid #dcdcdc;
+	border-radius:15px;
+	padding:5% 0;
+	margin:0 5%;
+	font-size:5rem;
+}
+.threeLogin img {
+	padding:5% 0;
+}
+.threeLogin ul li a img {
+	width:50%;
+}
+.floating{
+	float:left;
+}
+.size{
+	width:72%;
+}
+.size1{
+	width:25%;
+	margin-left:3%;
+}
+.loginfrom p{
+	font-size:2rem;
+	color:#333;
+	margin-left:20px;
+}
+.loginfrom span{
+	color:#eda128;
+}
+
+

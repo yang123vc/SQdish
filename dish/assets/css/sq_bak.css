@@ -1,0 +1,245 @@
+
+    body {
+      background: #fff;
+	}
+	ul {
+		list-style-type:none;
+		padding:0;
+	}
+	.am-img-responsive {
+		width:100%;
+		}
+	.hope {
+      background: #0bb59b;
+      padding: 50px 0;
+    }
+
+    .hope-img {
+      text-align: center;
+    }
+
+    .hope-hr {
+      border-color: #149C88;
+    }
+
+    .hope-title {
+      font-size: 140%;
+    }
+
+    .about {
+      background: #fff;
+      padding: 40px 0;
+      color: #333;
+    }
+
+    .about img {
+		width:100%;
+		border-radius: 25px;
+	}
+
+    .about h4 {
+		font-size:30px;
+		color: #333;
+	}
+
+    .about-color {
+      color: #34495e;
+    }
+
+    .about-title {
+      font-size: 180%;
+      padding: 30px 0 50px 0;
+      text-align: center;
+    }
+	.am-btn-block, .am-btn-block+.am-btn-block  {
+	border-bottom:1px solid #dedede;
+	margin:0;
+	}
+	.am-offcanvas-bar {
+		width:170px;
+		background:#fff;
+	}
+	.am-offcanvas-bar:after {
+	background:#fff;
+	}
+	footer {
+		width:100%;
+	}
+	.sq-text-l {
+	text-align:left;
+	}
+	/*booking*/
+	.am-header .am-header-title {
+	margin:0 23%;
+	}
+	[data-am-widget=tabs] .am-tabs-nav  {
+		list-style:none;
+		display:list-item;
+		text-align:left;
+	}
+	.booking_body {
+	position:relative;
+	float:left;
+	z-index:1;
+	width:100%;
+	}
+	.foot-fix {
+	position:fixed;
+	float:left;
+	bottom:0;
+	z-index:299;
+	}
+	.am-list>li {
+	border:none;
+	border-bottom:1px solid #dedede;
+	margin-bottom:0;
+	}
+	.am-list-news-default {
+	margin:0;
+	}
+	.booking_price {
+	font-size:18px;
+	font-weight:bold;
+	color:#ed670e;
+	}
+	.booking_price_margin {
+	margin:15px 0;
+	padding:0;
+	}
+	.booking_choice {
+	text-align:right;
+	}
+	.booking_end {
+	width:100%;
+	float:left;
+	margin:20px 0;
+	}
+	.booking_type_name {
+	width:100%;
+	line-height:30px;
+	text-align:center;
+	background:#fff7d6;
+	}
+	.margin_clear {
+	padding:0;
+	}
+	.am-tabs-bd {
+	border-bottom:none;
+	position: relative;
+	z-index:99;
+	min-height:100%;
+	}
+	.check_body {
+	padding:30px 5px 50px 5px;
+	background:url(../i/successBg.png) no-repeat bottom right;
+	background-size:50%;
+	}
+	.check_button {
+	margin:30px;
+	}
+	/**
+	  * Tabs Theme: left
+	  */
+	[data-am-widget=tabs] {
+	  margin: 0;
+	}
+	[data-am-widget=tabs] .am-tabs-nav-left {
+	  width: 30%;
+	}
+	.booking_li {
+		float:left;
+	}
+	.am-tabs-left .am-tabs-nav-left {
+	  background-color: #eeeeee;
+	  float: left;
+	}
+	.am-tabs-left .am-tabs-nav-left li {
+	  height: 42px;
+	  border-bottom: 1px solid #ccc;
+	}
+	.am-tabs-left .am-tabs-nav-left a {
+	  color: #222222;
+	  line-height: 42px;
+	}
+	.am-tabs-left .am-tabs-nav-left > .am-active {
+	  position: relative;
+	  background-color: #fff;
+	  border-left: 2px solid #0e90d2;
+	  border-right: 1px solid #fff;
+	  margin-right:-1px;
+	  z-index:199;
+	}
+	.am-tabs-left .am-tabs-nav-left > .am-active a {
+	  line-height: 40px;
+	  color: #0e90d2;
+	}
+	/*choose*/
+	.dish_info, .dish_type {
+	background:#fff;
+	margin:20px 0;
+	padding:0 0 10px 0;
+	border-bottom:1px solid #ccc;
+	border-top:1px solid #ccc;
+	}
+	.dish_type .am-u-sm-2 {
+	color:#666;
+	font-size:14px;
+	}
+	.type_line {
+	border-bottom:1px dotted #ccc;
+	padding:5px;
+	}
+	.type_li li  {
+	list-style:none;
+	display:inline;
+	float:left;
+	padding:5px;
+	}
+	.type_li li a {
+	color:#333;
+	border: 1px solid #333;
+	padding:2px 5px;
+	font-size:14px;
+	}
+	.type_li li a.hold {
+	border:3px solid #0E90D2;
+	}
+	.am-panel-default>.am-panel-hd {
+	background:#fff;
+	}
+	.am-panel {
+	box-shadow:0 0px 0px;
+	}
+	.am-panel-group .am-panel+.am-panel {
+	margin:0;
+	}
+	.am-panel-group .am-panel-hd+.am-panel-collapse .am-panel-bd {
+	border-top:none;
+	}
+	.am-panel-title {
+	font-weight:normal;
+	}
+	.am-panel-default {
+	border-bottom:none;
+	}
+	/*橙色配色*/
+	a, a:hover, .am-text-primary {
+	color: #f37b1d;
+	}
+	.type_li li a.hold {
+	border: 3px solid #f37b1d;
+	}
+	.am-header-default {
+	background-color: #f37b1d;
+	}
+	.am-btn-secondary, .am-btn-primary {
+	background-color: #BB5302;
+	border-color: #BB5302;
+	}
+	.am-badge-secondary, .am-btn-primary {
+	background-color: #f37b1d;
+	}
+	.am-btn-secondary:hover, .am-btn-secondary:focus, .am-btn-secondary:active, .am-btn-primary:hover, .am-btn-primary:focus, .am-btn-primary:active {
+	background-color: #BB5302;
+	border-color: #BB5302;
+	}

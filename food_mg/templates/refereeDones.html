@@ -1,0 +1,626 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><?=$website_name?> <?=$admin_center?></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="templates/assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="templates/assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="templates/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="templates/assets/css/admin.css">
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+<?php
+	// header
+	include 'templates/header.htm';
+?>
+
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php
+	// 左边栏
+              include 'templates/sidebar.htm';   
+  ?>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+  <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">推荐人结算</strong></div>
+    </div>
+
+<div class="am-tabs" data-am-tabs>
+  <ul class="am-tabs-nav am-nav am-nav-tabs">
+    <li class="am-active"><a href="#tab1">全部</a></li>
+    <li><a href="#tab2">本周</a></li>
+  </ul>
+
+  <div class="am-tabs-bd">
+    <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+       <ul class="am-avg-sm-1 am-avg-md-3 am-margin am-padding am-text-center admin-content-list ">
+      <li><a href="refereeDones.php?id=<?=$id?>&action=all" class="am-text-primary"><span class="am-icon-btn am-icon-file-text"></span><br/><?=$new_businesses_text?><br/><?=$sum?></a></li>
+      <li><a href="refereeDones.php?id=<?=$id?>&action=checking" class="am-text-warning"><span class="am-icon-btn am-icon-briefcase"></span><br/>正在审核中<br/><?=$checking?></a></li>
+      <li><a href="refereeDones.php?id=<?=$id?>&action=success" class="am-text-success"><span class="am-icon-btn am-icon-recycle"></span><br/>审核成功<br/><?=$success?></a></li>
+      <br/>
+      <table class="am-table am-table-bordered am-table-radius am-table-striped">
+          <tr>
+            <td>用户名</td>
+            <td>邮箱</td>
+            <td>电话</td>
+            <td>姓</td>
+            <td>名</td>
+            <td>城市</td>
+            <td>注册时间</td>
+            <td>银行卡号</td>
+            <td>应结算金额</td>
+            <td>已结算金额</td>
+          </tr>
+          <?php foreach($list as $k=>$v) { ?>
+          <tr>
+              <td><?php echo $v['username'];?></td>
+              <td><?php echo $v['email'];?></td>
+              <td><?php echo $v['phone'];?></td>
+              <td><?php echo isset($v['surname'])?$v['surname']:'';?></td>
+              <td><?php echo isset($v['firstName'])?$v['firstName']:'';?></td>
+              <td><?php echo isset($v['city'])?$v['city']:'';?></td>
+              <td><?php if($v['reg_time']!=0){echo date('Y-m-d H:i:s',$v['reg_time']);}?></td>
+              <td><?php echo isset($v['card'])?$v['card']:'';?></td>
+              <td>￥<?=$totle_money?></td>
+              <td>￥<?=$done_money?></td>
+          </tr>
+          <?php }?>
+      </table>
+      <div class="am-panel-group" id="accordion">
+  <div class="am-panel am-panel-default">
+    <div class="am-panel-hd">
+      <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-2'}">
+       结算清单
+      </h4>
+    </div>
+    <div id="do-not-say-2" class="am-panel-collapse am-collapse am-in">
+      <div class="am-panel-bd">
+    <div class="admin-content">
+
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+        <form class="am-form">
+          <table class="am-table am-table-striped am-table-hover table-main">
+            <thead>
+              <tr >
+                <th class="table-id" >ID</th><th class="table-title" ><?=$name_text?></th><th  class="table-type"><?=$contact_text?></th><th  class="table-author ">银行卡号</th><th  class="table-author ">金额</th><th  class="table-author ">结算时间</th><th  class="table-set">凭证</th>
+              </tr>
+          </thead>
+          <tbody>
+      <?php
+      foreach($doneList as $key => $value){  ?>
+      
+          <tr>
+            <td><?php echo $value['id'];?></td>
+            <td></a>
+                <div class="am-dropdown" data-am-dropdown>
+                  <button class="am-btn am-btn-success am-dropdown-toggle" data-am-dropdown-toggle>结算商户 <span class="am-icon-caret-down"></span></button>
+                  <ul class="am-dropdown-content">
+                  <?php foreach($value['seller'] as $k){ ?>
+                    <li><a target="_blank" href="<?php echo $k['path'];?>"><?php echo $k['sellerName'];?></a></li>
+                  <?php }?>
+                  </ul>
+                </div>
+            </td>
+            <td><?php echo $value['user']['phone'];?></td>
+            <td class="am-hide-sm-only"><?php echo $value['user']['card'];?></td>
+            <td class="am-hide-sm-only">￥<?php echo $value['money'];?></td>
+            <td class="am-hide-sm-only"><?php echo date('Y-m-d H:i:s',$value['done_time']);?></td>
+          <td class="am-hide-sm-only">
+         <div style= "width:80px;height:60px;"><a href="<?php echo $value['voucher'];?>"><img src="<?php echo $value['voucher'];?>" style= " width:auto;
+ height:auto;max-width:100%; max-height:100%;"></a> </div>
+            </td>
+          </tr>
+
+
+      <?php }?>
+          </tbody>
+        </table>
+
+
+          <div class="am-cf" >
+  <?=$total_text?> <?=$count?> <?=$records_text?>
+  <div class="am-fr">
+    <ul class="am-pagination">
+    <li><a href="refereeDones.php?page=1&id=<?=$id?>">1</a></li>
+    <?php
+      if($prev == -1){
+        echo '<li class="am-disabled"><a href="#">«</a></li>';
+      }else{
+        echo '<li><a href="refereeDones.php?action='.$action.'&id='.$id.'&page='.$i.'">«</a></li>';
+      }
+    ?>
+      
+    <?php
+      for($i=$start;$i<=$end;$i++){
+        if($page == $i){
+          echo '<li class="am-active"><a>'.$i.'</a></li>';
+        }else{
+          echo '<li><a href="refereeDones.php?action='.$action.'&id='.$id.'&page='.$i.'">'.$i.'</a></li>';
+        } 
+      }
+    ?>
+    
+    <li>
+      <form action="refereeDones.php">
+        <input style="width:60px;" type="text" name="page" />
+      </form>
+    </li>
+    
+    <?php
+      if($next == -1){
+        echo '<li class="am-disabled"><a href="#">»</a></li>';
+      }else{
+        echo '<li><a href="refereeDones.php?action='.$action.'&id='.$id.'&page='.$next.'">»</a></li>';
+      }
+    ?>
+
+    <li><a href="refereeDones.php?page=<?=$totalPage?>"><?=$totalPage?></a></li>
+    </ul>
+  </div>
+</div>
+          <hr />
+          <p>注：.....</p>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+  <!-- content end -->
+</div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+    <div class="am-tab-panel am-fade" id="tab2">
+ <ul class="am-avg-sm-1 am-avg-md-3 am-margin am-padding am-text-center admin-content-list ">
+      <li><a href="#" class="am-text-primary"><span class="am-icon-btn am-icon-file-text"></span><br/><?=$new_businesses_text?><br/><?=$w_sum?></a></li>
+      <li><a href="#" class="am-text-warning"><span class="am-icon-btn am-icon-briefcase"></span><br/>正在审核中<br/><?=$w_checking?></a></li>
+      <li><a href="#" class="am-text-success"><span class="am-icon-btn am-icon-recycle"></span><br/>审核成功<br/><?=$w_success?></a></li>
+      <br/>
+      <table class="am-table am-table-bordered am-table-radius am-table-striped">
+          <tr>
+            <td>用户名</td>
+            <td>邮箱</td>
+            <td>电话</td>
+            <td>姓</td>
+            <td>名</td>
+            <td>城市</td>
+            <td>注册时间</td>
+            <td>银行卡号</td>
+            <td>应结算金额</td>
+          </tr>
+          <?php foreach($list as $k=>$v) { ?>
+          <tr>
+              <td><?php echo $v['username'];?></td>
+              <td><?php echo $v['email'];?></td>
+              <td><?php echo $v['phone'];?></td>
+              <td><?php echo isset($v['surname'])?$v['surname']:'';?></td>
+              <td><?php echo isset($v['firstName'])?$v['firstName']:'';?></td>
+              <td><?php echo isset($v['city'])?$v['city']:'';?></td>
+              <td><?php if($v['reg_time']!=0){echo date('Y-m-d H:i:s',$v['reg_time']);}?></td>
+              <td><?php echo isset($v['card'])?$v['card']:'';?></td>
+              <td >￥<span id="money">0</span></td>
+          </tr>
+          <?php }?>
+      </table>
+ <div class="am-panel-group" id="accordion" style= "width:65%;float:left">
+  <div class="am-panel am-panel-default">
+    <div class="am-panel-hd">
+      <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-1'}">
+      结算清单
+      </h4>
+    </div>
+    <div id="do-not-say-1" class="am-panel-collapse am-collapse am-in">
+      <div class="am-panel-bd">
+    <div class="admin-content">
+
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+  <form action="refereeDones_ok.php" onsubmit= "return check();" method="post" class="am-form am-form-horizontal">
+          <table class="am-table am-table-striped am-table-hover table-main">
+            <thead>
+              <tr >
+                <th class="table-check"><input id="checkall"type="checkbox" /></th><th class="table-id">ID</th><th class="table-title" ><?=$name_text?></th><th   class="table-type"><?=$contact_text?></th><th style=  class="table-author "><?=$contact_person_text?></th><th  class="table-author "><?=$admin_text?></th><th   class="table-set"><?=$audit_status_text?></th>
+              </tr>
+          </thead>
+          <tbody>
+      <?php
+      foreach($w_sellerList as $key => $value){ 
+        if($value['dishPic'])
+          $alert = "";
+        else
+          $alert = "javascript:alert('".$no_pic_alert."');";?>
+      
+          <tr>
+            <td><input value="<?php echo $value['id'];?>" id="<?php echo $value['id'];?>" name="checkbox[]"class="select-id" type="checkbox" onclick="change(<?php echo $value['id'];?>);" /></td>
+            <td><?php echo $value['id'];?></td>
+            <td><a target="_blank" href="<?php echo $value['path'];?>"><?php echo $value['sellerName'];?></a></td>
+            <td><?php echo $value['tel'];?></td>
+            <td class="am-hide-sm-only"><?php echo $value['contacts'];?></td>
+            <td class="am-hide-sm-only"><?php echo $value['user']['username'];?></td>
+
+          <td class="am-hide-sm-only">
+           <div class="am-btn-group">
+            <a href="sellerCheck.php?id=<?php echo $value['id'];?>"class="am-btn am-btn-<?php 
+            if($value['is_on']==0){
+              echo 'warning';
+            }else if($value['is_on']==1){
+              echo 'success';
+            }else{
+              echo 'danger';
+            }
+            ?> am-btn-xs"><?php  
+            if($value['is_on']==0){
+              echo $pending_audit_text;
+            }else if($value['is_on']==1){
+              echo $pass_audit_text;
+            }else{
+              echo $no_audit_text;
+            }
+              ?></a> 
+          </div>
+            </td>
+          </tr>
+      <?php }?>
+          </tbody>
+        </table>
+
+          <input type="hidden" id="_pic" name="pic" value="<?php if(isset($pic))echo $pic;?>" />
+          <input type="hidden"  name="id" value="<?php echo $id;?>" />
+          <input type="hidden"  name="card" value="<?php echo $v['card'];?>" />
+
+
+         <button 
+        type="submit"
+        class="am-btn am-btn-primary"
+        id="doc-confirm-toggle" >
+        结算
+      </button>
+
+      </form>
+
+
+
+          <hr />
+          <p>注：.....</p>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+ <div class="am-panel-group" id="accordion" style= "width:30%;float:right">
+  <div class="am-panel am-panel-default">
+    <div class="am-panel-hd">
+      <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-3'}">
+       <?=$merchant_text?>
+      </h4>
+    </div>
+    <div id="do-not-say-3" class="am-panel-collapse am-collapse am-in">
+      <div class="am-panel-bd">
+    <div class="admin-content">
+    <div class="am-g">
+
+      <div class="">
+        <div class="am-panel am-panel-default">
+          <div class="am-panel-bd">
+            <div class="am-g">
+              <div class="am-u-md-12">
+                <img id="showimg" class="am-img-circle am-img-thumbnail" src="<?php if(isset($pic))echo $pic;?>" alt=""/>
+              </div>
+              <div class="am-u-md-12">
+                <p>凭证图片</p>
+                <form class="am-form">
+                  <div class="am-form-group">
+            <div class="btn">
+              <span><?=$upload_pic_text?></span>
+              <input id="fileupload" type="file" name="mypic">
+            </div>
+            <div class="progress">
+              <span class="bar"></span><span class="percent">0%</span >
+            </div>
+            <div class="files"></div>
+                    <p class="am-form-help"><?=$choose_file_text?>...</p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+          </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+   
+
+
+
+     
+  <!-- content end -->
+  
+
+
+<?php
+	// footer
+	include 'templates/footer.htm';
+?>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/polyfill/rem.min.js"></script>
+<script src="assets/js/polyfill/respond.min.js"></script>
+<script src="assets/js/amazeui.legacy.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="templates/assets/js/jquery.min.js"></script>
+<script src="templates/assets/js/jquery.form.js"></script>
+<script src="templates/assets/js/jquery.Jcrop.js"></script>
+<script src="templates/assets/js/amazeui.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/umeditor/umeditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="/js/umeditor/umeditor.min.js"></script>
+<script type="text/javascript" src="/js/umeditor/lang/zh-cn/zh-cn.js"></script>
+<!--<![endif]-->
+<script>
+  (function($) {
+    'use strict';
+
+    $(function() {
+    var $fullText = $('.admin-fullText');
+    $('#admin-fullscreen').on('click', function() {
+      $.AMUI.fullscreen.toggle();
+    });
+
+    $(document).on($.AMUI.fullscreen.raw.fullscreenchange, function() {
+      $.AMUI.fullscreen.isFullscreen ? $fullText.text('<?=$close_full_text?>') : $fullText.text('<?=$open_full_text?>');
+    });
+    });
+  })(jQuery);
+</script>
+<script>
+  (function($){
+    $.fn.extend({
+      GlobalGeography:function(){
+         
+        /* ._GlobalGeography_ { width:282px; height:30px !important; position:relative; left:-282px; top:2px; } */
+         
+        var relatedObj = ['div[id="country"]','div[id="state"]','div[id="city"]','div[id="region"]'];
+        var excludeObj = ['div[id="region"]'];   
+        var selectmenu = ['country','state','city','region'];
+        var selector   = this.selector;
+         
+        /*输出下拉列表*/
+        function _traversal(source,type,text){
+          //console.log(source);
+        
+          if(typeof(source)!='undefined'){
+            var _select_  = '<select class="_GlobalGeography_">';
+              _select_ += '<option value=""></option>';
+            $.each(source,function(i,v){
+              //console.log(v.Name+":"+v.Code);
+              if(typeof(text)!='undefined' && text == v.Name)
+                _select_ += '<option selected value="'+v.Code+'">'+v.Name+'</option>';
+              else 
+                _select_ += '<option value="'+v.Code+'">'+v.Name+'</option>';
+            });
+            _select_ += '</select>';
+            return _select_;
+          }
+          return false;
+        };
+         
+        /*清除/还原下级关联下拉菜单*/
+        function cleanNextMenu(index){
+          for(var i=index;i<relatedObj.length;i++){
+            if(typeof(relatedObj[(i+1)])!='undefined'){
+              $(relatedObj[(i+1)]).find('._GlobalGeography_').remove();
+              $(relatedObj[(i+1)]).find('input').val('');
+            }
+          }
+        }
+        
+        /* 初始化 */
+        function initValue(i){
+          i++;
+        
+          for(i;i<selectmenu.length;i++){
+            //console.log("index:"+i);
+            $("#"+selectmenu[i]+"Value").val("");
+          }
+        }
+         
+        /*遍历获取下拉菜单内容*/
+        function checkMenu(json){       
+          /*遍历赋值所有类型*/
+          $.each(relatedObj,function(i,v){
+            if($.inArray(v,excludeObj)==-1){
+              $(v).find('select').bind('change',function(){
+                var _code_ = $(this).val(); cleanNextMenu(i);
+                if(typeof(json[selectmenu[(i+1)]][_code_])!='undefined'){
+                  //console.log("i+1:"+selectmenu[(i+1)]+":"+_code_);
+                
+                  $(relatedObj[(i+1)]).append(_traversal(json[selectmenu[(i+1)]][_code_],selectmenu[(i+1)]));
+                  /*绑定方法*/
+                  $(relatedObj[(i+1)]).find('._GlobalGeography_').bind('change',function(){
+                    $(relatedObj[(i+1)]).find('input').val($(this).find('option:selected').text());
+                  });
+                  checkMenu(json);
+                } else {
+                  if(typeof(selectmenu[(i+2)]) != 'undefined' && typeof(json[selectmenu[(i+2)]][_code_]) != 'undefined'){                   
+                    $(relatedObj[(i+2)]).append(_traversal(json[selectmenu[(i+2)]][_code_]));
+                    /*绑定方法*/
+                    $(relatedObj[(i+2)]).find('._GlobalGeography_').bind('change',function(){
+                      $(relatedObj[(i+2)]).find('input').val($(this).find('option:selected').text());
+                    });
+                    checkMenu(json);
+                  }
+                }
+              });
+            }
+          });
+          
+          /* 为生成的新元素添加事件 */
+          $(".selectCountry select").on('change',function(){
+            var text = $(this).find("option:selected").text();
+            var id = $(this).parent(".selectCountry").attr("id");
+            var i = $(this).parent(".selectCountry").data("index");
+            
+            initValue(i);
+            $("#"+id+"Value").val(text);
+          });
+        }
+         
+        /*加载世界国家城市数据*/
+        $.getJSON("getCountry.php",function(json){
+          /*输出国家列表*/
+          $(selector).append(_traversal(json.country,'country'));
+          $(selector).find('._GlobalGeography_').bind('change',function(){
+            $(selector).find('input').val($(this).find('option:selected').text());
+          });
+          checkMenu(json);
+        });
+      }
+    })
+  })(jQuery);
+  
+  $(document).ready(function(){
+    $('#country').GlobalGeography();
+  });
+
+  var um = UM.getEditor('myEditor');
+  var flag = 1;
+
+  $(function(){
+    var bar = $('.bar');
+    var percent = $('.percent');
+    var showimg = $('#showimg');
+    var progress = $(".progress");
+    var files = $(".files");
+    var btn = $(".btn span");
+    var pic = $("#_pic");
+    
+    $("#fileupload").wrap("<form id='myupload' action='uploadAction.php' method='post' enctype='multipart/form-data'></form>");
+    $("#fileupload").change(function(){
+        $("#myupload").ajaxSubmit({
+          dataType:  'json',
+          beforeSend: function() {
+            showimg.attr('src','');
+            progress.show();
+            var percentVal = '0%';
+            bar.width(percentVal);
+            percent.html(percentVal);
+            btn.html("上传中...");
+            flag = -1;
+          },
+          uploadProgress: function(event, position, total, percentComplete) {
+            var percentVal = percentComplete + '%';
+            bar.width(percentVal);
+            percent.html(percentVal);
+          },
+          success: function(data) {
+            //files.html("<b>"+data.name+"("+data.size+"k)</b> <span class='delimg' rel='"+data.pic+"'><?=$delete_text?></span>");
+            files.hide();
+            var img = data.pic;
+            showimg.attr('src', img);
+            pic.val(img);
+            btn.html("<?=$upload_success_text?>！");
+            flag = 1;
+            //btn.html("<a rel='"+data.pic+"' href='javascript:;' class='c_button'><img src='/member/resources/img/crop_button.png'></a>");
+            //btn.show();
+          },
+          error:function(xhr){
+            files.show();
+            alert("<?=$upload_pic_error?>");
+            btn.html("<?=$upload_pic_error?>");
+            bar.width('0')
+            files.html(xhr.responseText);
+            flag = 1;
+          }
+        });
+      });
+  });
+ function  check(){
+    var pic = document.getElementsByName('pic')[0].value;
+    var id =  document.getElementsByName('id')[0].value;
+    var card =  document.getElementsByName('card')[0].value;
+
+   if (pic==null||pic==undefined||pic=='') {        
+        alert('请上传凭证');
+      return false;
+     }else if (id==null||id==undefined||id=='') {
+            alert('ID ERROR');
+              return false;
+     }else if (card==null||card==undefined||card=='') {
+           alert('银行卡号有误');
+             return false;
+     }else{
+              return true;
+     }
+}
+</script>
+<script type="text/javascript">
+ var k=0;
+function change(id){
+  var box = document.getElementById(id);
+   var money = document.getElementById('money');
+
+ if (box.checked==true) {
+      money.innerHTML=parseFloat(money.innerHTML)+30;
+ }else{
+   money.innerHTML=parseFloat(money.innerHTML)-30;
+ }
+
+
+}
+
+
+              $("#checkall").click(
+              
+              function(){
+                var k=0;
+              var money = document.getElementById('money');
+              if(this.checked){
+              $(":checkbox").each(function(){this.checked=true;k+=1;});
+              money.innerHTML=(k-1)*30;
+              }else{
+              $(":checkbox").each(function(){this.checked=false;});
+              money.innerHTML=0;
+              }
+             
+              }
+
+              );
+            
+
+</script>
+</body>
+</html>

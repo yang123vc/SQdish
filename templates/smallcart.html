@@ -1,0 +1,39 @@
+
+<form action="<?php echo $url;?>/confirmorder.php" method="post" onsubmit="return checkGoodsCart();">
+	<div class="r1">
+		<span class="s1 fl">已选商品</span>
+		<a onclick="clearCart();"><span class="s2 fr">清空<?php echo $url;?></span></a>
+	</div>
+	<ul >
+		<li>
+			<div class="l1 fl">菜品</div>
+			<div class="l2 fl">份数</div>
+			<div class="l3 fl">单价</div>
+		</li>
+		<?php if (count($goods_list) > 0) { ?>
+		<?php foreach($goods_list as $goods) { ?>
+		<li>
+			<div class="l1 fl"><?php echo $goods['name']; ?></div>
+			<div class="l2 fl"><a onclick="removeonedish(<?php echo $goods['id'];?>,<?php echo $goods['shop_id'];?>,1);"class="a1" href="#1"></a><span><?php echo $goods['count']; ?></span><a onclick="addonedish(<?php echo $goods['id'];?>,<?php echo $goods['shop_id'];?>,1);" class="a2" href="#1"></a></div>
+			<div class="l3 fl"><?php echo $goods['cost']; ?></div>
+		</li>
+		<?php }  ?>
+		<?php } ?>
+
+	</ul>
+	<div class="r2">
+		<span class="s1 fl">当前汇率</span>
+		<span class="s2 fr">0.182</span>
+	</div>
+	<div class="r3">可使用支付宝、微信在线人民币支付</div>
+	<div class="r4">
+		<span class="s1 fl" id="Cart">共计฿<?php echo $carinfo['sum']; ?>铢</span>
+		<input type="submit" class="fr tj" value="提交订单"/>
+	</div>
+	<div class="r5 clear">
+		<span class="s1">商家信息</span>
+		<span class="s2"><?php echo $detail['intro'];?></span>
+		<div id="mapContainer" style="height:274px;"></div>
+	</div>
+	<input id="goodsNum" type="hidden" value="<?php echo $carinfo['count'];?>"/>
+</form>

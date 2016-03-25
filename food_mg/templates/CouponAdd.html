@@ -1,0 +1,542 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title><?=$website_name?><?=$admin_center?></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="templates/assets/i/favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="templates/assets/i/app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="templates/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="templates/assets/css/admin.css">
+  <link rel="stylesheet" href="/html/assets/css/sq_mg.css"/>
+  <style>
+	.fieldset_right a{
+		padding: 4px;
+	}
+	
+	.fieldset_right{
+		margin-top: 10px;
+	}
+  </style>
+</head>
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+<?php
+	// header
+	include 'templates/headerDish.htm';
+?>
+
+<div class="am-cf admin-main">
+  <!-- sidebar start -->
+  <?php
+	// 左边栏
+	include 'templates/sidebarDish.htm';
+  ?>
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg"><?=$add_coupon_text?></strong></div>
+    </div>
+
+    <hr/>
+
+    <div class="am-g">
+
+      <div class="am-u-sm-12 am-u-md-4 am-u-md-push-8">
+        <div class="am-panel am-panel-default">
+          <div class="am-panel-bd">
+            <div class="am-g">
+              <div class="am-u-md-12">
+                <img id="showimg" class="am-img-circle am-img-thumbnail" src="<?php if(isset($pic))echo $pic;?>" alt=""/>
+              </div>
+              <div class="am-u-md-12">
+                <p><?=$coupon_pic_text?></p>
+                <form class="am-form">
+                  <div class="am-form-group">
+						<div class="btn">
+							<span><?=$upload_pic_text?></span>
+							<input id="fileupload" type="file" name="mypic">
+						</div>
+						<div class="progress">
+							<span class="bar"></span><span class="percent">0%</span >
+						</div>
+						<div class="files"></div>
+                    <p class="am-form-help"><?=$choose_file_text?>...</p>
+					<p class="am-form-help"><a class="am-btn am-btn-danger" href="javascript:;" id="delPic" data-id="<?php if(isset($id))echo $id;?>"> <?=$delete_text?> </a></p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="am-u-sm-12 am-u-md-8 am-u-md-pull-4">
+        <form action="doCoupon.php" onSubmit="return doSubmit();" method="post" class="am-form am-form-horizontal" role="form">
+			<input type="hidden" name="action" value="<?=$action?>" />
+			<input type="hidden" name="id" value="<?php if(isset($id))echo $id;?>" />
+			<input type="hidden" name="sid" value="<?php if(isset($sid))echo $sid;?>" />
+			<input type="hidden" id="_pic" name="pic" value="<?php if(isset($pic))echo $pic;?>" />
+			
+			<div class="am-form-group">
+				<label for="couponNameCN" class="am-u-sm-3 am-form-label"><?=$coupon_name_text?></label>
+				<div class="am-u-sm-9">
+					<ul class="am-avg-sm-2">
+						<li><input type="text" class="required" onkeyup="openFlag($(this),1,'couponNameCN,couponNameTHAI',1)" onkeydown="closeFlag()" name="couponNameCN"value="<?php if(isset($couponNameCN))echo $couponNameCN;?>" id="couponNameCN" placeholder="<?=$input_chinese?>"></li>
+						<li><input type="text" onkeyup="openFlag($(this),2,'couponNameCN,couponNameTHAI',1)" onkeydown="closeFlag()" name="couponNameTHAI" value="<?php if(isset($couponNameTHAI))echo $couponNameTHAI;?>" id="couponNameTHAI" placeholder="<?=$input_thai?>"></li>
+					</ul>
+				</div>
+			</div>
+
+          <div class="am-form-group">
+            <label for="couponIntroCN" class="am-u-sm-3 am-form-label"><?=$coupon_intro_text?></label>
+            <div class="am-u-sm-9">
+				<ul class="am-avg-sm-2">
+					<li><input type="text" class="required" onkeyup="openFlag($(this),1,'couponIntroCN,couponIntroTHAI')" onkeydown="closeFlag()" name="couponIntroCN" value="<?php if(isset($couponIntroCN))echo $couponIntroCN;?>" id="couponIntroCN" placeholder="<?=$input_chinese?>" required></li>
+					<li><input type="text" onkeyup="openFlag($(this),2,'couponIntroCN,couponIntroTHAI')" onkeydown="closeFlag()" name="couponIntroTHAI" value="<?php if(isset($couponIntroTHAI))echo $couponIntroTHAI;?>" id="couponIntroTHAI" placeholder="<?=$input_thai?>"></li>
+				</ul>
+            </div>
+          </div>
+		  
+		  <div class="am-form-group">
+			  <label for="typeChoose" class="am-u-sm-3 am-form-label"><?=$coupon_type?></label>
+			  <div class="am-u-sm-9">
+				  <label class="am-radio-inline"><input type="radio" value="1" name="role" checked> <?=$coupon_digital?></label>
+				  <label class="am-radio-inline"><input type="radio" value="2" name="role"> <?=$coupon_paper?></label>
+			  </div> 
+		  </div>
+
+          <div class="am-form-group" id="pricediv">
+            <label for="price" class="am-u-sm-3 am-form-label"><?=$price_text?></label>
+            <div class="am-u-sm-9">
+              <input type="text" name="price" class="required" value="<?php if(isset($price))echo $price;?>" id="price" placeholder="<?=$price_text?>">
+            </div>
+          </div>          
+		  
+		  <div class="am-form-group" id="numdiv">            
+			  <label for="numbers" class="am-u-sm-3 am-form-label"><?=$coupon_number?></label>            
+				  <div class="am-u-sm-9">              
+				  <input type="text" name="num" class="required" value="" id="price" placeholder="<?=$coupon_number?>">            
+			  </div>          
+		  </div>
+
+          <div class="am-form-group">
+            <div class="am-u-sm-9 am-u-sm-push-3">
+              <button type="submit" class="am-btn am-btn-primary"><?=$save_text?></button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- content end -->
+
+</div>
+
+<a class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+
+<?php
+	// footer
+	include 'templates/footerDish.htm';
+?>
+
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/polyfill/rem.min.js"></script>
+<script src="assets/js/polyfill/respond.min.js"></script>
+<script src="assets/js/amazeui.legacy.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="templates/assets/js/jquery.min.js"></script>
+<script src="templates/assets/js/amazeui.min.js"></script>
+<script src="templates/assets/js/jquery.form.js"></script>
+<script src="templates/assets/js/jquery.Jcrop.js"></script>
+<!--<![endif]-->
+<script>
+	  $(function() {
+		var $fullText = $('.admin-fullText');
+		$('#admin-fullscreen').on('click', function() {
+		  $.AMUI.fullscreen.toggle();
+		});
+
+		$(document).on($.AMUI.fullscreen.raw.fullscreenchange, function() {
+		  $.AMUI.fullscreen.isFullscreen ? $fullText.text('<?=$close_full_text?>') : $fullText.text('<?=$open_full_text?>');
+		});
+		
+		//删除图片
+		$("#delPic").click(function(){
+			var id = $(this).data("id");
+			
+			$.post("delPic.php",{id:id},function(data){
+				if(data == 1){
+					$("#showimg").attr("src","");
+				}
+			});
+		});
+	  });
+</script>
+<script>
+	var flag = 1;
+	
+	//trim注册
+	String.prototype.trim=function(){
+　　   return this.replace(/(^\s*)|(\s*$)/g, "");
+　　}
+　　String.prototype.ltrim=function(){
+　　   return this.replace(/(^\s*)/g,"");
+　　}
+　　String.prototype.rtrim=function(){
+　　   return this.replace(/(\s*$)/g,"");
+　　}
+
+	$(function(){
+		var bar = $('.bar');
+		var percent = $('.percent');
+		var showimg = $('#showimg');
+		var progress = $(".progress");
+		var files = $(".files");
+		var btn = $(".btn span");
+		var pic = $("#_pic");
+		
+		$("#fileupload").wrap("<form id='myupload' action='uploadAction.php' method='post' enctype='multipart/form-data'></form>");
+		$("#fileupload").change(function(){
+			$("#myupload").ajaxSubmit({
+				dataType:  'json',
+				beforeSend: function() {
+					showimg.attr('src','');
+					progress.show();
+					var percentVal = '0%';
+					bar.width(percentVal);
+					percent.html(percentVal);
+					btn.html("上传中...");
+					flag = -1;
+				},
+				uploadProgress: function(event, position, total, percentComplete) {
+					var percentVal = percentComplete + '%';
+					bar.width(percentVal);
+					percent.html(percentVal);
+				},
+				success: function(data) {
+					//files.html("<b>"+data.name+"("+data.size+"k)</b> <span class='delimg' rel='"+data.pic+"'><?=$delete_text?></span>");
+					files.hide();
+					var img = data.pic;
+					showimg.attr('src', img);
+					pic.val(img);
+					btn.html("<?=$upload_success_text?>！");
+					flag = 1;
+					//btn.html("<a rel='"+data.pic+"' href='javascript:;' class='c_button'><img src='/member/resources/img/crop_button.png'></a>");
+					//btn.show();
+				},
+				error:function(xhr){
+					files.show();
+					alert("<?=$upload_pic_error?>");
+					btn.html("<?=$upload_pic_error?>");
+					bar.width('0')
+					files.html(xhr.responseText);
+					flag = 1;
+				}
+			});
+		});
+	});
+
+	
+	function doSubmit(){
+		if(flag == 1)
+			return true;
+		else if(flag == -1){
+			alert("is verifying the picture, please wait a moment!");
+			return false;
+		}
+	}
+	
+	//上锁
+	var flagT = 0;
+	var t;
+	function openFlag(elem,type,option,pic) {
+		t = setTimeout(function(){
+			flagT = 1; 
+			toTranslate(elem,type,option,pic);
+		}, 1000);
+	}
+	
+	function closeFlag() {
+		if(t)
+			clearTimeout(t);
+		flagT = 0;
+	}
+	
+	/*
+	*	字符串转义
+	*/
+	function strReplace(str){
+		//str = str.replace(/\s?\/\s?/g,"/");  
+		str = str.replace(/'/g,"\'");   		
+	
+		return str;
+	}
+	
+	/*  翻译公共方法 
+	*	content 输入内容
+	*	type: 1、输入中文 2、输入泰文 3、输入英文
+	*	option:
+	*	cnId 
+	*	thaiId
+	*	enId
+	*/
+	function toTranslate(elem,type,option,pic){
+		if(flagT == 1){
+			var content = elem.val();
+			console.info(content);
+		
+			//根据输入内容搜索翻译列表
+			
+			getDictionaries(content,type,option,elem,pic);
+			
+			if(pic == 1){
+				console.info("pic");
+			}
+		}
+	}
+	
+	/*  获得字典列表
+	*	content 输入内容
+	*	type: 1、输入中文 2、输入泰文 3、输入英文
+	*	option:
+	*	cnId
+	*	thaiId
+	*	enId
+	*/
+	function getDictionaries(content,type,option,elem,pic){
+		if(!arguments[4]) pic = -1;
+	
+		//后台处理
+		$.ajax({
+            url:"toTranslate.php",
+            async:false,
+            type:"post",
+            dataType:"json",
+            data:"content="+content+"&type="+type+"&option="+option+"&pic="+pic,
+            complete:function(XMLHttpRequest, textStatus) {
+				//console.info("ajax:"+XMLHttpRequest.responseText);
+				var str = XMLHttpRequest.responseText;
+				if(str){
+					var obj=eval('('+str+')');
+					
+					//弹出下拉选择框
+					createDictionaries(elem,obj);
+				}else{
+					createDictionaries(elem,"");
+				}
+			}
+		});
+		
+		/*var strs = new Array(); //定义一数组 
+		strs = option.split(",");
+	
+		var cnId = strs[0];
+		var thaiId = strs[1];
+		var enId = strs[2];
+		var result = "[";
+		
+		console.info("content : "+content+", type : "+type+", cnId : "+cnId+", thaiId : "+thaiId+", enId : "+enId);
+		
+		if(cnId != -1){
+			result += "{value:'"+content+"',id:"+cnId+"}";
+		}
+		
+		if(thaiId != -1){
+			result += "{value:'"+content+"',id:"+thaiId+"}";
+		}
+		
+		if(enId != -1){
+			result += "{value:'"+content+"',id:"+enId+"}";
+		}
+		
+		result += "]";
+		return result;*/
+	}
+	
+	/*  弹出下拉选框
+	*	elem dom元素，确定下拉框位置
+	*	list 下拉框内容
+	*/
+	function createDictionaries(elem,list){
+		//console.info("list:"+list);
+	
+		$(".dictionaries").remove();
+	
+		if(list){
+			var html = "<ul class='dictionaries'>";
+			
+			for(var o in list){
+				//json转字符串
+				var show = list[o]['show'];
+				var data = "[";
+				for(var s in show){
+					var value = show[s]['value'].trim();
+					value = strReplace(value);
+					
+					var id = show[s]['id'].trim();
+					id = strReplace(id);
+					
+					//console.info("pic:"+list[o]['pic']);
+					var pic = "";
+					if(list[o]['pic']){
+						pic = list[o]['pic'].trim();
+						pic = strReplace(pic);
+					}
+				
+					var temp = "{value:\'"+value+"\',id:\'"+id+"\',pic:\'"+pic+"\'},";
+					data += temp;
+					//console.info("data:"+s+"   "+show[s]['value'].trim()+"----"+temp);
+				}
+				//去除末尾,
+				data = data.substring(0,data.length-1);
+				if(data)
+					data += "]";
+				
+				//console.info("data: "+data);
+				
+				//console.info("show:"+data);
+				html += "<li><a data-value=\""+data+"\" href='javascript:;' onclick=selectDictItem($(this))>"+list[o]['item']+"</a></li>";
+			}
+			
+			html += "</ul>";
+			
+			elem.after(html);
+			
+			//绑定事件
+			$(document).on('click',function() { 
+				$(".dictionaries").css("display","none"); 
+			}); 
+		
+			$(document).on('click','.dictionaries li a',function() { 
+				$(".dictionaries").hide(); 
+			}); 
+			
+			$(document).on('click','.dictionaries',function(e) { 
+				e.stopPropagation(); 
+			}); 
+			//绑定事件
+		}
+	}
+	
+	/*  选择下拉选框
+	*	data: json格式内容，给input赋值
+	*/
+	function selectDictItem(elem){
+		//console.info("data : "+data);
+		var data = elem.data("value");
+		
+		if(data){
+			var obj=eval('('+data+')');
+			
+			for(var o in obj){		
+				var id = obj[o]['id'];
+				var value = obj[o]['value'];
+				var pic = obj[o]['pic'];
+				
+				$("#"+id).val(value);
+				$("#showimg").attr("src",pic);
+				$("#_pic").val(pic);
+
+			}
+		}
+	}
+	/* 日期选择 */
+/*jQuery(function($) {
+	$('.date-picker').datepicker();
+});*/
+</script>
+<script>
+$(function(){
+	//文本框失去焦点后
+	$('form :input').blur(function(){
+	var $parent = $(this).parent();
+	$parent.find(".formtips").remove();
+	//必填项
+	if( $(this).is('#couponNameCN') ){
+	if( this.value==""){
+	var errorMsg = '<?=$requried_text?>';
+	$parent.append('<span class="formtips onError" style="color:red;">'+errorMsg+'</span>');
+	}else{
+	}
+	}
+
+	if( $(this).is('#couponIntroCN') ){
+	if( this.value==""){
+	var errorMsg = '<?=$requried_text?>';
+	$parent.append('<span class="formtips onError" style="color:red;">'+errorMsg+'</span>');
+	}else{
+	}
+	}
+
+	if( $(this).is('#price') ){
+	if( this.value==""){
+	var errorMsg = '<?=$requried_text?>';
+	$parent.append('<span class="formtips onError" style="color:red;">'+errorMsg+'</span>');
+	}else{
+	}
+	}
+
+	}).keyup(function(){
+	$(this).triggerHandler("blur");
+	}).focus(function(){
+	$(this).triggerHandler("blur");
+	});//end blur
+
+	//提交，最终验证。
+	$('#send').click(function(){
+	$("form :input.required").trigger('blur');
+	var numError = $('form .onError').length;
+	if(numError){
+	return false;
+	}
+	});
+})
+</script>
+
+<script>
+	function showByRole(){
+		var role = $("input[name=role]:checked").val();
+		
+		if(role == 1){
+			$("#pricediv").show();
+			$("#numdiv").hide();
+		}else if(role == 2){
+			$("#pricediv").hide();
+			$("#numdiv").show();
+		}
+	}
+	
+	function init(){
+		$("#pswDiv").hide();
+		$("#sidDiv").hide();
+	
+		showByRole();
+	}
+	
+	$(function(){
+		init();
+	
+		//radio 点击事件
+		$("input[name=role]").click(function(){
+				showByRole();
+		});
+	});
+</script>
+</body>
+</html>

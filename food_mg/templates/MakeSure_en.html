@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>食器管理中心</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="alternate icon" type="image/png" href="/food_mg/templates/assets/i/favicon.png">
+  <link rel="stylesheet" href="/food_mg/templates/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/html/assets/css/sq_mg.css"/>
+  
+  <script src="/food_mg/templates/assets/js/jquery.min.js"></script>
+  <script src="/food_mg/templates/assets/js/amazeui.min.js"></script>
+  <script>
+	function selectLanguage(lan){
+		$.post("/food_mg/selectLanguage.php",{"l":lan},function(data){
+			if(lan == 'cn'){
+				location.href = "MakeSure.html";
+			}else if(lan == 'thai'){
+				location.href = "MakeSure_thai.html";
+			}else if(lan == 'en'){
+				location.href = "MakeSure_en.html";
+			}
+		});
+	}
+  </script>
+  <style>
+    .header {
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 200%;
+      margin-top: 30px;
+    }
+    .header p {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body class="login">
+<div class="header">
+  <div class="am-g">
+	 <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
+	  <li class="am-dropdown" data-am-dropdown>
+		 <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
+          <span class="am-icon-users"></span> Language <span class="am-icon-caret-down"></span>
+        </a>
+        <ul class="am-dropdown-content">
+          <li><a onclick="selectLanguage('cn');" href="javascript:;"><span class="am-icon-chinese"></span> 中文</a></li>
+          <li><a onclick="selectLanguage('thai');" href="javascript:;"><span class="am-icon-thai"></span> THAI</a></li>
+          <li><a onclick="selectLanguage('en');" href="javascript:;"><span class="am-icon-english"></span> EN</a></li>
+        </ul>
+      </li>
+	 </ul>
+    <h1><img src="/html/assets/i/logo.png"> 食器 sqdish.com</h1>
+    <p class="login_info">If you want to use the platform, please agree to service use agreement</p>
+  </div>
+</div>
+
+<div class="am-g">
+  <div class="am-u-lg-4 am-u-md-8 am-u-sm-centered sqlogin">
+    <h3>Service agreement</h3>
+    <hr class="login_top">
+    <br>
+    <form method="post" action="doLogin.php" class="am-form">
+		<div class="am-form-group">
+			<textarea class="" rows="20" id="doc-ta-1">
+1.Terms of Service recognition and acceptance
+SQdish platform ownership and operation of the product involved, related software owned by Lanna Ricto Business Consulting Co., Ltd owned businesses through this site registration process, check "I have read and agree to the following terms, submit registration information", it means that businesses and Lanna Ricto Business Consulting Co., Ltd have agreed to voluntarily accept the Terms of Service all content and associated use processes.
+2.Merchant Account Security
+2.1) Once registered businesses, become merchants SQdish platform providers will get a user name and password, and have the right to use their own user name and password at any time quotient SQdish landing platform.
+2.2) The business name and password for security providers bear full responsibility for all activities and events at the same time with its suppliers to take full responsibility for the user name.
+3.3) businesses are not allowed to transfer or authorize others to use their platform providers SQdish username in any form.
+3.4) If the merchant leak the password, it may result in adverse legal consequences, regardless of any cause merchants password security is threatened, you should immediately and contact the customer service staff SQdish platform, or peril. Taiwanese username.
+3. Merchant Representations and Warranties
+3.1) business commitments have full civil capacity of civil subject, with the ability to reach a deal to meet its obligations.
+3.2) businesses are obliged to provide their real information when registering, and to ensure the effectiveness and safety of shops such as name, e-mail, telephone, address, etc. shops to ensure SQdish platform staff can get in touch with the business via the contact details Contact. At the same time, businesses also have an obligation to update the relevant registration information in real time relevant information changes.
+4.SQdish platform of services
+4.1) SQdish platform for merchants and customers to provide Chinese menu service.
+Service includes the following features:
+(1) Upload menu after business, SQdish platform for businesses to provide free Chinese menu translation service, if the merchant fails to corresponding propaganda pictures uploaded, SQdish will find and upload the corresponding dishes pictures through the network platform, which generated problems shared by the two sides;
+(2) Conveyance of the menu is two-dimensional code, SQdish ensure dimensional code can be used effectively, businesses to ensure the integrity and visibility of two-dimensional codes, two-dimensional code appears damaged if the result can not be used, because of the timely notification SQdish;
+(3) SQdish After Platform Builder Chinese menu, will confirm the accuracy of the information with the merchant, menu Once operational, the business is deemed to have approved the accuracy of the relevant information, in the restaurant dishes and prices are subject to change, should promptly inform SQdish modify, Ruoyin information error caused the dispute between the consumer, the responsibility borne by businesses;
+(4) SQdish ensure a la carte system of support services.
+4.2) SQdish platform reserves the right to review or remove allegedly illegal information published by businesses;
+4.3) To ensure the operating platform, SQdish enjoys platform advertising rights, ads will appear in the listing page, the proceeds go SQdish all resulting.
+5.Change service disruption
+5.1) Given the special nature of network services, merchants agree to SQdish platform will change, suspend part of the network services;
+5.2) SQdish platforms require regular or irregular basis to provide network services platform or related equipment repair or maintenance, as a result of such circumstances and cause of network services within a reasonable time of the interruption, SQdish platform will not bear any responsibility.
+6.modify the terms of service
+6.1) SQdish platform reserves the right to revise the terms of service of any content, if any part of this Terms of Service changed, SQdish platform will prompt changes in an appropriate manner to the merchant.
+6.2) If you do not agree to amend the terms of this service platform SQdish made, the merchant may stop using this platform related services.
+6.3) If businesses continue to use this platform services, as merchants to accept SQdish platform made to the terms of service changes.
+7.notice
+7.1) All notices can be sent to businesses via e-mail or regular mail. Modify SQdish platform will service announcements news by e-mail to the merchant, telling them the terms of service, service changes, or other important matters.
+8.Exemption and Compensation Statement
+8.1) If SQdish platform has expressed its services and change the way business should remind precautions, businesses did not seek any consequences arising from the operation shall be borne by the merchant.
+8.2) Merchant expressly agrees that the use of risk SQdish platform services will be entirely by themselves; because of all the consequences arising from the use of SQdish platform services are also borne by themselves.
+8.3) merchants agree to protect and safeguard the interests of SQdish platform, since merchants visit the website content is illegal, untrue, unfair, violating the legitimate rights and interests of third parties, or business in violation of any provision of this Agreement while to SQdish and any other third party losses, merchants agree to be liable for damages resulting therefrom.
+9.Privacy Policy
+9.1) Scope:
+(1) When the merchant account registered SQdish platform, upon request registration information.
+9.2) Information Use:
+(1) SQdish platform businesses will not disclose registration information to any person, except with the prior permission of businesses 
+(2) SQdish platform also allow any third party to any means to collect, edit, sell or free information dissemination platform, For reprint dissemination, to be informed in advance SQdish, after SQdish consent stating information from SQdish, can be used. Any organizations or individuals as engage in these activities, once discovered, SQdish platform right to immediately trace their legal responsibilities.
+9.3) Disclosure - business registration information will be disclosed in some or all of the following cases:
+(1) The merchant agreed to disclose to a third party;
+(2) According to the relevant provisions of the law or administrative or judicial requirements, disclosure to third parties or the executive, the judiciary;
+(3) violation of the relevant laws or the policy of the site if the business failed, we need to disclose to a third party;
+(4) to provide the required business products and services, but must share personal information and third-party businesses;
+(5) Other SQdish internet website under the law or policy that the appropriate disclosure;
+(6) the merchant bank account information SQdish platform using a service provided, SQdish platform will strictly fulfill the relevant confidentiality agreement.
+
+Interpretation of the above terms of return Lanna Ricto Business Consulting Co., Ltd ultimately all
+lannaricto@gmail.com
+			</textarea>
+		</div>
+		<div class="am-cf" style="margin:0 0 0 207px;">
+		<a class="am-btn am-btn-success am-btn-sm am-fl" href="../login.php">Agree</a>
+        <a class="am-btn am-btn-danger am-btn-sm am-fl" href="#">Disagree</a>
+      </div>
+    </form>	
+    <hr>
+    <p>© 2015 Sanho Tec, Inc. Licensed under MIT license.</p>
+  </div>
+</div>
+</body>
+</html>

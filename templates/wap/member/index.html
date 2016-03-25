@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>我的食器-SQdish食器</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
+  <link rel="stylesheet" href="/templates/wap/theme/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/templates/wap/theme/css/style.css">
+</head>
+<body>
+ <header data-am-widget="header" class="am-header am-header-default sqBgColor">
+      <div class="am-header-left am-header-nav">
+         <a href="javascript:void(0)"onclick= "javascript:history.back(-1);" class="">
+             <i class="am-header-icon am-icon-chevron-left"></i>
+          </a>
+      </div>
+
+       <h1 class="am-header-title">我的食器</h1>
+
+      <div class="am-header-right am-header-nav">
+          <a href="/user_info.php">
+                <i class="am-header-icon am-icon-cog"></i>
+          </a>
+      </div>
+  </header>
+  
+  <div class="am-g bg">
+       <div class="am-u-sm-4 am-u-sm-centered border">
+       <img src="<?php echo empty($user_rs['pic162'])?'../../templates/theme/image/ures.jpg':$user_rs['pic162'];?>">
+       </div>
+       <div class="am-u-sm-4 am-u-sm-centered user">
+       <span class="name"><?php if($user_rs['nickname']){?><?php echo $user_rs['nickname'];?><?php } ?></span>
+       <span class="sex-male"></span>
+       </div> 
+  </div>
+
+<div class="am-g list">
+     <ul>
+         <li><a href="/dish/check.php"><span class="shopping"></span>购物车<i class="am-header-icon am-icon-chevron-right"></i></a></li>
+          <li><a href="user_orders.php"><span class="order"></span>我的订单<i class="am-header-icon am-icon-chevron-right"></i></a></li>
+           <li><a href="comment.php"><span class="evalate"></span>我的评价<i class="am-header-icon am-icon-chevron-right"></i></a></li>
+            <li><a href="favourite.php"><span class="collection"></span>我的收藏<i class="am-header-icon am-icon-chevron-right"></i></a></li>
+             <li><a href="user_coupon.php"><span class="coupon"></span>我的优惠券<i class="am-header-icon am-icon-chevron-right"></i></a></li>
+     </ul>
+</div>
+
+<div class="am-g">
+   <div class="Line-frame"></div>
+   
+</div>
+
+<?php include "footer.html"?>
+
+ 
+<script src="/templates/wap/theme/assets/js/jquery.min.js"></script>
+<script src="/templates/wap/theme/assets/js/amazeui.min.js"></script>
+</body>
+</html>

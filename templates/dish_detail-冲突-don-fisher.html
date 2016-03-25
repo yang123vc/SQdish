@@ -1,0 +1,264 @@
+<?php
+    setcookie("recently",$id, time()+3600);
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><?php echo $detail['sellerName'];?>|SQdish食器</title>
+    <link href="templates/theme/css/style.css" type="text/css" rel="stylesheet" />
+    <link href="templates/theme/css/dish_detail.css" type="text/css" rel="stylesheet" />
+ 
+</head>
+<body>
+<?php include "inc/header.html"?>
+<div class="city1">
+    <div class="city wrap">
+        <span class="s1">当前位置：清迈  <a href="#">[ 点击切换 ]</a></span>
+        <span class="s2"><a href="#">登录</a><span>丨</span><a href="#">注册</a></span>
+        <div class="xlk2">
+            <a href="">中文</a>
+            <span class="arrow"></span>
+            <span class="yuyan">
+                <a href="#">English</a>
+            </span>
+        </div>
+        <div class="xlk1">
+            <a href="">清迈</a>
+            <span class="arrow"></span>
+            <span class="chengshi">
+                <a href="#">清迈</a>
+                <a href="#">清迈</a>
+                <a href="#">清迈</a>
+            </span>
+        </div>
+
+    </div>
+</div>
+<div class="shxq">
+    <div class="d1">
+        <div class="wrap">
+             <a href="business_detail.php?sid=<?php echo $sid?>"><img class="img fl" src="<?php echo $detail['pic'];?>" alt=""/></a>
+            <div class="d2 fl">
+                <a href="business_detail.php?sid=<?php echo $sid?>"><span class="s1"><?php echo $detail['sellerName'];?></span></a>
+                <span class="s2">
+                    <span class="s21 fl"><img src="templates/theme/bg/13.png" alt=""/></span>
+                    <span class="s22 fl">月售<?php echo $detail['count'];?>份</span>
+                    <span class="s23 fl"><?php echo $detail['BH'];?></span>
+                </span>
+                                <span class="s5">
+                                <?php foreach($ser_icon as $k){?>
+                                <span class="s52" ><img style= "width:auto; height:auto; max-width:100%;max-height:100%;"src="<?=$k?>" /></span>
+                                <?php }?>
+                </span>
+            </div>
+            <div class="d3 fl">
+                <a class="hover" href="business_detail.php?sid=<?php echo $sid?>">菜 单</a>
+				<a href="/business_coupon.php">优惠券</a><!--此按钮需要判断商户是否有优惠券-->
+				<a  href="#1">评 价</a>
+				<a href="#1" class="sh">商户名片<div class="wx"><img src="<?php echo $detail['QRCode'];?>"></div></a>
+            </div>
+            <ul class="d4 fr lifl">
+                <li><span class="s1"><?php echo $detail['click'];?>次</span><span class="s2">浏览量</span></li>
+                <li><span class="s1">￥100</span><span class="s2">人均消费</span></li>
+                <li><span class="s1">78条</span><span class="s2">评价数</span></li>
+                <li><a href="#1"><span class="s1 s11"></span><span class="s2 s21">收藏商户</span></a></li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="msfl">
+        <div class="wrap clear">
+            <div class="left fl">
+				<div class="dishTitle">					
+					<h1><?php echo $dishDetail['dishNameCN'];?></h1>
+				</div>
+				<!--dishBox 开始-->
+				<div class="dishBox">
+					<div class="dishBoxLeft fl">
+						<div class="dishPic">
+							<img src="<?php echo empty($dishDetail['pic'])?'http://www.sqdish.com/templates/images/sellerdefault.jpg':$dishDetail['pic'];?>">
+						</div>
+						<div class="dishinfo">
+							<div class="bdsharebuttonbox">
+							<a href="#" class="bds_more" data-cmd="more"></a>
+							<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+							<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+							<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+							<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+							<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+							</div>
+							<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+						</div>
+					</div>					
+					<div class="dishBoxRight fr">
+						<div class="dishPrice">
+							<div class="dishBoxRightText">
+								<p>食器价</p>
+							</div>
+							<div class="dishBoxRightContent">
+								<span>฿</span>
+								<strong id="old_price"><?php echo $dishDetail['price'];?></strong>
+							</div>
+						</div>
+						<div class="dishSell">							
+							<ul>
+								<li class="rightLine">已售：<b><?php echo $dishDetail['used'];?></b></li>
+								<li class="rightLine"><b>5</b>星</li>
+								<li><b>3</b>人评价</li>
+							</ul>
+						</div>
+						
+						<?php foreach($dishOptions as $key=>$v){?>
+						<div class="dishtype">				
+							<div class="dishBoxRightText">
+								<p><?php echo $v['optionName'];?></p>
+							</div>
+							<div class="dishBoxRightContent"name='dishBoxRightContent'>
+								<?php foreach($v['detail'] as $k=>$val){?>
+								<a id="option_<?php echo $val;?>"name= "op"style= "" href="#" onclick= "option('<?php echo $val;?>');"><?php echo $val;?></a>
+								<?php }?>
+							</div>
+						</div>
+						<?php foreach($v['price'] as $k=>$val){?>
+						<input type="hidden" id="<?php foreach($v['detail'] as $p=>$value){ if($k==$p){echo $value;}}?>" value="<?php echo empty($val)?0:$val;?>">
+						<?php }?>
+						<?php }?>
+						<div class="dishNum">																		
+							<div class="dishBoxRightText">
+								<p>数量</p>
+							</div>
+							<div class="dishBoxRightContent">
+								<button class="dishNumButton">-</button>
+								<input type="text" class="dishNumInput" value="1" />
+								<button class="dishNumButton">+</button>
+							</div>
+						</div>
+						<div class="dishButton">																	
+							<div class="dishBoxRightText"></div>
+							<div class="dishBoxRightContent">
+								<input type="submit" class="dishBuyInput" />
+								<button class="dishAddCart"></button>
+								<button class="dishAddFavButton"></button>
+								<button class="dishAddFavButtonHover"></button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--dishBox 结束-->				
+                <div class="t1 fl" ><span class="fl">菜品介绍</span></div>
+				<div class="dishIntro">
+					<table>
+						<tr>
+							<td>
+								<?php echo $dishDetail['dishIntroCN'];?>
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+                <div class="t1 fl"><span class="fl">更多美食</span><b class="fr" onclick= "change();">换一组</b></div>
+				<div class="dishMore">
+					<ul>
+					<?php foreach($dishRand as $v){ ?>
+						<li><a href="dish_detail.php?id=<?php echo $v['id'];?>&sid=<?php echo $sid;?>&dtid<?php echo $dtid;?>"><img src="<?php echo empty($v['pic'])?'http://www.sqdish.com/templates/images/sellerdefault.jpg':$v['pic'];?>" alt="" /><br/><?php echo $v['dishNameCN'];?> </a></li>
+					<?php }?>
+					</ul>
+				</div>
+				
+                <div class="t1 fl"><span class="fl">最近浏览</span></div>
+				<div class="dishHistory">					
+					<ul>
+						<?php foreach($dishRecently as $v){
+							$s_id = $db->get_a("select sid from f_dish where id=' $v[id]'");
+						?>
+						<li><a href="dish_detail.php?id=<?php echo $v['id'];?>&sid=<?php echo $s_id;?>&dtid<?php echo $dtid;?>"><img src="<?php echo empty($v['pic'])?'http://www.sqdish.com/templates/images/sellerdefault.jpg':$v['pic'];?>" alt="" /><br/><?php echo $v['dishNameCN'];?> </a></li>
+						<?php }?>
+					</ul>
+				</div>
+			</div>
+			
+            <div class="right fr">
+				<?php include "inc/business_right.html"?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php include "inc/footer.html"?>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/amazeui.js"></script>
+<script type="text/javascript" src="templates/theme/common/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="templates/theme/common/jquery.tools.min.js"></script>
+<script type="text/javascript" src="templates/theme/common/ciads.js"></script>
+<script type="text/javascript" src="templates/theme/common/jquery.fly.min.js"></script> 
+<script type="text/javascript">
+
+/*function change(id,sid){
+          $.ajax({
+              type: "post",
+              url: "dish_detail.php",
+              data:{"id": id,"sid":sid},
+              async:false,
+              success: function(data){
+              	var arr = eval(data);
+              	var dish = new Array();
+              	for(var i in arr){
+              		dish[i]=Array(arr[i].id,arr[i].dishNameCN,arr[i].pic);
+              	}
+              }
+          });
+      }
+*/
+window.onload()=function(){ 
+var arr; 
+
+if(arr=document.cookie.match(/scrollTop=([^;]+)(;|$)/)) 
+document.documentElement.scrollTop=parseInt(arr[1]); 
+document.body.scrollTop=parseInt(arr[1]); 
+} 
+
+//页面刷新前保存滚动条位置信息到cookie 
+
+function change(){ 
+	var scrollPos; 
+	if (typeof window.pageYOffset != 'undefined') { 
+	   scrollPos = window.pageYOffset; 
+	} 
+	else if (typeof document.compatMode != 'undefined' && 
+	     document.compatMode != 'BackCompat') { 
+	   scrollPos = document.documentElement.scrollTop; 
+	} 
+	else if (typeof document.body != 'undefined') { 
+	   scrollPos = document.body.scrollTop; 
+	} 
+	document.cookie="scrollTop="+scrollPos; 
+	 window.location.reload();
+}
+
+function option(k){
+	var sum = 0;
+	var or_price = <?php echo $dishDetail['price'];?>;
+	var old_price =document.getElementById('old_price');
+	var price = document.getElementById(k).value;
+	var op = document.getElementsByName('op');
+	var click = document.getElementById('option_'+k);
+	var content = click.parentNode;
+	for(var i=0;i<content.children.length;i++){
+		content.children[i].setAttribute('style','');
+	}
+	click.setAttribute('style','border:1px solid red');
+
+	sum += parseFloat(price);	
+	
+		old_price.innerHTML = or_price+sum;	
+	
+	
+	
+
+}
+
+</script>
+
+</body>
+</html>

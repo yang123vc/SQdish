@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>食器</title>
+<link href="/templates/wap/css/index.css" rel="stylesheet" type="text/css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<script language="javascript">
+var ss;
+window.onload=function()
+{
+var w=document.documentElement.clientWidth ;//可见区域宽度
+var h=document.documentElement.clientHeight;//可见区域高度
+ss=document.getElementById('header');
+//alert(w);
+ss.style.width=w+"px";
+ss.style.height=h+"px";
+}
+function check(){
+var key = document.getElementById('key').value;
+if (key==''||key==null||key==undefined) {
+    alert('请输入要查询的关键字');
+    return false;
+}else{
+    return true;
+}
+    
+}
+</script>
+<body>
+	<div class="header" id="header">
+		<div class="menu">
+        	<div class="nav"></div>
+            <a class="icon" href="index.php"></a>
+			<?php if(!isset($_SESSION['user_info'])){?>
+        	<a class="log" href="/login.php"></a>
+			<?php } else {?>
+        	<a class="logon" href="/user_index.php"> </a>
+			<?php }?>
+			
+        </div>
+        <div class="topnav">
+            <div class="place" style="text-align: center;">清迈(เชียงใหม่)</div>
+            <!--<input class="text" type="text" placeholder="输入关键字进行查找"/>-->
+            <div class='text'>
+            <form action="search.php" onsubmit="return check();">
+                <input  id = "key" name="key" type="text" placeholder="输入关键字进行查找"/>
+                <button type="submit" ></button>
+            </form>
+            </div>
+            <ul class="list">
+                <a href="business_list.php"><li class="one">榜单推荐<span></span></li></a>
+                <a href="javascript:void(0)" onclick= "nearby();"><li class="two" >位置服务<span></span></li></a>
+                <a href="article_list.php"><li class="four">印记<span></span></li></a>
+            </ul>
+        </div>
+		<div class="btn_scoll_c" id="btn_bottom">
+		<span></span>
+		<br>
+		<cite style="display: none;">点击开启</cite>
+		</div>
+    </div>
+    <div class="main">
+    	<div class="title">
+        	<div class="left"></div>
+            <a href="business_list.php"><div class="right"></div></a>
+        </div>
+    	<ul class="menu">
+            <?php foreach($w_sellerList as $v){?>
+     
+        	<li class="jiudian">  
+                 <!--<a href="/c/<?php echo $v['id'];?>">-->
+                 <a href="business_detail.php?sid=<?php echo $v['id'];?>">
+                <div class="picture"><img src="<?php echo $v['pic'];?>" style="width:100%" /></div>
+                <div class="scores"><?php echo $v['sellerName'];?></div>
+                <div class="synopsis"><?php echo $v['intro'];?></div>
+                </a>
+            </li>
+            <?php }?>
+        </ul>
+        <div class="titlemid">
+        	<div class="left"></div>
+            <a href="article_list.php"><div class="right"></div></a>
+        </div>
+        <ul class="impression">
+			<?php 
+							foreach($Tarticlelist as $k=>$v){
+							if($k%3==2){$class='li3';}else{$class='';}
+			?>  		
+        	<li>
+				<a href="<?php echo getarticleurl($v); ?>">
+                <div class="picture"><img src="<?php echo $v['articleThumb'] ?>" style="width:100%" /></div>
+                <div class="subtitle"><img src="/templates/wap/images/tubiao.jpg" /><p><?php echo $v['articleTitle'] ?></p></div>
+                <div class="clear"></div>
+                <div class="synopsis"><?php echo $v['articleDes'] ?>...<br /><br />
+                    <span><?php  echo date('Y-m-d H:i:s',$v['addtime']) ; ?></span>
+                </div>
+				</a>
+            </li>
+			<?php 
+					
+					} 
+					?>
+        </ul>
+        <div><img src="/templates/wap/images/bottompic.jpg" / style="width:100%"></div>
+        <div><img src="/templates/wap/images/surprised.jpg" / style="width:100%"></div>
+    </div>
+    <div class="footer">
+    	<div class="border">
+        	<ul class="menu">
+            	<li class="frist"><a href="login.php"><img src="/templates/wap/images/bnav1.jpg"/><a></li>
+                <li><a href="register.php"><img src="/templates/wap/images/bnav2.jpg"/><a></li>
+                <li><a href="index.php?port=pc"><img src="/templates/wap/images/bnav3.jpg"/><a></li>
+                <li><a href="tel:053-275-062"><img src="/templates/wap/images/bnav4.jpg"/><a></li>
+            </ul>
+        </div>
+        <ul class="bottom">
+        	<a href="templates/wap/privacy.html"><li>隐私政策</li></a>
+            <?php if(!isset($_SESSION['user_info'])){?>
+            <a href="/login.php"><li>我的帐户</li></a>
+                    <?php } else {?>
+              <a href="/user_index.php"><li>我的帐户</li></a>
+                    <?php }?>
+            <a href="templates/wap/help_detail.html"><li>常见问题</li></a>
+        </ul>
+        <div class="copyright">版权所有@2012-2015&nbsp;SQDISH&nbsp;RIPPLE&nbsp;CO</div>
+    </div>
+</body>
+</html>
+<script src="/templates/wap/js/jq.js" type="text/javascript"></script>
+<script>
+//根据坐标获取城市
+var latitude = 0;
+var longitude = 0;
+$(function(){
+    getLocation();
+});
+    function nearby(){
+        if (latitude == 0 && longitude == 0) {
+            alert('无法获取到您的位置，暂时不可用！');
+            return false;
+        }else{
+            location.href = "nearby.php?latitude=" + latitude  + "&longitude=" + longitude;          
+        }
+    }
+
+function getLocation()
+  {
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(showPosition,showError);
+    }
+  else{alert("we can not get your loaction by this browser.");}
+  }
+  //成功获取位置匹配附近商家
+function showPosition(position)
+  {
+            $.getJSON('http://api.map.baidu.com/geocoder/v2/?ak=71709218d45a706b9c7e3abc2f037b23&callback=?&location='+position.coords.latitude+','+position.coords.longitude+'&output=json&pois=1', function(res){
+                $('.place').text(res.result.addressComponent.city);
+        });
+            latitude = position.coords.latitude;
+            longitude = position.coords.longitude;
+  }
+  function showError(error)
+  {
+  switch(error.code) 
+    {
+    case error.PERMISSION_DENIED:
+      alert("User denied the request for Geolocation.");
+      break;
+    case error.POSITION_UNAVAILABLE:
+      alert("Location information is unavailable.");
+      break;
+    case error.TIMEOUT:
+      alert("The request to get user location timed out.");
+      break;
+    case error.UNKNOWN_ERROR:
+      alert("An unknown error occurred.");
+      break;
+    }
+  }
+</script>

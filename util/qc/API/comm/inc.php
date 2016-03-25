@@ -1,0 +1,2 @@
+<?php die('forbidden'); ?>
+{"appid":"101170318","appkey":"990a89ee85d3494bec3a3173271121db","callback":"www.xitieba.com/login/qc-callback.php","scope":"get_user_info","errorReport":true,"storageType":"file","host":"localhost","user":"root","password":"root","database":"test"}

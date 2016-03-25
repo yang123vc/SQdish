@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>SQdish食器-消息管理</title>
+    
+	<meta name="keywords" content="">
+		<meta name="description" content="">
+       <link rel="stylesheet" href="/templates/assets/css/amazeui.min.css"/>
+  <link href="/templates/theme/css/style-personal center.css" type="text/css" rel="stylesheet" />
+   <link rel="stylesheet" href="/templates/theme/css/my favorite.css"/>
+
+
+  <link href="/templates/theme/css/style.css" type="text/css" rel="stylesheet" />
+
+    <link href="/templates/theme/css/sqStyle.css" type="text/css" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/templates/theme/css/men.css">
+  <script language="javascript" src="/templates/theme/js/userlogo.js" type="text/javascript"></script>
+     <script type="text/javascript" src="/templates/theme/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/templates/theme/js/jquery.tools.min.js"></script>
+    <script type="text/javascript" src="/templates/theme/js/ciads.js"></script>
+</head>
+<body>
+<?php include $_SERVER['DOCUMENT_ROOT']."/templates/inc/header.html";?>
+    <?php include $_SERVER['DOCUMENT_ROOT']."/templates/inc/user_top.html";?>
+<div class="am-g am-u-md-centered content">
+          <?php include $_SERVER['DOCUMENT_ROOT']."/templates/inc/user_left.html";?>
+  <div class="am-u-md-10">
+  <div class="am-g"> 
+  <div class="am-u-md-12" style=" margin-bottom:65px;">
+        <div class="am-g" style=" margin-left:20PX">
+        <div class="am-tabs" data-am-tabs="{noSwipe: 1}">
+  <ul class="am-tabs-nav am-nav am-nav-tabs tabs">
+    <li class="am-active"><a href="user_orders.php" style="border:0;font-size: 16px;font-weight: bold; color:#eda129;" id="a">所有订单</a></li>
+    <li class="baung"></li>
+    <li><a href="user_orders.php?act=no" style="border:0;font-size: 16px;font-weight: bold;" id="b">待评价</a></li>
+    <form class="am-topbar-form am-topbar-right am-form-inline" action="search_orders.php" method="POST" style="margin-top:2px" role="search">
+      <div class="am-form-group">
+        <input type="text" name="key" class="field" placeholder="输入订单号进行搜索"><input type="submit" value="提交" />
+      </div>
+    </form>
+  </ul>
+
+  <div class="am-tabs-bd" style="border:0;">
+    <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+      <div class="am-panel-default default">
+   <!--订单-->
+    <?php foreach($orders as $v){?>   
+  <div class="am-panel-hd">
+
+    <h3 class="am-panel-title"><span><?php echo date('Y-m-d H:i:s',$v['time']);?>&nbsp;&nbsp;</span>订单号：<span><?php echo $v['ordercode'];?></span>&nbsp;|&nbsp;<strong><a href="business_detail.php?sid=<?php echo $v['sid'];?>"><?php echo $v['sellerName'];?></a></strong>
+    <a onclick= "return confirm('是否删除？');" href="user_orders_del.php?id=<?php echo $v['id'];?>" style="float:right; margin-right:60px"><span class="am-icon-trash am-margin-left-md" style="margin:0;"></span> 删除</a></h3>
+  </div>
+ <table class="am-table">
+    <thead>
+        <tr>
+            <th>商品图片</th>
+            <th>商品名称</th>
+            <th>单价</th>
+            <th>数量</th>
+            <th>小计</th>
+            <th>交易状态</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+    <?php foreach($v['detail'] as $val){?>
+        <tr>
+        <td style=" width:12rem;"><a href="dish_detail.php?id=<?php echo $val['did'];?>&sid=<?php echo $v['sid'];?>" class="am-thumbnail"><img style="width:70px;height:70px;"src='<?php echo $db->get_a("SELECT pic FROM f_dish WHERE id=$val[did]");?>' alt=""/></a></td>
+         <td style=" width:220px;"><span><?php echo $db->get_a("SELECT dishNameCN FROM f_dish WHERE id='$val[did]'");?></span></td>
+        <td style=" width:100px;"><?php echo $val['goods_price'];?></td>
+        <td style=" width:100px;"><?php echo $val['goods_count'];?></td> 
+        <td style=" width:100px;"><?php echo $val['goods_price']*$val['goods_count'];?></td>
+         <td class="hover" style=" width:140px;"><a href="#"><?php switch($val['dish_status']){
+         case 0:
+         echo "未支付";
+         break;
+         case 1:
+         echo "已支付，未评论";
+         break;
+         case 2:
+         echo "已支付，已评论";
+         break;
+         case 3:
+         echo "订单已取消";
+         break;
+         }?></a>
+        <!--<p><a href="#">订单详情</a></p>-->
+    </td>
+    <td class="hover"><a href="dish_detail.php?id=<?php echo $val['did'];?>&sid=<?php echo $v['sid'];?>">再次购买</a>
+    <!--支付之后才能进行评价-->
+        <p><a href="business_comment.php?sid=<?php echo $v['sid'];?>" class="border"><?php if($val['dish_status']==1){ echo "评价";}?></a></p>
+    </td>
+        </tr>
+       <?php }?> 
+        
+        
+    </tbody>
+</table>
+<?php }?>
+</div>
+   <div class="fy fy1">
+                    <!-- <a href="#1"><span class="s1"><img src="/templates/theme/bg/zuo.png" alt=""/></span></a> -->
+          <span class="s2">                
+                 <?php  echo $pages->display(); ?>
+          </span>
+                    <!-- <a href="#1"><span class="s3"><img src="/templates/theme/bg/you.png" alt=""/></span></a> -->
+                </div>
+     </div>
+   </div>
+    </div>
+    
+    
+ 
+</div>
+</div>  
+
+</div>
+</div>
+</div>
+</div>
+
+<div class="am-g am-u-md-centered content">
+ <div class="fy fy1">
+  <span class="s3">
+ 
+ </div>
+</div>
+
+
+
+
+
+
+<!--<div class="footer">
+    <div class="wrap">
+        <span class="s1">
+            <a class="a1" href="#">品牌酒店 </a>
+            <a href="#">清迈艾美酒店</a>
+            <a href="#">清迈香格里拉酒店</a>
+            <a href="#">清迈美居酒店</a>
+            <a href="#">清迈智选假日酒店 </a>
+            <a href="#">清迈宜必思酒店</a>
+            <br>
+            <a class="a1" href="#">热门国家 </a>
+            <a href="#">美国</a>
+            <a href="#">韩国</a>
+            <a href="#">泰国</a>
+            <a href="#">日本</a>
+            <a href="#">法国</a>
+            <a href="#">澳大利亚</a>
+            <a href="#">加拿大</a>
+            <a href="#">马尔代夫</a>
+            <a href="#">印度</a>
+            <a href="#">马来西亚</a>
+            <a href="#">西班牙</a>
+            <a href="#">瑞士</a>
+            <a href="#">荷兰</a>
+            <a href="#">英国</a>
+            <a href="#">德国</a>
+            <a href="#">意大利</a>
+            <a href="#">希腊</a>
+            <a href="#">俄罗斯</a>
+            <a href="#">墨西哥</a>
+              <br>
+            <a class="a1" href="#">热门城市</a>
+            <a href="#">东京</a>
+            <a href="#">曼谷</a>
+            <a href="#">首尔</a>
+            <a href="#">新加坡</a>
+            <a href="#">普吉岛</a>
+            <a href="#">大阪</a>
+            <a href="#">清迈</a>
+            <a href="#">拉斯维加斯</a>
+            <a href="#">巴黎</a>
+            <a href="#">苏梅岛</a>
+            <a href="#">纽约</a>
+            <a href="#">长滩岛</a>
+            <a href="#">吉隆坡</a>
+            <a href="#">伦敦</a>
+            <a href="#">墨尔本</a>
+            <a href="#">济州岛</a>
+            <a href="#">洛杉矶</a>
+            <a href="#">塞班岛</a>
+        </span>
+    </div>
+</div>-->
+<div class="footer2">
+    <div class="wrap">
+        <span class="s1">
+            <a href="#">关于食器</a><span>丨</span>
+            <a href="#">隐私政策</a><span>丨</span>
+            <a href="#">服务条款</a><span>丨</span>
+            <a href="#">我的账户</a><span>丨</span>
+            <a href="#">客户服务</a><span>丨</span>
+            <a href="#">常见问题</a><span>丨</span>
+            <a href="#">联系我们</a>
+        </span>
+    </div>
+</div>
+<div class="footer3">
+    <div class="wrap">
+        <span class="s1">
+            版权所有@2012-2015 SQDISH RIPPLE CO.,LTD ALL RIGHTS RESERVED<br>
+            DESIGN & CODING BY Sanho Tec / 滇ICP备11010228号<br>
+            HTTP://WWW.SQDISH.COM
+        </span>
+        <span class="s2">
+            <ul class="lifl">
+                <li><a href="#"><img src="../theme/bg/zfb.png" alt=""/></a></li>
+                <li><a href="#"><img src="../theme/bg/wx1.png"alt=""/></a></li>
+                <li><a href="#"><img src="../theme/bg/wx.png" alt=""/></a></li>
+                <li><a href="#"><img src="../theme/bg/qq.png" alt=""/></a></li>
+                <li><a href="#"><img src="../theme/bg/wb.png" alt=""/></a></li>
+            </ul>
+        </span>
+    </div>
+</div>
+
+
+<script src="../assets/js/jquery.min.js"></script>
+
+<script src="../assets/js/amazeui.min.js"></script>
+<script src="../theme/js/jquery.c.js"></script>
+</body>
+</html>

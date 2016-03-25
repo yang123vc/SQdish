@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title>我的购物车-SQdish食器</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="alternate icon" type="image/png" href="assets/i/favicon.png">
+  <link rel="stylesheet" href="/templates/wap/theme/assets/css/amazeui.min.css"/>
+  <link rel="stylesheet" href="/templates/wap/theme/css/style.css">
+  <link rel="stylesheet" href="/templates/wap/theme/css/MyShopping.css">
+</head>
+<body>
+ <header data-am-widget="header" class="am-header am-header-default sqBgColor">
+      <div class="am-header-left am-header-nav">
+         <a href="#left-link" class="">
+             <i class="am-header-icon am-icon-chevron-left"></i>
+          </a>
+      </div>
+
+       <h1 class="am-header-title">我的购物车</h1>
+
+        <?php include "nav.html"?>
+  </header>
+  
+  <div class="am-g lan"></div>
+  
+  <div class="am-g">
+  <?php if(!empty($goods_list)){?>
+ <?php foreach($goods_list as $goods) { ?>
+      <div class="am-u-sm-12 am-u-sm-centered" style="padding:0;">
+      <section data-am-widget="accordion" class="am-accordion am-accordion-gapped" data-am-accordion='{  }'>
+      <dl class="am-accordion-item am-active">
+        <dt class="am-accordion-title">
+        <div class="am-u-sm-4">
+          <img src="<?php echo $goods['img'];?>">
+           </div>
+           
+           <div class="am-u-sm-8">
+          <h3><?php echo $goods['name'];?></h3><span>单价：฿<?php echo $goods['cost'];?></span>
+          </div>
+        </dt>
+        <dd class="am-accordion-bd am-collapse am-in">
+          <!-- 规避 Collapase 处理有 padding 的折叠内容计算计算有误问题， 加一个容器 -->
+          <div class="am-g" style="padding:2rem 0">
+               <div class="am-u-sm-4" style="text-align:center; padding:.8rem 0">
+                <span><a  data-dtid="<?php echo $goods['dtid'];?>" data-opId="<?php echo $goods['opId'];?>" href="javascript:;" class="button-del"><i class="am-icon-trash am-icon-md" style="cursor:pointer;"></i></a></span>
+               </div>
+               
+               <div class="am-u-sm-4 sign">
+                    <ul>
+                        <li style="width:20%"><span class="Minus-sign">-</span></li>
+                        <li style="width:60%"><input type="text" value="<?php echo $goods['count'];?>" class="spinnerExample"/></li>
+                        <li style="width:20%"><span class="Minus-sign">+</span></li>  
+                    </ul>
+               </div>
+               <div class="am-u-sm-4" style="text-align:center; padding:.8rem 0; font-size:2rem;">
+                    <div>小计：<span>￥<?php echo $goods['cost']*$goods['count'];?></span></div>
+               </div>
+          </div>
+        </dd>
+      </dl>
+  </section>
+      </div>
+ <?php } ?>
+<?php } ?>
+
+
+
+
+ </div>
+  
+  
+        <?php if( count($goods_list) > 0 ){ ?>
+  <div class="am-g" style="border-bottom:#ccc 1px solid;">
+       <div class="am-u-sm-5"></div>
+       <div class="am-u-sm-7 text">
+            <div class="am-u-sm-6">
+                 商品数量：<span><?=$result['totalNum']?></span>
+            </div>
+            <div class="am-u-sm-6">
+                 合计：<span>฿<?=$result['totalPrice']?>约合<?=number_format(($result['totalPrice'])*$exchangeRate,2)?>元</span>
+            </div>
+       </div>
+  </div>
+    <?php } ?>
+    <?php if( count($goods_list) > 0 ){ ?>
+  <div class="am-g">
+        <div class="am-u-sm-12">
+           <a href="PaymentMethod.html"><button class="s-btn" type="button">确认菜单</button></a>
+        </div>
+  </div>
+      <?php } ?>
+  
+<script src="/templates/wap/theme/assets/js/jquery.min.js"></script>
+<script src="/templates/wap/theme/assets/js/amazeui.min.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+  $(function(){
+        $(".button-del").click(function(){
+          if(confirm('确定要删除吗？')){
+              var dtid = $(this).data('dtid');
+              var num = $(this).data('num');
+              var price = $(this).data('price');
+              var dtid = $(this).data('dtid');
+              var opId = $(this).data('opid');
+             if($.post("./dish/del.php",{"dtid":dtid,"opId":opId},function(data){
+      
+              })){
+              alert('删除成功');
+
+             }else{
+              alert('删除失败');
+             }
+              window.location.reload();
+             };
+
+  });
+
+});
+
+
+</script>

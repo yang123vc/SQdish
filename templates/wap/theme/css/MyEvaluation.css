@@ -1,0 +1,44 @@
+a{color:#000; }
+
+*{ font-family:"微软雅黑"}
+
+ul{ list-style:none; display:block; padding:0;}
+
+.sqBgColor {background:#eda128;}
+
+.sqBgColor a{ color:#FFF;}
+
+.lan{height:10px; background:#f5f5f5;}
+
+.am-header .am-header-right{ right:5rem;}
+
+.am-header .am-header-right{ right:5rem;}
+
+.am-header-default .am-header-nav-title{ font-size:1.6rem;}
+
+.am-menu-dropdown1 .am-menu-nav>li>a{ background:#eda128; border-bottom:#fff;width:20%;float:right; font-size:1rem;}
+
+.am-menu-dropdown1 .am-menu-nav>li{ margin:1px 0;}
+
+.am-menu-dropdown1 .am-menu-nav{ right:-10px}
+
+.headerimg{ display:inline-block; width:20%; margin-right:1rem;}
+
+.headerimg img{ width:100%;}
+
+.am-panel-default>.am-panel-hd{ background:#fff; border:0; color:#000;}
+
+.am-panel-hd{ color:#ccc;}
+
+.bdimg{ display:inline-block; width:20%; margin-left:1rem;}
+
+.bdimg img{ width:100%; margin-bottom:.5rem;}
+
+.am-thumbnail{ margin:0;}
+
+.am-panel{ margin-bottom:0;}
+
+.am-footer-default .am-footer-switch{ margin-bottom:20px}
+
+.am-footer .am-footer-ysp:hover{ color:#eda128;}
+
