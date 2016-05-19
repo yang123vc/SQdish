@@ -1,9 +1,5 @@
 <?php 
 
-
-
-
-
-echo "hello";
+echo "text the git";
 
 ?>
